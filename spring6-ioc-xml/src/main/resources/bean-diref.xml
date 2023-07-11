@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--p命名空间注入-->
+    <bean id="studentP" class="com.DEAiFISH.dimap.Student"
+          p:sId="1000" p:sName="cxx" p:courseList-ref="courseList" p:teacherMap-ref="teacherMap"/>
+
+    <!--
+        1、创建三个对象
+        2、注入普通类型属性
+        3、使用util：类型 定义
+        4、在学生bean引入util：类型定义bean，完成list、map、类型属性注入
+    -->
+
+    <bean id="student" class="com.DEAiFISH.dimap.Student">
+        <!--注入了list、map类型属性-->
+        <property name="courseList" ref="courseList"/>
+        <property name="teacherMap" ref="teacherMap"/>
+
+        <property name="sId" value="1000"/>
+        <property name="sName" value="cxx"/>
+    </bean>
+
+    <util:list id="courseList">
+        <ref bean="courseOne"/>
+        <ref bean="courseTwo"/>
+    </util:list>
+
+    <util:map id="teacherMap">
+        <entry key="100010" value-ref="teacherOne"/>
+        <entry key="100011" value-ref="teacherTwo"/>
+    </util:map>
+
+    <bean id="courseOne" class="com.DEAiFISH.dimap.Course">
+        <property name="cName" value="Java开发"/>
+    </bean>
+    <bean id="courseTwo" class="com.DEAiFISH.dimap.Course">
+        <property name="cName" value="前端开发"/>
+    </bean>
+
+    <bean id="teacherOne" class="com.DEAiFISH.dimap.Teacher">
+        <property name="tId" value="100"/>
+        <property name="tName" value="cxx"/>
+    </bean>
+    <bean id="teacherTwo" class="com.DEAiFISH.dimap.Teacher">
+        <property name="tId" value="101"/>
+        <property name="tName" value="xcx"/>
+    </bean>
+</beans>

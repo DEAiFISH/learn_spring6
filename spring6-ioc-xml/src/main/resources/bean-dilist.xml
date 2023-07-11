@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="empOne" class="com.DEAiFISH.ditest.Emp">
+        <property name="eName" value="cxx"/>
+        <property name="age" value="20"/>
+    </bean>
+    <bean id="empTwo" class="com.DEAiFISH.ditest.Emp">
+        <property name="eName" value="cxx"/>
+        <property name="age" value="22"/>
+    </bean>
+    <bean id="dept" class="com.DEAiFISH.ditest.Dept">
+        <property name="dName" value="技术"/>
+        <property name="empList">
+            <list>
+                <ref bean="empOne"/>
+                <ref bean="empTwo"/>
+            </list>
+        </property>
+    </bean>
+</beans>

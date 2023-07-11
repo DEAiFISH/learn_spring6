@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!--    创建对象-->
+    <!--1、获取bean演示，创建user对象-->
     <bean id="user" class="com.DEAiFISH.User"></bean>
+
+    <!--    <bean id="user1" class="com.DEAiFISH.User"></bean>-->
+
+    <!--2、 一个接口实现类获取过程-->
+    <bean id="userDaoImpl" class="com.DEAiFISH.bean.UserDaoImpl"></bean>
+    <bean id="personDaoImPl" class="com.DEAiFISH.bean.PersonDaoImpl"></bean>
 </beans>

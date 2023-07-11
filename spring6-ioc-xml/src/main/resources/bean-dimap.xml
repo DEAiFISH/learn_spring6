@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        1、创建连个对象
+        2、注入普通类型
+        3、在学生bean中注入map集合类型属性
+    -->
+    <bean id="teacherOne" class="com.DEAiFISH.dimap.Teacher">
+        <!--注入普通类型属性-->
+        <property name="tId" value="100"/>
+        <property name="tName" value="xxc"/>
+    </bean>
+    <bean id="teacherTwo" class="com.DEAiFISH.dimap.Teacher">
+        <!--注入普通类型属性-->
+        <property name="tId" value="101"/>
+        <property name="tName" value="xcx"/>
+    </bean>
+
+    <bean id="student" class="com.DEAiFISH.dimap.Student">
+        <!--在学生bean注入map集合类型属性-->
+        <property name="teacherMap">
+            <map>
+                <!--                <entry>-->
+                <!--                    <key>-->
+                <!--                        <value>10010</value>-->
+                <!--                    </key>-->
+                <!--                    <ref bean="teacher"/>-->
+                <!--                </entry>-->
+
+                <entry key="10010" value-ref="teacherOne"/>
+                <entry key="10011" value-ref="teacherTwo"/>
+            </map>
+        </property>
+
+        <!--注入普通类型属性-->
+        <property name="sId" value="200"/>
+        <property name="sName" value="cxx"/>
+    </bean>
+</beans>

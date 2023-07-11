@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--注入数组类型属性-->
+    <bean id="emp" class="com.DEAiFISH.ditest.Emp">
+        <!--数组类型属性-->
+        <property name="interests">
+            <array>
+                <value>吃饭</value>
+                <value>睡觉</value>
+                <value>敲代码</value>
+            </array>
+        </property>
+
+        <!--对象类型属性-->
+        <property name="dept">
+            <bean class="com.DEAiFISH.ditest.Dept">
+                <property name="dName" value="技术部"/>
+            </bean>
+        </property>
+
+        <!--普通属性-->
+        <property name="eName" value="cxx"/>
+        <property name="age" value="20"/>
+    </bean>
+</beans>

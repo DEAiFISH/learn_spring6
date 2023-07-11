@@ -6,6 +6,39 @@
         <fileset id="fileset" name="Bean" removed="false">
           <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean.xml</file>
         </fileset>
+        <fileset id="fileset2" name="Bean Di" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-di.xml</file>
+        </fileset>
+        <fileset id="fileset3" name="Bean Ditest" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-ditest.xml</file>
+        </fileset>
+        <fileset id="fileset4" name="Bean Diarray" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-diarray.xml</file>
+        </fileset>
+        <fileset id="fileset5" name="Bean Dilist" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-dilist.xml</file>
+        </fileset>
+        <fileset id="fileset6" name="Bean Dimap" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-dimap.xml</file>
+        </fileset>
+        <fileset id="fileset7" name="Bean Diref" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-diref.xml</file>
+        </fileset>
+        <fileset id="fileset8" name="Bean Jdbc" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-jdbc.xml</file>
+        </fileset>
+        <fileset id="fileset9" name="Bean Scope" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-scope.xml</file>
+        </fileset>
+        <fileset id="fileset10" name="Bean Life" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-life.xml</file>
+        </fileset>
+        <fileset id="fileset11" name="Bean Factorybean" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-factorybean.xml</file>
+        </fileset>
+        <fileset id="fileset12" name="Bean Auto" removed="false">
+          <file>file://$MODULE_DIR$/spring6-ioc-xml/src/main/resources/bean-auto.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>

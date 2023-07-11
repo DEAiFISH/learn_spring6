@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    第一种方式：引入外部bean
+        1、创建两个类的对象：dept 和 emp
+        2、在emp的bean标签里面，使用property引入dept的bean
+    -->
+
+    <bean id="dept" class="com.DEAiFISH.ditest.Dept">
+        <property name="dName" value="安保部"/>
+    </bean>
+
+    <bean id="emp" class="com.DEAiFISH.ditest.Emp">
+        <!--注入对象类型属性-->
+        <!--private Dept dept-->
+        <property name="dept" ref="dept"/>
+
+        <!--普通属性注入-->
+        <property name="eName" value="cxx"/>
+        <property name="age" value="21"/>
+    </bean>
+
+    <!--第二种方式：外部bean注入-->
+    <bean id="dept2" class="com.DEAiFISH.ditest.Dept">
+        <property name="dName" value="财务部"/>
+    </bean>
+
+    <bean id="emp2" class="com.DEAiFISH.ditest.Emp">
+        <!--内部bean-->
+        <property name="dept">
+            <bean class="com.DEAiFISH.ditest.Dept">
+                <property name="dName" value="财务部"/>
+            </bean>
+        </property>
+
+        <!--普通属性注入-->
+        <property name="eName" value="cxx"/>
+        <property name="age" value="20"/>
+    </bean>
+
+    <!--第三种方式：级联赋值-->
+    <bean id="dept3" class="com.DEAiFISH.ditest.Dept">
+        <property name="dName" value="技术研究部"/>
+    </bean>
+    <bean id="emp3" class="com.DEAiFISH.ditest.Emp">
+        <!--级联赋值-->
+        <property name="dept" ref="dept3"/>
+        <property name="dept.dName" value="测试部"/>
+
+        <!--普通属性注入-->
+        <property name="eName" value="cxx"/>
+        <property name="age" value="20"/>
+    </bean>
+</beans>
