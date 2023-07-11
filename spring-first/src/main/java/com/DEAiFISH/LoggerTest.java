@@ -10,7 +10,7 @@ public class LoggerTest {
     private Logger logger = LoggerFactory.getLogger(LoggerTest.class);
 
     @Test
-    public void test(){
+    public void test() {
         logger.info("### loggerTest");
     }
 }
