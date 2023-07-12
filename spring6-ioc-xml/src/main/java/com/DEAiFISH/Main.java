@@ -6,9 +6,8 @@ import com.DEAiFISH.di.Book;
 import com.DEAiFISH.dimap.Student;
 import com.DEAiFISH.ditest.Dept;
 import com.DEAiFISH.ditest.Emp;
-import com.DEAiFISH.factorybean.MyFactoryBean;
-import com.DEAiFISH.scope.Orders;
 import com.DEAiFISH.life.User;
+import com.DEAiFISH.scope.Orders;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -127,7 +126,7 @@ public class Main {
      * 引入集合bean
      */
     @Test
-    public void testUtil(){
+    public void testUtil() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-diref.xml");
 
         Student student = context.getBean("student", Student.class);
@@ -139,7 +138,7 @@ public class Main {
      * p命名空间
      */
     @Test
-    public void testP(){
+    public void testP() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-diref.xml");
 
         Student student = context.getBean("studentP", Student.class);
@@ -151,7 +150,7 @@ public class Main {
      * 引入外部属性文件
      */
     @Test
-    public void demo1(){
+    public void demo1() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/learn_spring?serverTimezone=UTC");
         dataSource.setName("root");
@@ -160,7 +159,7 @@ public class Main {
     }
 
     @Test
-    public void demo2(){
+    public void demo2() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-jdbc.xml");
 
         DruidDataSource dataSource = context.getBean("druidDataSource", DruidDataSource.class);
@@ -172,7 +171,7 @@ public class Main {
      * scope属性
      */
     @Test
-    public void testOrders(){
+    public void testOrders() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-scope.xml");
 
         //单实例
@@ -194,7 +193,7 @@ public class Main {
      * bean生命周期
      */
     @Test
-    public void testLife(){
+    public void testLife() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean-life.xml");
 
         User user = context.getBean("user", User.class);
@@ -210,7 +209,7 @@ public class Main {
      * FactoryBean
      */
     @Test
-    public void testFactoryBean(){
+    public void testFactoryBean() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-factorybean.xml");
 
         System.out.println(context.getBean("user") instanceof com.DEAiFISH.factorybean.User);
@@ -220,7 +219,7 @@ public class Main {
      * 自动装配
      */
     @Test
-    public void testAuto(){
+    public void testAuto() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-auto.xml");
 
         UserController userController = context.getBean("userController", UserController.class);

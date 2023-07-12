@@ -8,14 +8,15 @@ public class User {
     }
 
     //初始化方法
-    public void initMethod(){
+    public void initMethod() {
         System.out.println("4、bean对象初始化，调用指定的初始化方法");
     }
 
     //销毁方法
-    public void destroyMethod(){
+    public void destroyMethod() {
         System.out.println("7、bean对象销毁，调用指定的销毁方法");
     }
+
     public String getName() {
         return name;
     }
