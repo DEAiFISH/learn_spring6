@@ -8,10 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring6-first" />
         <module name="spring-ioc-annotation" />
+        <module name="spring6-aop" />
+        <module name="spring6-reflect" />
+        <module name="deaifish-spring" />
         <module name="spring6-ioc-xml" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="atguigu-spring" target="17" />
       <module name="spring-first" target="17" />
     </bytecodeTargetLevel>
   </component>

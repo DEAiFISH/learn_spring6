@@ -194,13 +194,13 @@ https://spring.io/projects/spring-framework#learn
 #### 2.3.2、创建java类
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
 public class HelloWorld {
-    
-    public void sayHello(){
-        System.out.println("helloworld");
-    }
+
+  public void sayHello() {
+    System.out.println("helloworld");
+  }
 }
 ```
 
@@ -231,7 +231,7 @@ public class HelloWorld {
 #### 2.3.4、创建测试类测试
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -239,12 +239,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class HelloWorldTest {
 
-    @Test
-    public void testHelloWorld(){
-        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-        HelloWorld helloworld = (HelloWorld) ac.getBean("helloWorld");
-        helloworld.sayHello();
-    }
+  @Test
+  public void testHelloWorld() {
+    ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+    HelloWorld helloworld = (HelloWorld) ac.getBean("helloWorld");
+    helloworld.sayHello();
+  }
 }
 ```
 
@@ -259,17 +259,17 @@ public class HelloWorldTest {
 修改HelloWorld类：
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
 public class HelloWorld {
 
-    public HelloWorld() {
-        System.out.println("无参数构造方法执行");
-    }
+  public HelloWorld() {
+    System.out.println("无参数构造方法执行");
+  }
 
-    public void sayHello(){
-        System.out.println("helloworld");
-    }
+  public void sayHello() {
+    System.out.println("helloworld");
+  }
 }
 ```
 
@@ -541,38 +541,36 @@ BeanFactory。
 引入spring-first模块java及test目录下实体类
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
 public class HelloWorld {
 
-    public HelloWorld() {
-        System.out.println("无参数构造方法执行");
-    }
+  public HelloWorld() {
+    System.out.println("无参数构造方法执行");
+  }
 
-    public void sayHello(){
-        System.out.println("helloworld");
-    }
+  public void sayHello() {
+    System.out.println("helloworld");
+  }
 }
 
 ```
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class HelloWorldTest {
 
-    private Logger logger = LoggerFactory.getLogger(HelloWorldTest.class);
+  private Logger logger = LoggerFactory.getLogger(HelloWorldTest.class);
 
-    @Test
-    public void testHelloWorld(){
-        
-    }
+  @Test
+  public void testHelloWorld() {
+
+  }
 }
 ```
 
@@ -611,8 +609,9 @@ public void testHelloWorld2(){
 当IOC容器中一共配置了两个：
 
 ```xml
-<bean id="helloworldOne" class="com.atguigu.spring6.bean.HelloWorld"></bean>
-<bean id="helloworldTwo" class="com.atguigu.spring6.bean.HelloWorld"></bean>
+
+<bean id="helloworldOne" class="com.DEAiFISH.spring6.bean.HelloWorld"></bean>
+<bean id="helloworldTwo" class="com.DEAiFISH.spring6.bean.HelloWorld"></bean>
 ```
 
 根据类型获取时会抛出异常：
@@ -642,62 +641,62 @@ instanceof 操作符的左右操作必须有继承或实现关系
 **①创建学生类Student**
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
 public class Student {
 
-    private Integer id;
+  private Integer id;
 
-    private String name;
+  private String name;
 
-    private Integer age;
+  private Integer age;
 
-    private String sex;
+  private String sex;
 
-    public Student() {
-    }
+  public Student() {
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Integer getAge() {
-        return age;
-    }
+  public Integer getAge() {
+    return age;
+  }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+  public void setAge(Integer age) {
+    this.age = age;
+  }
 
-    public String getSex() {
-        return sex;
-    }
+  public String getSex() {
+    return sex;
+  }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+  public void setSex(String sex) {
+    this.sex = sex;
+  }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Student{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", age=" + age +
+            ", sex='" + sex + '\'' +
+            '}';
+  }
 
 }
 ```
@@ -707,14 +706,15 @@ public class Student {
 spring-di.xml
 
 ```xml
-<bean id="studentOne" class="com.atguigu.spring6.bean.Student">
-    <!-- property标签：通过组件类的setXxx()方法给组件对象设置属性 -->
-    <!-- name属性：指定属性名（这个属性名是getXxx()、setXxx()方法定义的，和成员变量无关） -->
-    <!-- value属性：指定属性值 -->
-    <property name="id" value="1001"></property>
-    <property name="name" value="张三"></property>
-    <property name="age" value="23"></property>
-    <property name="sex" value="男"></property>
+
+<bean id="studentOne" class="com.DEAiFISH.spring6.bean.Student">
+  <!-- property标签：通过组件类的setXxx()方法给组件对象设置属性 -->
+  <!-- name属性：指定属性名（这个属性名是getXxx()、setXxx()方法定义的，和成员变量无关） -->
+  <!-- value属性：指定属性值 -->
+  <property name="id" value="1001"></property>
+  <property name="name" value="张三"></property>
+  <property name="age" value="23"></property>
+  <property name="sex" value="男"></property>
 </bean>
 ```
 
@@ -747,11 +747,12 @@ public Student(Integer id, String name, Integer age, String sex) {
 spring-di.xml
 
 ```xml
-<bean id="studentTwo" class="com.atguigu.spring6.bean.Student">
-    <constructor-arg value="1002"></constructor-arg>
-    <constructor-arg value="李四"></constructor-arg>
-    <constructor-arg value="33"></constructor-arg>
-    <constructor-arg value="女"></constructor-arg>
+
+<bean id="studentTwo" class="com.DEAiFISH.spring6.bean.Student">
+  <constructor-arg value="1002"></constructor-arg>
+  <constructor-arg value="李四"></constructor-arg>
+  <constructor-arg value="33"></constructor-arg>
+  <constructor-arg value="女"></constructor-arg>
 </bean>
 ```
 
@@ -831,45 +832,45 @@ public void testDIByConstructor(){
 **①创建班级类Clazz**
 
 ```java
-package com.atguigu.spring6.bean
-    
+package com.DEAiFISH.spring6.bean
+
 public class Clazz {
 
-    private Integer clazzId;
+  private Integer clazzId;
 
-    private String clazzName;
+  private String clazzName;
 
-    public Integer getClazzId() {
-        return clazzId;
-    }
+  public Integer getClazzId() {
+    return clazzId;
+  }
 
-    public void setClazzId(Integer clazzId) {
-        this.clazzId = clazzId;
-    }
+  public void setClazzId(Integer clazzId) {
+    this.clazzId = clazzId;
+  }
 
-    public String getClazzName() {
-        return clazzName;
-    }
+  public String getClazzName() {
+    return clazzName;
+  }
 
-    public void setClazzName(String clazzName) {
-        this.clazzName = clazzName;
-    }
+  public void setClazzName(String clazzName) {
+    this.clazzName = clazzName;
+  }
 
-    @Override
-    public String toString() {
-        return "Clazz{" +
-                "clazzId=" + clazzId +
-                ", clazzName='" + clazzName + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Clazz{" +
+            "clazzId=" + clazzId +
+            ", clazzName='" + clazzName + '\'' +
+            '}';
+  }
 
-    public Clazz() {
-    }
+  public Clazz() {
+  }
 
-    public Clazz(Integer clazzId, String clazzName) {
-        this.clazzId = clazzId;
-        this.clazzName = clazzName;
-    }
+  public Clazz(Integer clazzId, String clazzName) {
+    this.clazzId = clazzId;
+    this.clazzName = clazzName;
+  }
 }
 ```
 
@@ -894,34 +895,37 @@ public void setClazz(Clazz clazz) {
 配置Clazz类型的bean：
 
 ```xml
-<bean id="clazzOne" class="com.atguigu.spring6.bean.Clazz">
-    <property name="clazzId" value="1111"></property>
-    <property name="clazzName" value="财源滚滚班"></property>
+
+<bean id="clazzOne" class="com.DEAiFISH.spring6.bean.Clazz">
+  <property name="clazzId" value="1111"></property>
+  <property name="clazzName" value="财源滚滚班"></property>
 </bean>
 ```
 
 为Student中的clazz属性赋值：
 
 ```xml
-<bean id="studentFour" class="com.atguigu.spring6.bean.Student">
-    <property name="id" value="1004"></property>
-    <property name="name" value="赵六"></property>
-    <property name="age" value="26"></property>
-    <property name="sex" value="女"></property>
-    <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
-    <property name="clazz" ref="clazzOne"></property>
+
+<bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
+  <property name="id" value="1004"></property>
+  <property name="name" value="赵六"></property>
+  <property name="age" value="26"></property>
+  <property name="sex" value="女"></property>
+  <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
+  <property name="clazz" ref="clazzOne"></property>
 </bean>
 ```
 
 错误演示：
 
 ```xml
-<bean id="studentFour" class="com.atguigu.spring6.bean.Student">
-    <property name="id" value="1004"></property>
-    <property name="name" value="赵六"></property>
-    <property name="age" value="26"></property>
-    <property name="sex" value="女"></property>
-    <property name="clazz" value="clazzOne"></property>
+
+<bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
+  <property name="id" value="1004"></property>
+  <property name="name" value="赵六"></property>
+  <property name="age" value="26"></property>
+  <property name="sex" value="女"></property>
+  <property name="clazz" value="clazzOne"></property>
 </bean>
 ```
 
@@ -934,33 +938,35 @@ public void setClazz(Clazz clazz) {
 ##### 方式二：内部bean
 
 ```xml
-<bean id="studentFour" class="com.atguigu.spring6.bean.Student">
-    <property name="id" value="1004"></property>
-    <property name="name" value="赵六"></property>
-    <property name="age" value="26"></property>
-    <property name="sex" value="女"></property>
-    <property name="clazz">
-        <!-- 在一个bean中再声明一个bean就是内部bean -->
-        <!-- 内部bean只能用于给属性赋值，不能在外部通过IOC容器获取，因此可以省略id属性 -->
-        <bean id="clazzInner" class="com.atguigu.spring6.bean.Clazz">
-            <property name="clazzId" value="2222"></property>
-            <property name="clazzName" value="远大前程班"></property>
-        </bean>
-    </property>
+
+<bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
+  <property name="id" value="1004"></property>
+  <property name="name" value="赵六"></property>
+  <property name="age" value="26"></property>
+  <property name="sex" value="女"></property>
+  <property name="clazz">
+    <!-- 在一个bean中再声明一个bean就是内部bean -->
+    <!-- 内部bean只能用于给属性赋值，不能在外部通过IOC容器获取，因此可以省略id属性 -->
+    <bean id="clazzInner" class="com.DEAiFISH.spring6.bean.Clazz">
+      <property name="clazzId" value="2222"></property>
+      <property name="clazzName" value="远大前程班"></property>
+    </bean>
+  </property>
 </bean>
 ```
 
 ##### 方式三：级联属性赋值
 
 ```xml
-<bean id="studentFour" class="com.atguigu.spring6.bean.Student">
-    <property name="id" value="1004"></property>
-    <property name="name" value="赵六"></property>
-    <property name="age" value="26"></property>
-    <property name="sex" value="女"></property>
-    <property name="clazz" ref="clazzOne"></property>
-    <property name="clazz.clazzId" value="3333"></property>
-    <property name="clazz.clazzName" value="最强王者班"></property>
+
+<bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
+  <property name="id" value="1004"></property>
+  <property name="name" value="赵六"></property>
+  <property name="age" value="26"></property>
+  <property name="sex" value="女"></property>
+  <property name="clazz" ref="clazzOne"></property>
+  <property name="clazz.clazzId" value="3333"></property>
+  <property name="clazz.clazzName" value="最强王者班"></property>
 </bean>
 ```
 
@@ -985,20 +991,21 @@ public void setHobbies(String[] hobbies) {
 **②配置bean**
 
 ```xml
-<bean id="studentFour" class="com.atguigu.spring.bean6.Student">
-    <property name="id" value="1004"></property>
-    <property name="name" value="赵六"></property>
-    <property name="age" value="26"></property>
-    <property name="sex" value="女"></property>
-    <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
-    <property name="clazz" ref="clazzOne"></property>
-    <property name="hobbies">
-        <array>
-            <value>抽烟</value>
-            <value>喝酒</value>
-            <value>烫头</value>
-        </array>
-    </property>
+
+<bean id="studentFour" class="com.DEAiFISH.spring.bean6.Student">
+  <property name="id" value="1004"></property>
+  <property name="name" value="赵六"></property>
+  <property name="age" value="26"></property>
+  <property name="sex" value="女"></property>
+  <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
+  <property name="clazz" ref="clazzOne"></property>
+  <property name="hobbies">
+    <array>
+      <value>抽烟</value>
+      <value>喝酒</value>
+      <value>烫头</value>
+    </array>
+  </property>
 </bean>
 ```
 
@@ -1023,16 +1030,17 @@ public void setStudents(List<Student> students) {
 配置bean：
 
 ```xml
-<bean id="clazzTwo" class="com.atguigu.spring6.bean.Clazz">
-    <property name="clazzId" value="4444"></property>
-    <property name="clazzName" value="Javaee0222"></property>
-    <property name="students">
-        <list>
-            <ref bean="studentOne"></ref>
-            <ref bean="studentTwo"></ref>
-            <ref bean="studentThree"></ref>
-        </list>
-    </property>
+
+<bean id="clazzTwo" class="com.DEAiFISH.spring6.bean.Clazz">
+  <property name="clazzId" value="4444"></property>
+  <property name="clazzName" value="Javaee0222"></property>
+  <property name="students">
+    <list>
+      <ref bean="studentOne"></ref>
+      <ref bean="studentTwo"></ref>
+      <ref bean="studentThree"></ref>
+    </list>
+  </property>
 </bean>
 ```
 
@@ -1043,45 +1051,46 @@ public void setStudents(List<Student> students) {
 创建教师类Teacher：
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
+
 public class Teacher {
 
-    private Integer teacherId;
+  private Integer teacherId;
 
-    private String teacherName;
+  private String teacherName;
 
-    public Integer getTeacherId() {
-        return teacherId;
-    }
+  public Integer getTeacherId() {
+    return teacherId;
+  }
 
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
+  public void setTeacherId(Integer teacherId) {
+    this.teacherId = teacherId;
+  }
 
-    public String getTeacherName() {
-        return teacherName;
-    }
+  public String getTeacherName() {
+    return teacherName;
+  }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
+  public void setTeacherName(String teacherName) {
+    this.teacherName = teacherName;
+  }
 
-    public Teacher(Integer teacherId, String teacherName) {
-        this.teacherId = teacherId;
-        this.teacherName = teacherName;
-    }
+  public Teacher(Integer teacherId, String teacherName) {
+    this.teacherId = teacherId;
+    this.teacherName = teacherName;
+  }
 
-    public Teacher() {
+  public Teacher() {
 
-    }
-    
-    @Override
-    public String toString() {
-        return "Teacher{" +
-                "teacherId=" + teacherId +
-                ", teacherName='" + teacherName + '\'' +
-                '}';
-    }
+  }
+
+  @Override
+  public String toString() {
+    return "Teacher{" +
+            "teacherId=" + teacherId +
+            ", teacherName='" + teacherName + '\'' +
+            '}';
+  }
 }
 ```
 
@@ -1102,46 +1111,47 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 配置bean：
 
 ```xml
-<bean id="teacherOne" class="com.atguigu.spring6.bean.Teacher">
-    <property name="teacherId" value="10010"></property>
-    <property name="teacherName" value="大宝"></property>
+
+<bean id="teacherOne" class="com.DEAiFISH.spring6.bean.Teacher">
+  <property name="teacherId" value="10010"></property>
+  <property name="teacherName" value="大宝"></property>
 </bean>
 
-<bean id="teacherTwo" class="com.atguigu.spring6.bean.Teacher">
-    <property name="teacherId" value="10086"></property>
-    <property name="teacherName" value="二宝"></property>
+<bean id="teacherTwo" class="com.DEAiFISH.spring6.bean.Teacher">
+<property name="teacherId" value="10086"></property>
+<property name="teacherName" value="二宝"></property>
 </bean>
 
-<bean id="studentFour" class="com.atguigu.spring6.bean.Student">
-    <property name="id" value="1004"></property>
-    <property name="name" value="赵六"></property>
-    <property name="age" value="26"></property>
-    <property name="sex" value="女"></property>
-    <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
-    <property name="clazz" ref="clazzOne"></property>
-    <property name="hobbies">
-        <array>
-            <value>抽烟</value>
-            <value>喝酒</value>
-            <value>烫头</value>
-        </array>
-    </property>
-    <property name="teacherMap">
-        <map>
-            <entry>
-                <key>
-                    <value>10010</value>
-                </key>
-                <ref bean="teacherOne"></ref>
-            </entry>
-            <entry>
-                <key>
-                    <value>10086</value>
-                </key>
-                <ref bean="teacherTwo"></ref>
-            </entry>
-        </map>
-    </property>
+<bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
+<property name="id" value="1004"></property>
+<property name="name" value="赵六"></property>
+<property name="age" value="26"></property>
+<property name="sex" value="女"></property>
+<!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
+<property name="clazz" ref="clazzOne"></property>
+<property name="hobbies">
+  <array>
+    <value>抽烟</value>
+    <value>喝酒</value>
+    <value>烫头</value>
+  </array>
+</property>
+<property name="teacherMap">
+  <map>
+    <entry>
+      <key>
+        <value>10010</value>
+      </key>
+      <ref bean="teacherOne"></ref>
+    </entry>
+    <entry>
+      <key>
+        <value>10086</value>
+      </key>
+      <ref bean="teacherTwo"></ref>
+    </entry>
+  </map>
+</property>
 </bean>
 ```
 
@@ -1150,45 +1160,45 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 ```xml
 <!--list集合类型的bean-->
 <util:list id="students">
-    <ref bean="studentOne"></ref>
-    <ref bean="studentTwo"></ref>
-    <ref bean="studentThree"></ref>
+  <ref bean="studentOne"></ref>
+  <ref bean="studentTwo"></ref>
+  <ref bean="studentThree"></ref>
 </util:list>
-<!--map集合类型的bean-->
+        <!--map集合类型的bean-->
 <util:map id="teacherMap">
-    <entry>
-        <key>
-            <value>10010</value>
-        </key>
-        <ref bean="teacherOne"></ref>
-    </entry>
-    <entry>
-        <key>
-            <value>10086</value>
-        </key>
-        <ref bean="teacherTwo"></ref>
-    </entry>
+<entry>
+  <key>
+    <value>10010</value>
+  </key>
+  <ref bean="teacherOne"></ref>
+</entry>
+<entry>
+  <key>
+    <value>10086</value>
+  </key>
+  <ref bean="teacherTwo"></ref>
+</entry>
 </util:map>
-<bean id="clazzTwo" class="com.atguigu.spring6.bean.Clazz">
-    <property name="clazzId" value="4444"></property>
-    <property name="clazzName" value="Javaee0222"></property>
-    <property name="students" ref="students"></property>
+<bean id="clazzTwo" class="com.DEAiFISH.spring6.bean.Clazz">
+<property name="clazzId" value="4444"></property>
+<property name="clazzName" value="Javaee0222"></property>
+<property name="students" ref="students"></property>
 </bean>
-<bean id="studentFour" class="com.atguigu.spring6.bean.Student">
-    <property name="id" value="1004"></property>
-    <property name="name" value="赵六"></property>
-    <property name="age" value="26"></property>
-    <property name="sex" value="女"></property>
-    <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
-    <property name="clazz" ref="clazzOne"></property>
-    <property name="hobbies">
-        <array>
-            <value>抽烟</value>
-            <value>喝酒</value>
-            <value>烫头</value>
-        </array>
-    </property>
-    <property name="teacherMap" ref="teacherMap"></property>
+<bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
+<property name="id" value="1004"></property>
+<property name="name" value="赵六"></property>
+<property name="age" value="26"></property>
+<property name="sex" value="女"></property>
+<!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
+<property name="clazz" ref="clazzOne"></property>
+<property name="hobbies">
+  <array>
+    <value>抽烟</value>
+    <value>喝酒</value>
+    <value>烫头</value>
+  </array>
+</property>
+<property name="teacherMap" ref="teacherMap"></property>
 </bean>
 ```
 
@@ -1224,8 +1234,9 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 引入p命名空间后，可以通过以下方式为bean的各个属性赋值
 
 ```xml
-<bean id="studentSix" class="com.atguigu.spring6.bean.Student"
-    p:id="1006" p:name="小明" p:clazz-ref="clazzOne" p:teacherMap-ref="teacherMap"></bean>
+
+<bean id="studentSix" class="com.DEAiFISH.spring6.bean.Student"
+      p:id="1006" p:name="小明" p:clazz-ref="clazzOne" p:teacherMap-ref="teacherMap"></bean>
 ```
 
 #### 3.2.10、实验九：引入外部属性文件
@@ -1328,68 +1339,69 @@ public void testDataSource() throws SQLException {
 **②创建类User**
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
+
 public class User {
 
-    private Integer id;
+  private Integer id;
 
-    private String username;
+  private String username;
 
-    private String password;
+  private String password;
 
-    private Integer age;
+  private Integer age;
 
-    public User() {
-    }
+  public User() {
+  }
 
-    public User(Integer id, String username, String password, Integer age) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.age = age;
-    }
+  public User(Integer id, String username, String password, Integer age) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.age = age;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public Integer getAge() {
-        return age;
-    }
+  public Integer getAge() {
+    return age;
+  }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+  public void setAge(Integer age) {
+    this.age = age;
+  }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "User{" +
+            "id=" + id +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", age=" + age +
+            '}';
+  }
 }
 ```
 
@@ -1398,7 +1410,7 @@ public class User {
 ```xml
 <!-- scope属性：取值singleton（默认值），bean在IOC容器中只有一个实例，IOC容器初始化时创建对象 -->
 <!-- scope属性：取值prototype，bean在IOC容器中可以有多个实例，getBean()时创建对象 -->
-<bean class="com.atguigu.spring6.bean.User" scope="prototype"></bean>
+<bean class="com.DEAiFISH.spring6.bean.User" scope="prototype"></bean>
 ```
 
 **④测试**
@@ -1517,11 +1529,11 @@ public class User {
 ```xml
 <!-- 使用init-method属性指定初始化方法 -->
 <!-- 使用destroy-method属性指定销毁方法 -->
-<bean class="com.atguigu.spring6.bean.User" scope="prototype" init-method="initMethod" destroy-method="destroyMethod">
-    <property name="id" value="1001"></property>
-    <property name="username" value="admin"></property>
-    <property name="password" value="123456"></property>
-    <property name="age" value="23"></property>
+<bean class="com.DEAiFISH.spring6.bean.User" scope="prototype" init-method="initMethod" destroy-method="destroyMethod">
+  <property name="id" value="1001"></property>
+  <property name="username" value="admin"></property>
+  <property name="password" value="123456"></property>
+  <property name="age" value="23"></property>
 </bean>
 ```
 
@@ -1544,24 +1556,24 @@ bean的后置处理器会在生命周期的初始化前后添加额外的操作�
 创建bean的后置处理器：
 
 ```java
-package com.atguigu.spring6.process;
-    
+package com.DEAiFISH.spring6.process;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 public class MyBeanProcessor implements BeanPostProcessor {
-    
-    @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("☆☆☆" + beanName + " = " + bean);
-        return bean;
-    }
-    
-    @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("★★★" + beanName + " = " + bean);
-        return bean;
-    }
+
+  @Override
+  public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+    System.out.println("☆☆☆" + beanName + " = " + bean);
+    return bean;
+  }
+
+  @Override
+  public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    System.out.println("★★★" + beanName + " = " + bean);
+    return bean;
+  }
 }
 ```
 
@@ -1569,7 +1581,7 @@ public class MyBeanProcessor implements BeanPostProcessor {
 
 ```xml
 <!-- bean的后置处理器要放入IOC容器才能生效 -->
-<bean id="myBeanProcessor" class="com.atguigu.spring6.process.MyBeanProcessor"/>
+<bean id="myBeanProcessor" class="com.DEAiFISH.spring6.process.MyBeanProcessor"/>
 ```
 
 #### 3.2.13、实验十二：FactoryBean
@@ -1733,24 +1745,26 @@ public interface FactoryBean<T> {
 **②创建类UserFactoryBean**
 
 ```java
-package com.atguigu.spring6.bean;
-public class UserFactoryBean implements FactoryBean<User> {
-    @Override
-    public User getObject() throws Exception {
-        return new User();
-    }
+package com.DEAiFISH.spring6.bean;
 
-    @Override
-    public Class<?> getObjectType() {
-        return User.class;
-    }
+public class UserFactoryBean implements FactoryBean<User> {
+  @Override
+  public User getObject() throws Exception {
+    return new User();
+  }
+
+  @Override
+  public Class<?> getObjectType() {
+    return User.class;
+  }
 }
 ```
 
 **③配置bean**
 
 ```xml
-<bean id="user" class="com.atguigu.spring6.bean.UserFactoryBean"></bean>
+
+<bean id="user" class="com.DEAiFISH.spring6.bean.UserFactoryBean"></bean>
 ```
 
 **④测试**
@@ -1776,18 +1790,19 @@ public void testUserFactoryBean(){
 创建类UserController
 
 ```java
-package com.atguigu.spring6.autowire.controller
+package com.DEAiFISH.spring6.autowire.controller
+
 public class UserController {
 
-    private UserService userService;
+  private UserService userService;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+  public void setUserService(UserService userService) {
+    this.userService = userService;
+  }
 
-    public void saveUser(){
-        userService.saveUser();
-    }
+  public void saveUser() {
+    userService.saveUser();
+  }
 
 }
 ```
@@ -1795,10 +1810,11 @@ public class UserController {
 创建接口UserService
 
 ```java
-package com.atguigu.spring6.autowire.service
+package com.DEAiFISH.spring6.autowire.service
+
 public interface UserService {
 
-    void saveUser();
+  void saveUser();
 
 }
 ```
@@ -1806,19 +1822,20 @@ public interface UserService {
 创建类UserServiceImpl实现接口UserService
 
 ```java
-package com.atguigu.spring6.autowire.service.impl
+package com.DEAiFISH.spring6.autowire.service.impl
+
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+  private UserDao userDao;
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
+  public void setUserDao(UserDao userDao) {
+    this.userDao = userDao;
+  }
 
-    @Override
-    public void saveUser() {
-        userDao.saveUser();
-    }
+  @Override
+  public void saveUser() {
+    userDao.saveUser();
+  }
 
 }
 ```
@@ -1826,10 +1843,11 @@ public class UserServiceImpl implements UserService {
 创建接口UserDao
 
 ```java
-package com.atguigu.spring6.autowire.dao
+package com.DEAiFISH.spring6.autowire.dao
+
 public interface UserDao {
 
-    void saveUser();
+  void saveUser();
 
 }
 ```
@@ -1837,13 +1855,14 @@ public interface UserDao {
 创建类UserDaoImpl实现接口UserDao
 
 ```java
-package com.atguigu.spring6.autowire.dao.impl
+package com.DEAiFISH.spring6.autowire.dao.impl
+
 public class UserDaoImpl implements UserDao {
 
-    @Override
-    public void saveUser() {
-        System.out.println("保存成功");
-    }
+  @Override
+  public void saveUser() {
+    System.out.println("保存成功");
+  }
 
 }
 ```
@@ -1861,11 +1880,12 @@ public class UserDaoImpl implements UserDao {
 > 若在IOC中，有多个兼容类型的bean能够为属性赋值，则抛出异常NoUniqueBeanDefinitionException
 
 ```xml
-<bean id="userController" class="com.atguigu.spring6.autowire.controller.UserController" autowire="byType"></bean>
 
-<bean id="userService" class="com.atguigu.spring6.autowire.service.impl.UserServiceImpl" autowire="byType"></bean>
+<bean id="userController" class="com.DEAiFISH.spring6.autowire.controller.UserController" autowire="byType"></bean>
 
-<bean id="userDao" class="com.atguigu.spring6.autowire.dao.impl.UserDaoImpl"></bean>
+<bean id="userService" class="com.DEAiFISH.spring6.autowire.service.impl.UserServiceImpl" autowire="byType"></bean>
+
+<bean id="userDao" class="com.DEAiFISH.spring6.autowire.dao.impl.UserDaoImpl"></bean>
 ```
 
 > 自动装配方式：byName
@@ -1873,13 +1893,14 @@ public class UserDaoImpl implements UserDao {
 > byName：将自动装配的属性的属性名，作为bean的id在IOC容器中匹配相对应的bean进行赋值
 
 ```xml
-<bean id="userController" class="com.atguigu.spring6.autowire.controller.UserController" autowire="byName"></bean>
 
-<bean id="userService" class="com.atguigu.spring6.autowire.service.impl.UserServiceImpl" autowire="byName"></bean>
-<bean id="userServiceImpl" class="com.atguigu.spring6.autowire.service.impl.UserServiceImpl" autowire="byName"></bean>
+<bean id="userController" class="com.DEAiFISH.spring6.autowire.controller.UserController" autowire="byName"></bean>
 
-<bean id="userDao" class="com.atguigu.spring6.autowire.dao.impl.UserDaoImpl"></bean>
-<bean id="userDaoImpl" class="com.atguigu.spring6.autowire.dao.impl.UserDaoImpl"></bean>
+<bean id="userService" class="com.DEAiFISH.spring6.autowire.service.impl.UserServiceImpl" autowire="byName"></bean>
+<bean id="userServiceImpl" class="com.DEAiFISH.spring6.autowire.service.impl.UserServiceImpl" autowire="byName"></bean>
+
+<bean id="userDao" class="com.DEAiFISH.spring6.autowire.dao.impl.UserDaoImpl"></bean>
+<bean id="userDaoImpl" class="com.DEAiFISH.spring6.autowire.dao.impl.UserDaoImpl"></bean>
 ```
 
 **③测试**
@@ -1973,39 +1994,42 @@ Beans的自动扫描功能。开启此功能后，Spring 会自动从扫描指�
 **情况一：最基本的扫描方式**
 
 ```xml
-<context:component-scan base-package="com.atguigu.spring6">
+
+<context:component-scan base-package="com.DEAiFISH.spring6">
 </context:component-scan>
 ```
 
 **情况二：指定要排除的组件**
 
 ```xml
-<context:component-scan base-package="com.atguigu.spring6">
-    <!-- context:exclude-filter标签：指定排除规则 -->
-    <!-- 
- 		type：设置排除或包含的依据
-		type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
-		type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
-	-->
-    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <!--<context:exclude-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
+
+<context:component-scan base-package="com.DEAiFISH.spring6">
+  <!-- context:exclude-filter标签：指定排除规则 -->
+  <!-- 
+       type：设置排除或包含的依据
+      type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+      type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+  -->
+  <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+  <!--<context:exclude-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
 </context:component-scan>
 ```
 
 **情况三：仅扫描指定组件**
 
 ```xml
-<context:component-scan base-package="com.atguigu" use-default-filters="false">
-    <!-- context:include-filter标签：指定在原有扫描规则的基础上追加的规则 -->
-    <!-- use-default-filters属性：取值false表示关闭默认扫描规则 -->
-    <!-- 此时必须设置use-default-filters="false"，因为默认规则即扫描指定包下所有类 -->
-    <!-- 
- 		type：设置排除或包含的依据
-		type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
-		type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
-	-->
-    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	<!--<context:include-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
+
+<context:component-scan base-package="com.DEAiFISH" use-default-filters="false">
+  <!-- context:include-filter标签：指定在原有扫描规则的基础上追加的规则 -->
+  <!-- use-default-filters属性：取值false表示关闭默认扫描规则 -->
+  <!-- 此时必须设置use-default-filters="false"，因为默认规则即扫描指定包下所有类 -->
+  <!-- 
+       type：设置排除或包含的依据
+      type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+      type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+  -->
+  <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+  <!--<context:include-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
 </context:component-scan>
 ```
 
@@ -2062,86 +2086,86 @@ public @interface Autowired {
 创建UserDao接口
 
 ```java
-package com.atguigu.spring6.dao;
+package com.DEAiFISH.spring6.dao;
 
 public interface UserDao {
 
-    public void print();
+  public void print();
 }
 ```
 
 创建UserDaoImpl实现
 
 ```java
-package com.atguigu.spring6.dao.impl;
+package com.DEAiFISH.spring6.dao.impl;
 
-import com.atguigu.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.dao.UserDao;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    @Override
-    public void print() {
-        System.out.println("Dao层执行结束");
-    }
+  @Override
+  public void print() {
+    System.out.println("Dao层执行结束");
+  }
 }
 ```
 
 创建UserService接口
 
 ```java
-package com.atguigu.spring6.service;
+package com.DEAiFISH.spring6.service;
 
 public interface UserService {
 
-    public void out();
+  public void out();
 }
 ```
 
 创建UserServiceImpl实现类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDao userDao;
+  @Autowired
+  private UserDao userDao;
 
-    @Override
-    public void out() {
-        userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
 创建UserController类
 
 ```java
-package com.atguigu.spring6.controller;
+package com.DEAiFISH.spring6.controller;
 
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+  @Autowired
+  private UserService userService;
 
-    public void out() {
-        userService.out();
-        System.out.println("Controller层执行结束。");
-    }
+  public void out() {
+    userService.out();
+    System.out.println("Controller层执行结束。");
+  }
 
 }
 ```
@@ -2149,9 +2173,9 @@ public class UserController {
 **测试一**
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
-import com.atguigu.spring6.controller.UserController;
+import com.DEAiFISH.spring6.controller.UserController;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -2160,15 +2184,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTest {
 
-    private Logger logger = LoggerFactory.getLogger(UserTest.class);
+  private Logger logger = LoggerFactory.getLogger(UserTest.class);
 
-    @Test
-    public void testAnnotation(){
-        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-        UserController userController = context.getBean("userController", UserController.class);
-        userController.out();
-        logger.info("执行成功");
-    }
+  @Test
+  public void testAnnotation() {
+    ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+    UserController userController = context.getBean("userController", UserController.class);
+    userController.out();
+    logger.info("执行成功");
+  }
 
 
 }
@@ -2185,54 +2209,54 @@ public class UserTest {
 修改UserServiceImpl类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+  private UserDao userDao;
 
-    @Autowired
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
+  @Autowired
+  public void setUserDao(UserDao userDao) {
+    this.userDao = userDao;
+  }
 
-    @Override
-    public void out() {
-        userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
 修改UserController类
 
 ```java
-package com.atguigu.spring6.controller;
+package com.DEAiFISH.spring6.controller;
 
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
 
-    private UserService userService;
+  private UserService userService;
 
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+  @Autowired
+  public void setUserService(UserService userService) {
+    this.userService = userService;
+  }
 
-    public void out() {
-        userService.out();
-        System.out.println("Controller层执行结束。");
-    }
+  public void out() {
+    userService.out();
+    System.out.println("Controller层执行结束。");
+  }
 
 }
 ```
@@ -2244,54 +2268,54 @@ public class UserController {
 修改UserServiceImpl类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+  private UserDao userDao;
 
-    @Autowired
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
-    }
+  @Autowired
+  public UserServiceImpl(UserDao userDao) {
+    this.userDao = userDao;
+  }
 
-    @Override
-    public void out() {
-        userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
 修改UserController类
 
 ```java
-package com.atguigu.spring6.controller;
+package com.DEAiFISH.spring6.controller;
 
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
 
-    private UserService userService;
+  private UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+  @Autowired
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
-    public void out() {
-        userService.out();
-        System.out.println("Controller层执行结束。");
-    }
+  public void out() {
+    userService.out();
+    System.out.println("Controller层执行结束。");
+  }
 
 }
 ```
@@ -2303,52 +2327,52 @@ public class UserController {
 修改UserServiceImpl类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+  private UserDao userDao;
 
-    public UserServiceImpl(@Autowired UserDao userDao) {
-        this.userDao = userDao;
-    }
+  public UserServiceImpl(@Autowired UserDao userDao) {
+    this.userDao = userDao;
+  }
 
-    @Override
-    public void out() {
-        userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
 修改UserController类
 
 ```java
-package com.atguigu.spring6.controller;
+package com.DEAiFISH.spring6.controller;
 
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
 
-    private UserService userService;
+  private UserService userService;
 
-    public UserController(@Autowired UserService userService) {
-        this.userService = userService;
-    }
+  public UserController(@Autowired UserService userService) {
+    this.userService = userService;
+  }
 
-    public void out() {
-        userService.out();
-        System.out.println("Controller层执行结束。");
-    }
+  public void out() {
+    userService.out();
+    System.out.println("Controller层执行结束。");
+  }
 
 }
 ```
@@ -2360,29 +2384,28 @@ public class UserController {
 修改UserServiceImpl类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDao userDao;
+  @Autowired
+  private UserDao userDao;
 
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
-    }
+  public UserServiceImpl(UserDao userDao) {
+    this.userDao = userDao;
+  }
 
-    @Override
-    public void out() {
-        userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
@@ -2397,18 +2420,18 @@ public class UserServiceImpl implements UserService {
 添加dao层实现
 
 ```java
-package com.atguigu.spring6.dao.impl;
+package com.DEAiFISH.spring6.dao.impl;
 
-import com.atguigu.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.dao.UserDao;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoRedisImpl implements UserDao {
 
-    @Override
-    public void print() {
-        System.out.println("Redis Dao层执行结束");
-    }
+  @Override
+  public void print() {
+    System.out.println("Redis Dao层执行结束");
+  }
 }
 ```
 
@@ -2421,25 +2444,25 @@ public class UserDaoRedisImpl implements UserDao {
 修改UserServiceImpl类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    @Qualifier("userDaoImpl") // 指定bean的名字
-    private UserDao userDao;
+  @Autowired
+  @Qualifier("userDaoImpl") // 指定bean的名字
+  private UserDao userDao;
 
-    @Override
-    public void out() {
-        userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
@@ -2517,44 +2540,42 @@ public @interface Resource {
 修改UserDaoImpl类
 
 ```java
-package com.atguigu.spring6.dao.impl;
+package com.DEAiFISH.spring6.dao.impl;
 
-import com.atguigu.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.dao.UserDao;
 import org.springframework.stereotype.Repository;
 
 @Repository("myUserDao")
 public class UserDaoImpl implements UserDao {
 
-    @Override
-    public void print() {
-        System.out.println("Dao层执行结束");
-    }
+  @Override
+  public void print() {
+    System.out.println("Dao层执行结束");
+  }
 }
 ```
 
 修改UserServiceImpl类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Resource(name = "myUserDao")
-    private UserDao myUserDao;
+  @Resource(name = "myUserDao")
+  private UserDao myUserDao;
 
-    @Override
-    public void out() {
-        myUserDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    myUserDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
@@ -2565,44 +2586,42 @@ public class UserServiceImpl implements UserService {
 修改UserDaoImpl类
 
 ```java
-package com.atguigu.spring6.dao.impl;
+package com.DEAiFISH.spring6.dao.impl;
 
-import com.atguigu.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.dao.UserDao;
 import org.springframework.stereotype.Repository;
 
 @Repository("myUserDao")
 public class UserDaoImpl implements UserDao {
 
-    @Override
-    public void print() {
-        System.out.println("Dao层执行结束");
-    }
+  @Override
+  public void print() {
+    System.out.println("Dao层执行结束");
+  }
 }
 ```
 
 修改UserServiceImpl类
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Resource
-    private UserDao myUserDao;
+  @Resource
+  private UserDao myUserDao;
 
-    @Override
-    public void out() {
-        myUserDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    myUserDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
@@ -2615,26 +2634,24 @@ public class UserServiceImpl implements UserService {
 修改UserServiceImpl类，userDao1属性名不存在
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
-import com.atguigu.spring6.dao.UserDao;
-import com.atguigu.spring6.service.UserService;
+import com.DEAiFISH.spring6.dao.UserDao;
+import com.DEAiFISH.spring6.service.UserService;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Resource
-    private UserDao userDao1;
+  @Resource
+  private UserDao userDao1;
 
-    @Override
-    public void out() {
-        userDao1.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao1.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
@@ -2653,7 +2670,7 @@ public class UserServiceImpl implements UserService {
 全注解开发就是不再使用spring配置文件了，写一个配置类来代替配置文件。
 
 ```java
-package com.atguigu.spring6.config;
+package com.DEAiFISH.spring6.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -2693,163 +2710,169 @@ public void testAllAnnotation(){
 **自定义类**
 
 ```java
-package com.atguigu.reflect;
+package com.DEAiFISH.reflect;
 
 public class Car {
 
-    //属性
-    private String name;
-    private int age;
-    private String color;
+  //属性
+  private String name;
+  private int age;
+  private String color;
 
-    //无参数构造
-    public Car() {
-    }
+  //无参数构造
+  public Car() {
+  }
 
-    //有参数构造
-    public Car(String name, int age, String color) {
-        this.name = name;
-        this.age = age;
-        this.color = color;
-    }
+  //有参数构造
+  public Car(String name, int age, String color) {
+    this.name = name;
+    this.age = age;
+    this.color = color;
+  }
 
-    //普通方法
-    private void run() {
-        System.out.println("私有方法-run.....");
-    }
+  //普通方法
+  private void run() {
+    System.out.println("私有方法-run.....");
+  }
 
-    //get和set方法
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public String getColor() {
-        return color;
-    }
-    public void setColor(String color) {
-        this.color = color;
-    }
+  //get和set方法
+  public String getName() {
+    return name;
+  }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", color='" + color + '\'' +
-                '}';
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
+  }
+
+  @Override
+  public String toString() {
+    return "Car{" +
+            "name='" + name + '\'' +
+            ", age=" + age +
+            ", color='" + color + '\'' +
+            '}';
+  }
 }
 ```
 
 **编写测试类**
 
 ```java
-package com.atguigu.reflect;
+package com.DEAiFISH.reflect;
 
 import org.junit.jupiter.api.Test;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class TestCar {
 
-    //1、获取Class对象多种方式
-    @Test
-    public void test01() throws Exception {
-        //1 类名.class
-        Class clazz1 = Car.class;
+  //1、获取Class对象多种方式
+  @Test
+  public void test01() throws Exception {
+    //1 类名.class
+    Class clazz1 = Car.class;
 
-        //2 对象.getClass()
-        Class clazz2 = new Car().getClass();
+    //2 对象.getClass()
+    Class clazz2 = new Car().getClass();
 
-        //3 Class.forName("全路径")
-        Class clazz3 = Class.forName("com.atguigu.reflect.Car");
+    //3 Class.forName("全路径")
+    Class clazz3 = Class.forName("com.atguigu.reflect.Car");
 
-        //实例化
-        Car car = (Car)clazz3.getConstructor().newInstance();
-        System.out.println(car);
+    //实例化
+    Car car = (Car) clazz3.getConstructor().newInstance();
+    System.out.println(car);
+  }
+
+  //2、获取构造方法
+  @Test
+  public void test02() throws Exception {
+    Class clazz = Car.class;
+    //获取所有构造
+    // getConstructors()获取所有public的构造方法
+//        Constructor[] constructors = clazz.getConstructors();
+    // getDeclaredConstructors()获取所有的构造方法public  private
+    Constructor[] constructors = clazz.getDeclaredConstructors();
+    for (Constructor c : constructors) {
+      System.out.println("方法名称：" + c.getName() + " 参数个数：" + c.getParameterCount());
     }
 
-    //2、获取构造方法
-    @Test
-    public void test02() throws Exception {
-        Class clazz = Car.class;
-        //获取所有构造
-        // getConstructors()获取所有public的构造方法
-//        Constructor[] constructors = clazz.getConstructors();
-        // getDeclaredConstructors()获取所有的构造方法public  private
-        Constructor[] constructors = clazz.getDeclaredConstructors();
-        for (Constructor c:constructors) {
-            System.out.println("方法名称："+c.getName()+" 参数个数："+c.getParameterCount());
-        }
-
-        //指定有参数构造创建对象
-        //1 构造public
+    //指定有参数构造创建对象
+    //1 构造public
 //        Constructor c1 = clazz.getConstructor(String.class, int.class, String.class);
 //        Car car1 = (Car)c1.newInstance("夏利", 10, "红色");
 //        System.out.println(car1);
-        
-        //2 构造private
-        Constructor c2 = clazz.getDeclaredConstructor(String.class, int.class, String.class);
-        c2.setAccessible(true);
-        Car car2 = (Car)c2.newInstance("捷达", 15, "白色");
-        System.out.println(car2);
+
+    //2 构造private
+    Constructor c2 = clazz.getDeclaredConstructor(String.class, int.class, String.class);
+    c2.setAccessible(true);
+    Car car2 = (Car) c2.newInstance("捷达", 15, "白色");
+    System.out.println(car2);
+  }
+
+  //3、获取属性
+  @Test
+  public void test03() throws Exception {
+    Class clazz = Car.class;
+    Car car = (Car) clazz.getDeclaredConstructor().newInstance();
+    //获取所有public属性
+    //Field[] fields = clazz.getFields();
+    //获取所有属性（包含私有属性）
+    Field[] fields = clazz.getDeclaredFields();
+    for (Field field : fields) {
+      if (field.getName().equals("name")) {
+        //设置允许访问
+        field.setAccessible(true);
+        field.set(car, "五菱宏光");
+        System.out.println(car);
+      }
+      System.out.println(field.getName());
+    }
+  }
+
+  //4、获取方法
+  @Test
+  public void test04() throws Exception {
+    Car car = new Car("奔驰", 10, "黑色");
+    Class clazz = car.getClass();
+    //1 public方法
+    Method[] methods = clazz.getMethods();
+    for (Method m1 : methods) {
+      //System.out.println(m1.getName());
+      //执行方法 toString
+      if (m1.getName().equals("toString")) {
+        String invoke = (String) m1.invoke(car);
+        //System.out.println("toString执行了："+invoke);
+      }
     }
 
-    //3、获取属性
-    @Test
-    public void test03() throws Exception {
-        Class clazz = Car.class;
-        Car car = (Car)clazz.getDeclaredConstructor().newInstance();
-        //获取所有public属性
-        //Field[] fields = clazz.getFields();
-        //获取所有属性（包含私有属性）
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field:fields) {
-            if(field.getName().equals("name")) {
-                //设置允许访问
-                field.setAccessible(true);
-                field.set(car,"五菱宏光");
-                System.out.println(car);
-            }
-            System.out.println(field.getName());
-        }
+    //2 private方法
+    Method[] methodsAll = clazz.getDeclaredMethods();
+    for (Method m : methodsAll) {
+      //执行方法 run
+      if (m.getName().equals("run")) {
+        m.setAccessible(true);
+        m.invoke(car);
+      }
     }
-
-    //4、获取方法
-    @Test
-    public void test04() throws Exception {
-        Car car = new Car("奔驰",10,"黑色");
-        Class clazz = car.getClass();
-        //1 public方法
-        Method[] methods = clazz.getMethods();
-        for (Method m1:methods) {
-            //System.out.println(m1.getName());
-            //执行方法 toString
-            if(m1.getName().equals("toString")) {
-                String invoke = (String)m1.invoke(car);
-                //System.out.println("toString执行了："+invoke);
-            }
-        }
-
-        //2 private方法
-        Method[] methodsAll = clazz.getDeclaredMethods();
-        for (Method m:methodsAll) {
-            //执行方法 run
-            if(m.getName().equals("run")) {
-                m.setAccessible(true);
-                m.invoke(car);
-            }
-        }
-    }
+  }
 }
 ```
 
@@ -2879,27 +2902,27 @@ public class TestCar {
 创建UserDao接口
 
 ```java
-package com.atguigu.spring6.test.dao;
+package com.DEAiFISH.spring6.test.dao;
 
 public interface UserDao {
 
-    public void print();
+  public void print();
 }
 ```
 
 创建UserDaoImpl实现
 
 ```java
-package com.atguigu.spring6.test.dao.impl;
+package com.DEAiFISH.spring6.test.dao.impl;
 
-import com.atguigu.spring.dao.UserDao;
+import com.DEAiFISH.spring.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
 
-    @Override
-    public void print() {
-        System.out.println("Dao层执行结束");
-    }
+  @Override
+  public void print() {
+    System.out.println("Dao层执行结束");
+  }
 }
 
 ```
@@ -2907,32 +2930,32 @@ public class UserDaoImpl implements UserDao {
 创建UserService接口
 
 ```java
-package com.atguigu.spring6.test.service;
+package com.DEAiFISH.spring6.test.service;
 
 public interface UserService {
 
-    public void out();
+  public void out();
 }
 ```
 
 创建UserServiceImpl实现类
 
 ```java
-package com.atguigu.spring.test.service.impl;
+package com.DEAiFISH.spring.test.service.impl;
 
-import com.atguigu.spring.core.annotation.Bean;
-import com.atguigu.spring.service.UserService;
+import com.DEAiFISH.spring.core.annotation.Bean;
+import com.DEAiFISH.spring.service.UserService;
 
 @Bean
 public class UserServiceImpl implements UserService {
 
 //    private UserDao userDao;
 
-    @Override
-    public void out() {
-        //userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    //userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 
 ```
@@ -2944,7 +2967,7 @@ public class UserServiceImpl implements UserService {
 bean注解
 
 ```java
-package com.atguigu.spring.core.annotation;
+package com.DEAiFISH.spring.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -2960,7 +2983,7 @@ public @interface Bean {
 依赖注入注解
 
 ```java
-package com.atguigu.spring.core.annotation;
+package com.DEAiFISH.spring.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -2978,11 +3001,11 @@ public @interface Di {
 **④定义bean容器接口**
 
 ```java
-package com.atguigu.spring.core;
+package com.DEAiFISH.spring.core;
 
 public interface ApplicationContext {
 
-    Object getBean(Class clazz);
+  Object getBean(Class clazz);
 }
 ```
 
@@ -2991,27 +3014,27 @@ public interface ApplicationContext {
 AnnotationApplicationContext基于注解扫描bean
 
 ```java
-package com.atguigu.spring.core;
+package com.DEAiFISH.spring.core;
 
 import java.util.HashMap;
 
 public class AnnotationApplicationContext implements ApplicationContext {
 
-    //存储bean的容器
-    private HashMap<Class, Object> beanFactory = new HashMap<>();
+  //存储bean的容器
+  private HashMap<Class, Object> beanFactory = new HashMap<>();
 
-    @Override
-    public Object getBean(Class clazz) {
-        return beanFactory.get(clazz);
-    }
+  @Override
+  public Object getBean(Class clazz) {
+    return beanFactory.get(clazz);
+  }
 
-    /**
-     * 根据包扫描加载bean
-     * @param basePackage
-     */
-    public AnnotationApplicationContext(String basePackage) {
-        
-    }
+  /**
+   * 根据包扫描加载bean
+   * @param basePackage
+   */
+  public AnnotationApplicationContext(String basePackage) {
+
+  }
 }
 ```
 
@@ -3020,89 +3043,89 @@ public class AnnotationApplicationContext implements ApplicationContext {
 我们通过构造方法传入包的base路径，扫描被@Bean注解的java对象，完整代码如下：
 
 ```java
-package com.atguigu.spring.core;
+package com.DEAiFISH.spring.core;
 
-import com.atguigu.spring.core.annotation.Bean;
+import com.DEAiFISH.spring.core.annotation.Bean;
 
 import java.io.File;
 import java.util.HashMap;
 
 public class AnnotationApplicationContext implements ApplicationContext {
 
-    //存储bean的容器
-    private HashMap<Class, Object> beanFactory = new HashMap<>();
-    private static String rootPath;
+  //存储bean的容器
+  private HashMap<Class, Object> beanFactory = new HashMap<>();
+  private static String rootPath;
 
-    @Override
-    public Object getBean(Class clazz) {
-        return beanFactory.get(clazz);
+  @Override
+  public Object getBean(Class clazz) {
+    return beanFactory.get(clazz);
+  }
+
+  /**
+   * 根据包扫描加载bean
+   * @param basePackage
+   */
+  public AnnotationApplicationContext(String basePackage) {
+    try {
+      String packageDirName = basePackage.replaceAll("\\.", "\\\\");
+      Enumeration<URL> dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
+      while (dirs.hasMoreElements()) {
+        URL url = dirs.nextElement();
+        String filePath = URLDecoder.decode(url.getFile(), "utf-8");
+        rootPath = filePath.substring(0, filePath.length() - packageDirName.length());
+        loadBean(new File(filePath));
+      }
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    /**
-     * 根据包扫描加载bean
-     * @param basePackage
-     */
-    public AnnotationApplicationContext(String basePackage) {
-       try {
-            String packageDirName = basePackage.replaceAll("\\.", "\\\\");
-            Enumeration<URL> dirs =Thread.currentThread().getContextClassLoader().getResources(packageDirName);
-            while (dirs.hasMoreElements()) {
-                URL url = dirs.nextElement();
-                String filePath = URLDecoder.decode(url.getFile(),"utf-8");
-                rootPath = filePath.substring(0, filePath.length()-packageDirName.length());
-                loadBean(new File(filePath));
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private  void loadBean(File fileParent) {
-        if (fileParent.isDirectory()) {
-            File[] childrenFiles = fileParent.listFiles();
-            if(childrenFiles == null || childrenFiles.length == 0){
-                return;
-            }
-            for (File child : childrenFiles) {
-                if (child.isDirectory()) {
-                    //如果是个文件夹就继续调用该方法,使用了递归
-                    loadBean(child);
-                } else {
-                    //通过文件路径转变成全类名,第一步把绝对路径部分去掉
-                    String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
-                    //选中class文件
-                    if (pathWithClass.contains(".class")) {
-                        //    com.xinzhi.dao.UserDao
-                        //去掉.class后缀，并且把 \ 替换成 .
-                        String fullName = pathWithClass.replaceAll("\\\\", ".").replace(".class", "");
-                        try {
-                            Class<?> aClass = Class.forName(fullName);
-                            //把非接口的类实例化放在map中
-                            if(!aClass.isInterface()){
-                                Bean annotation = aClass.getAnnotation(Bean.class);
-                                if(annotation != null){
-                                    Object instance = aClass.newInstance();
-                                    //判断一下有没有接口
-                                    if(aClass.getInterfaces().length > 0) {
-                                        //如果有接口把接口的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getInterfaces()[0] +"】,实例对象是：" + instance.getClass().getName());
-                                        beanFactory.put(aClass.getInterfaces()[0], instance);
-                                    }else{
-                                        //如果有接口把自己的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getName() +"】,实例对象是：" + instance.getClass().getName());
-                                        beanFactory.put(aClass, instance);
-                                    }
-                                }
-                            }
-                        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-                            e.printStackTrace();
-                        }
-                    }
+  private void loadBean(File fileParent) {
+    if (fileParent.isDirectory()) {
+      File[] childrenFiles = fileParent.listFiles();
+      if (childrenFiles == null || childrenFiles.length == 0) {
+        return;
+      }
+      for (File child : childrenFiles) {
+        if (child.isDirectory()) {
+          //如果是个文件夹就继续调用该方法,使用了递归
+          loadBean(child);
+        } else {
+          //通过文件路径转变成全类名,第一步把绝对路径部分去掉
+          String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
+          //选中class文件
+          if (pathWithClass.contains(".class")) {
+            //    com.xinzhi.dao.UserDao
+            //去掉.class后缀，并且把 \ 替换成 .
+            String fullName = pathWithClass.replaceAll("\\\\", ".").replace(".class", "");
+            try {
+              Class<?> aClass = Class.forName(fullName);
+              //把非接口的类实例化放在map中
+              if (!aClass.isInterface()) {
+                Bean annotation = aClass.getAnnotation(Bean.class);
+                if (annotation != null) {
+                  Object instance = aClass.newInstance();
+                  //判断一下有没有接口
+                  if (aClass.getInterfaces().length > 0) {
+                    //如果有接口把接口的class当成key，实例对象当成value
+                    System.out.println("正在加载【" + aClass.getInterfaces()[0] + "】,实例对象是：" + instance.getClass().getName());
+                    beanFactory.put(aClass.getInterfaces()[0], instance);
+                  } else {
+                    //如果有接口把自己的class当成key，实例对象当成value
+                    System.out.println("正在加载【" + aClass.getName() + "】,实例对象是：" + instance.getClass().getName());
+                    beanFactory.put(aClass, instance);
+                  }
                 }
+              }
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+              e.printStackTrace();
             }
+          }
         }
+      }
     }
+  }
 
 }
 ```
@@ -3122,22 +3145,22 @@ public class UserDaoImpl implements UserDao
 **⑧测试Bean加载**
 
 ```java
-package com.atguigu.spring;
+package com.DEAiFISH.spring;
 
-import com.atguigu.spring.core.AnnotationApplicationContext;
-import com.atguigu.spring.core.ApplicationContext;
-import com.atguigu.spring.test.service.UserService;
+import com.DEAiFISH.spring.core.AnnotationApplicationContext;
+import com.DEAiFISH.spring.core.ApplicationContext;
+import com.DEAiFISH.spring.test.service.UserService;
 import org.junit.jupiter.api.Test;
 
 public class SpringIocTest {
 
-    @Test
-    public void testIoc() {
-        ApplicationContext applicationContext = new AnnotationApplicationContext("com.atguigu.spring.test");
-        UserService userService = (UserService)applicationContext.getBean(UserService.class);
-        userService.out();
-        System.out.println("run success");
-    }
+  @Test
+  public void testIoc() {
+    ApplicationContext applicationContext = new AnnotationApplicationContext("com.atguigu.spring.test");
+    UserService userService = (UserService) applicationContext.getBean(UserService.class);
+    userService.out();
+    System.out.println("run success");
+  }
 }
 ```
 
@@ -3148,24 +3171,24 @@ public class SpringIocTest {
 只要userDao.print();调用成功，说明就注入成功
 
 ```java
-package com.atguigu.spring.test.service.impl;
+package com.DEAiFISH.spring.test.service.impl;
 
-import com.atguigu.spring.core.annotation.Bean;
-import com.atguigu.spring.core.annotation.Di;
-import com.atguigu.spring.dao.UserDao;
-import com.atguigu.spring.service.UserService;
+import com.DEAiFISH.spring.core.annotation.Bean;
+import com.DEAiFISH.spring.core.annotation.Di;
+import com.DEAiFISH.spring.dao.UserDao;
+import com.DEAiFISH.spring.service.UserService;
 
 @Bean
 public class UserServiceImpl implements UserService {
 
-    @Di
-    private UserDao userDao;
+  @Di
+  private UserDao userDao;
 
-    @Override
-    public void out() {
-        userDao.print();
-        System.out.println("Service层执行结束");
-    }
+  @Override
+  public void out() {
+    userDao.print();
+    System.out.println("Service层执行结束");
+  }
 }
 ```
 
@@ -3174,10 +3197,10 @@ public class UserServiceImpl implements UserService {
 **⑩依赖注入实现**
 
 ```java
-package com.atguigu.spring.core;
+package com.DEAiFISH.spring.core;
 
-import com.atguigu.spring.core.annotation.Bean;
-import com.atguigu.spring.core.annotation.Di;
+import com.DEAiFISH.spring.core.annotation.Bean;
+import com.DEAiFISH.spring.core.annotation.Di;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -3186,104 +3209,104 @@ import java.util.Map;
 
 public class AnnotationApplicationContext implements ApplicationContext {
 
-    //存储bean的容器
-    private HashMap<Class, Object> beanFactory = new HashMap<>();
-    private static String rootPath;
+  //存储bean的容器
+  private HashMap<Class, Object> beanFactory = new HashMap<>();
+  private static String rootPath;
 
-    @Override
-    public Object getBean(Class clazz) {
-        return beanFactory.get(clazz);
+  @Override
+  public Object getBean(Class clazz) {
+    return beanFactory.get(clazz);
+  }
+
+  /**
+   * 根据包扫描加载bean
+   * @param basePackage
+   */
+  public AnnotationApplicationContext(String basePackage) {
+    try {
+      String packageDirName = basePackage.replaceAll("\\.", "\\\\");
+      Enumeration<URL> dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
+      while (dirs.hasMoreElements()) {
+        URL url = dirs.nextElement();
+        String filePath = URLDecoder.decode(url.getFile(), "utf-8");
+        rootPath = filePath.substring(0, filePath.length() - packageDirName.length());
+        loadBean(new File(filePath));
+      }
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
 
-    /**
-     * 根据包扫描加载bean
-     * @param basePackage
-     */
-    public AnnotationApplicationContext(String basePackage) {
-        try {
-            String packageDirName = basePackage.replaceAll("\\.", "\\\\");
-            Enumeration<URL> dirs =Thread.currentThread().getContextClassLoader().getResources(packageDirName);
-            while (dirs.hasMoreElements()) {
-                URL url = dirs.nextElement();
-                String filePath = URLDecoder.decode(url.getFile(),"utf-8");
-                rootPath = filePath.substring(0, filePath.length()-packageDirName.length());
-                loadBean(new File(filePath));
-            }
+    //依赖注入
+    loadDi();
+  }
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        
-        //依赖注入
-        loadDi();
-    }
-    
-    private  void loadBean(File fileParent) {
-        if (fileParent.isDirectory()) {
-            File[] childrenFiles = fileParent.listFiles();
-            if(childrenFiles == null || childrenFiles.length == 0){
-                return;
-            }
-            for (File child : childrenFiles) {
-                if (child.isDirectory()) {
-                    //如果是个文件夹就继续调用该方法,使用了递归
-                    loadBean(child);
-                } else {
-                    //通过文件路径转变成全类名,第一步把绝对路径部分去掉
-                    String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
-                    //选中class文件
-                    if (pathWithClass.contains(".class")) {
-                        //    com.xinzhi.dao.UserDao
-                        //去掉.class后缀，并且把 \ 替换成 .
-                        String fullName = pathWithClass.replaceAll("\\\\", ".").replace(".class", "");
-                        try {
-                            Class<?> aClass = Class.forName(fullName);
-                            //把非接口的类实例化放在map中
-                            if(!aClass.isInterface()){
-                                Bean annotation = aClass.getAnnotation(Bean.class);
-                                if(annotation != null){
-                                    Object instance = aClass.newInstance();
-                                    //判断一下有没有接口
-                                    if(aClass.getInterfaces().length > 0) {
-                                        //如果有接口把接口的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getInterfaces()[0] +"】,实例对象是：" + instance.getClass().getName());
-                                        beanFactory.put(aClass.getInterfaces()[0], instance);
-                                    }else{
-                                        //如果有接口把自己的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getName() +"】,实例对象是：" + instance.getClass().getName());
-                                        beanFactory.put(aClass, instance);
-                                    }
-                                }
-                            }
-                        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-                            e.printStackTrace();
-                        }
-                    }
+  private void loadBean(File fileParent) {
+    if (fileParent.isDirectory()) {
+      File[] childrenFiles = fileParent.listFiles();
+      if (childrenFiles == null || childrenFiles.length == 0) {
+        return;
+      }
+      for (File child : childrenFiles) {
+        if (child.isDirectory()) {
+          //如果是个文件夹就继续调用该方法,使用了递归
+          loadBean(child);
+        } else {
+          //通过文件路径转变成全类名,第一步把绝对路径部分去掉
+          String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
+          //选中class文件
+          if (pathWithClass.contains(".class")) {
+            //    com.xinzhi.dao.UserDao
+            //去掉.class后缀，并且把 \ 替换成 .
+            String fullName = pathWithClass.replaceAll("\\\\", ".").replace(".class", "");
+            try {
+              Class<?> aClass = Class.forName(fullName);
+              //把非接口的类实例化放在map中
+              if (!aClass.isInterface()) {
+                Bean annotation = aClass.getAnnotation(Bean.class);
+                if (annotation != null) {
+                  Object instance = aClass.newInstance();
+                  //判断一下有没有接口
+                  if (aClass.getInterfaces().length > 0) {
+                    //如果有接口把接口的class当成key，实例对象当成value
+                    System.out.println("正在加载【" + aClass.getInterfaces()[0] + "】,实例对象是：" + instance.getClass().getName());
+                    beanFactory.put(aClass.getInterfaces()[0], instance);
+                  } else {
+                    //如果有接口把自己的class当成key，实例对象当成value
+                    System.out.println("正在加载【" + aClass.getName() + "】,实例对象是：" + instance.getClass().getName());
+                    beanFactory.put(aClass, instance);
+                  }
                 }
+              }
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+              e.printStackTrace();
             }
+          }
         }
+      }
     }
+  }
 
-    private void loadDi() {
-        for(Map.Entry<Class,Object> entry : beanFactory.entrySet()){
-            //就是咱们放在容器的对象
-            Object obj = entry.getValue();
-            Class<?> aClass = obj.getClass();
-            Field[] declaredFields = aClass.getDeclaredFields();
-            for (Field field : declaredFields){
-                Di annotation = field.getAnnotation(Di.class);
-                if( annotation != null ){
-                    field.setAccessible(true);
-                    try {
-                        System.out.println("正在给【"+obj.getClass().getName()+"】属性【" + field.getName() + "】注入值【"+ beanFactory.get(field.getType()).getClass().getName() +"】");
-                        field.set(obj,beanFactory.get(field.getType()));
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+  private void loadDi() {
+    for (Map.Entry<Class, Object> entry : beanFactory.entrySet()) {
+      //就是咱们放在容器的对象
+      Object obj = entry.getValue();
+      Class<?> aClass = obj.getClass();
+      Field[] declaredFields = aClass.getDeclaredFields();
+      for (Field field : declaredFields) {
+        Di annotation = field.getAnnotation(Di.class);
+        if (annotation != null) {
+          field.setAccessible(true);
+          try {
+            System.out.println("正在给【" + obj.getClass().getName() + "】属性【" + field.getName() + "】注入值【" + beanFactory.get(field.getType()).getClass().getName() + "】");
+            field.set(obj, beanFactory.get(field.getType()));
+          } catch (IllegalAccessException e) {
+            e.printStackTrace();
+          }
         }
+      }
     }
+  }
 
 }
 ```
@@ -4055,19 +4078,20 @@ public Object aroundMethod(ProceedingJoinPoint joinPoint){
 #### 5.5.2、实现
 
 ```xml
-<context:component-scan base-package="com.atguigu.aop.xml"></context:component-scan>
+
+<context:component-scan base-package="com.DEAiFISH.aop.xml"></context:component-scan>
 
 <aop:config>
-    <!--配置切面类-->
-    <aop:aspect ref="loggerAspect">
-        <aop:pointcut id="pointCut" 
-                   expression="execution(* com.atguigu.aop.xml.CalculatorImpl.*(..))"/>
-        <aop:before method="beforeMethod" pointcut-ref="pointCut"></aop:before>
-        <aop:after method="afterMethod" pointcut-ref="pointCut"></aop:after>
-        <aop:after-returning method="afterReturningMethod" returning="result" pointcut-ref="pointCut"></aop:after-returning>
-        <aop:after-throwing method="afterThrowingMethod" throwing="ex" pointcut-ref="pointCut"></aop:after-throwing>
-        <aop:around method="aroundMethod" pointcut-ref="pointCut"></aop:around>
-    </aop:aspect>
+<!--配置切面类-->
+<aop:aspect ref="loggerAspect">
+  <aop:pointcut id="pointCut"
+                expression="execution(* com.DEAiFISH.aop.xml.CalculatorImpl.*(..))"/>
+  <aop:before method="beforeMethod" pointcut-ref="pointCut"></aop:before>
+  <aop:after method="afterMethod" pointcut-ref="pointCut"></aop:after>
+  <aop:after-returning method="afterReturningMethod" returning="result" pointcut-ref="pointCut"></aop:after-returning>
+  <aop:after-throwing method="afterThrowingMethod" throwing="ex" pointcut-ref="pointCut"></aop:after-throwing>
+  <aop:around method="aroundMethod" pointcut-ref="pointCut"></aop:around>
+</aop:aspect>
 </aop:config>
 ```
 
@@ -4150,25 +4174,24 @@ copy日志文件：log4j2.xml
 #### 6.1.4、添加java类
 
 ```java
-package com.atguigu.spring6.bean;
+package com.DEAiFISH.spring6.bean;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class User {
 
-    public User() {
-        System.out.println("run user");
-    }
+  public User() {
+    System.out.println("run user");
+  }
 }
 ```
 
 #### 6.1.5、测试
 
 ```java
-import com.atguigu.spring6.bean.User;
+import com.DEAiFISH.spring6.bean.User;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -4182,13 +4205,13 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig(locations = "classpath:beans.xml")
 public class SpringJUnit5Test {
 
-    @Autowired
-    private User user;
+  @Autowired
+  private User user;
 
-    @Test
-    public void testUser(){
-        System.out.println(user);
-    }
+  @Test
+  public void testUser() {
+    System.out.println(user);
+  }
 }
 ```
 
@@ -4210,7 +4233,7 @@ JUnit4在公司也会经常用到，在此也学习一下
 #### 6.2.2、测试
 
 ```java
-import com.atguigu.spring6.bean.User;
+import com.DEAiFISH.spring6.bean.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -4221,13 +4244,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:beans.xml")
 public class SpringJUnit4Test {
 
-    @Autowired
-    private User user;
+  @Autowired
+  private User user;
 
-    @Test
-    public void testUser(){
-        System.out.println(user);
-    }
+  @Test
+  public void testUser() {
+    System.out.println(user);
+  }
 }
 ```
 
@@ -4338,7 +4361,7 @@ CREATE TABLE `t_emp` (
 **创建测试类，整合JUnit，注入JdbcTemplate**
 
 ```java
-package com.atguigu.spring6;
+package com.DEAiFISH.spring6;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -4347,9 +4370,9 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig(locations = "classpath:beans.xml")
 public class JDBCTemplateTest {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
+
 }
 ```
 
@@ -4537,7 +4560,7 @@ try {
 
 ```xml
 <!--扫描组件-->
-<context:component-scan base-package="com.atguigu.spring6"></context:component-scan>
+<context:component-scan base-package="com.DEAiFISH.spring6"></context:component-scan>
 ```
 
 **②创建表**
@@ -4565,91 +4588,95 @@ insert  into `t_user`(`user_id`,`username`,`balance`) values (1,'admin',50);
 创建BookController：
 
 ```java
-package com.atguigu.spring6.controller;
+package com.DEAiFISH.spring6.controller;
 
 @Controller
 public class BookController {
 
-    @Autowired
-    private BookService bookService;
+  @Autowired
+  private BookService bookService;
 
-    public void buyBook(Integer bookId, Integer userId){
-        bookService.buyBook(bookId, userId);
-    }
+  public void buyBook(Integer bookId, Integer userId) {
+    bookService.buyBook(bookId, userId);
+  }
 }
 ```
 
 创建接口BookService：
 
 ```java
-package com.atguigu.spring6.service;
+package com.DEAiFISH.spring6.service;
+
 public interface BookService {
-    void buyBook(Integer bookId, Integer userId);
+  void buyBook(Integer bookId, Integer userId);
 }
 ```
 
 创建实现类BookServiceImpl：
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
+
 @Service
 public class BookServiceImpl implements BookService {
 
-    @Autowired
-    private BookDao bookDao;
+  @Autowired
+  private BookDao bookDao;
 
-    @Override
-    public void buyBook(Integer bookId, Integer userId) {
-        //查询图书的价格
-        Integer price = bookDao.getPriceByBookId(bookId);
-        //更新图书的库存
-        bookDao.updateStock(bookId);
-        //更新用户的余额
-        bookDao.updateBalance(userId, price);
-    }
+  @Override
+  public void buyBook(Integer bookId, Integer userId) {
+    //查询图书的价格
+    Integer price = bookDao.getPriceByBookId(bookId);
+    //更新图书的库存
+    bookDao.updateStock(bookId);
+    //更新用户的余额
+    bookDao.updateBalance(userId, price);
+  }
 }
 ```
 
 创建接口BookDao：
 
 ```java
-package com.atguigu.spring6.dao;
+package com.DEAiFISH.spring6.dao;
+
 public interface BookDao {
-    Integer getPriceByBookId(Integer bookId);
+  Integer getPriceByBookId(Integer bookId);
 
-    void updateStock(Integer bookId);
+  void updateStock(Integer bookId);
 
-    void updateBalance(Integer userId, Integer price);
+  void updateBalance(Integer userId, Integer price);
 }
 ```
 
 创建实现类BookDaoImpl：
 
 ```java
-package com.atguigu.spring6.dao.impl;
+package com.DEAiFISH.spring6.dao.impl;
+
 @Repository
 public class BookDaoImpl implements BookDao {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public Integer getPriceByBookId(Integer bookId) {
-        String sql = "select price from t_book where book_id = ?";
-        return jdbcTemplate.queryForObject(sql, Integer.class, bookId);
-    }
+  @Override
+  public Integer getPriceByBookId(Integer bookId) {
+    String sql = "select price from t_book where book_id = ?";
+    return jdbcTemplate.queryForObject(sql, Integer.class, bookId);
+  }
 
-    @Override
-    public void updateStock(Integer bookId) {
-        String sql = "update t_book set stock = stock - 1 where book_id = ?";
-        jdbcTemplate.update(sql, bookId);
-    }
+  @Override
+  public void updateStock(Integer bookId) {
+    String sql = "update t_book set stock = stock - 1 where book_id = ?";
+    jdbcTemplate.update(sql, bookId);
+  }
 
-    @Override
-    public void updateBalance(Integer userId, Integer price) {
-        String sql = "update t_user set balance = balance - ? where user_id = ?";
-        jdbcTemplate.update(sql, price, userId);
-    }
+  @Override
+  public void updateBalance(Integer userId, Integer price) {
+    String sql = "update t_user set balance = balance - ? where user_id = ?";
+    jdbcTemplate.update(sql, price, userId);
+  }
 }
 ```
 
@@ -4921,32 +4948,32 @@ public void buyBook(Integer bookId, Integer userId) {
 创建接口CheckoutService：
 
 ```java
-package com.atguigu.spring6.service;
+package com.DEAiFISH.spring6.service;
 
 public interface CheckoutService {
-    void checkout(Integer[] bookIds, Integer userId);
+  void checkout(Integer[] bookIds, Integer userId);
 }
 ```
 
 创建实现类CheckoutServiceImpl：
 
 ```java
-package com.atguigu.spring6.service.impl;
+package com.DEAiFISH.spring6.service.impl;
 
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
-    @Autowired
-    private BookService bookService;
+  @Autowired
+  private BookService bookService;
 
-    @Override
-    @Transactional
-    //一次购买多本图书
-    public void checkout(Integer[] bookIds, Integer userId) {
-        for (Integer bookId : bookIds) {
-            bookService.buyBook(bookId, userId);
-        }
+  @Override
+  @Transactional
+  //一次购买多本图书
+  public void checkout(Integer[] bookIds, Integer userId) {
+    for (Integer bookId : bookIds) {
+      bookService.buyBook(bookId, userId);
     }
+  }
 }
 ```
 
@@ -4984,7 +5011,7 @@ public void checkout(Integer[] bookIds, Integer userId){
 **①添加配置类**
 
 ```java
-package com.atguigu.spring6.config;
+package com.DEAiFISH.spring6.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.context.annotation.Bean;
@@ -4993,6 +5020,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.sql.DataSource;
 
 @Configuration
@@ -5000,51 +5028,50 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class SpringConfig {
 
-    @Bean
-    public DataSource getDataSource(){
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/spring?characterEncoding=utf8&useSSL=false");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
-        return dataSource;
-    }
+  @Bean
+  public DataSource getDataSource() {
+    DruidDataSource dataSource = new DruidDataSource();
+    dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+    dataSource.setUrl("jdbc:mysql://localhost:3306/spring?characterEncoding=utf8&useSSL=false");
+    dataSource.setUsername("root");
+    dataSource.setPassword("root");
+    return dataSource;
+  }
 
-    @Bean(name = "jdbcTemplate")
-    public JdbcTemplate getJdbcTemplate(DataSource dataSource){
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource);
-        return jdbcTemplate;
-    }
+  @Bean(name = "jdbcTemplate")
+  public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
+    JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    jdbcTemplate.setDataSource(dataSource);
+    return jdbcTemplate;
+  }
 
-    @Bean
-    public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource){
-        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-        dataSourceTransactionManager.setDataSource(dataSource);
-        return dataSourceTransactionManager;
-    }
+  @Bean
+  public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
+    DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+    dataSourceTransactionManager.setDataSource(dataSource);
+    return dataSourceTransactionManager;
+  }
 }
 ```
 
 **②测试**
 
 ```java
-import com.atguigu.spring6.config.SpringConfig;
-import com.atguigu.spring6.controller.BookController;
+import com.DEAiFISH.spring6.config.SpringConfig;
+import com.DEAiFISH.spring6.controller.BookController;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 public class TxByAllAnnotationTest {
 
-    @Test
-    public void testTxAllAnnotation(){
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
-        BookController accountService = applicationContext.getBean("bookController", BookController.class);
-        accountService.buyBook(1, 1);
-    }
+  @Test
+  public void testTxAllAnnotation() {
+    ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+    BookController accountService = applicationContext.getBean("bookController", BookController.class);
+    accountService.buyBook(1, 1);
+  }
 }
 ```
 
@@ -5059,31 +5086,33 @@ public class TxByAllAnnotationTest {
 将Spring配置文件中去掉tx:annotation-driven 标签，并添加配置：
 
 ```xml
+
 <aop:config>
-    <!-- 配置事务通知和切入点表达式 -->
-    <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.atguigu.spring.tx.xml.service.impl.*.*(..))"></aop:advisor>
+  <!-- 配置事务通知和切入点表达式 -->
+  <aop:advisor advice-ref="txAdvice"
+               pointcut="execution(* com.DEAiFISH.spring.tx.xml.service.impl.*.*(..))"></aop:advisor>
 </aop:config>
-<!-- tx:advice标签：配置事务通知 -->
-<!-- id属性：给事务通知标签设置唯一标识，便于引用 -->
-<!-- transaction-manager属性：关联事务管理器 -->
+        <!-- tx:advice标签：配置事务通知 -->
+        <!-- id属性：给事务通知标签设置唯一标识，便于引用 -->
+        <!-- transaction-manager属性：关联事务管理器 -->
 <tx:advice id="txAdvice" transaction-manager="transactionManager">
-    <tx:attributes>
-        <!-- tx:method标签：配置具体的事务方法 -->
-        <!-- name属性：指定方法名，可以使用星号代表多个字符 -->
-        <tx:method name="get*" read-only="true"/>
-        <tx:method name="query*" read-only="true"/>
-        <tx:method name="find*" read-only="true"/>
-    
-        <!-- read-only属性：设置只读属性 -->
-        <!-- rollback-for属性：设置回滚的异常 -->
-        <!-- no-rollback-for属性：设置不回滚的异常 -->
-        <!-- isolation属性：设置事务的隔离级别 -->
-        <!-- timeout属性：设置事务的超时属性 -->
-        <!-- propagation属性：设置事务的传播行为 -->
-        <tx:method name="save*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
-        <tx:method name="update*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
-        <tx:method name="delete*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
-    </tx:attributes>
+<tx:attributes>
+  <!-- tx:method标签：配置具体的事务方法 -->
+  <!-- name属性：指定方法名，可以使用星号代表多个字符 -->
+  <tx:method name="get*" read-only="true"/>
+  <tx:method name="query*" read-only="true"/>
+  <tx:method name="find*" read-only="true"/>
+
+  <!-- read-only属性：设置只读属性 -->
+  <!-- rollback-for属性：设置回滚的异常 -->
+  <!-- no-rollback-for属性：设置不回滚的异常 -->
+  <!-- isolation属性：设置事务的隔离级别 -->
+  <!-- timeout属性：设置事务的超时属性 -->
+  <!-- propagation属性：设置事务的传播行为 -->
+  <tx:method name="save*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
+  <tx:method name="update*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
+  <tx:method name="delete*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
+</tx:attributes>
 </tx:advice>
 ```
 
@@ -5195,33 +5224,33 @@ file: ------该前缀用于从文件系统中读取资源
 ![image-20221207102315185](images\spring6\image-20221207102315185.png)
 
 ```java
-package com.atguigu.spring6.resources;
+package com.DEAiFISH.spring6.resources;
 
 import org.springframework.core.io.UrlResource;
 
 public class UrlResourceDemo {
 
-    public static void loadAndReadUrlResource(String path){
-        // 创建一个 Resource 对象
-        UrlResource url = null;
-        try {
-            url = new UrlResource(path);
-            // 获取资源名
-            System.out.println(url.getFilename());
-            System.out.println(url.getURI());
-            // 获取资源描述
-            System.out.println(url.getDescription());
-            //获取资源内容
-            System.out.println(url.getInputStream().read());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+  public static void loadAndReadUrlResource(String path) {
+    // 创建一个 Resource 对象
+    UrlResource url = null;
+    try {
+      url = new UrlResource(path);
+      // 获取资源名
+      System.out.println(url.getFilename());
+      System.out.println(url.getURI());
+      // 获取资源描述
+      System.out.println(url.getDescription());
+      //获取资源内容
+      System.out.println(url.getInputStream().read());
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
-    
-    public static void main(String[] args) {
-        //访问网络资源
-        loadAndReadUrlResource("http://www.baidu.com");
-    }
+  }
+
+  public static void main(String[] args) {
+    //访问网络资源
+    loadAndReadUrlResource("http://www.baidu.com");
+  }
 }
 ```
 
@@ -5249,31 +5278,32 @@ Web 应用，ClassPathResource 可自动搜索位于 classes 下的资源文件�
 ![image-20221207103020854](images\spring6\image-20221207103020854.png)
 
 ```java
-package com.atguigu.spring6.resources;
+package com.DEAiFISH.spring6.resources;
 
 import org.springframework.core.io.ClassPathResource;
+
 import java.io.InputStream;
 
 public class ClassPathResourceDemo {
 
-    public static void loadAndReadUrlResource(String path) throws Exception{
-        // 创建一个 Resource 对象
-        ClassPathResource resource = new ClassPathResource(path);
-        // 获取文件名
-        System.out.println("resource.getFileName = " + resource.getFilename());
-        // 获取文件描述
-        System.out.println("resource.getDescription = "+ resource.getDescription());
-        //获取文件内容
-        InputStream in = resource.getInputStream();
-        byte[] b = new byte[1024];
-        while(in.read(b)!=-1) {
-            System.out.println(new String(b));
-        }
+  public static void loadAndReadUrlResource(String path) throws Exception {
+    // 创建一个 Resource 对象
+    ClassPathResource resource = new ClassPathResource(path);
+    // 获取文件名
+    System.out.println("resource.getFileName = " + resource.getFilename());
+    // 获取文件描述
+    System.out.println("resource.getDescription = " + resource.getDescription());
+    //获取文件内容
+    InputStream in = resource.getInputStream();
+    byte[] b = new byte[1024];
+    while (in.read(b) != -1) {
+      System.out.println(new String(b));
     }
+  }
 
-    public static void main(String[] args) throws Exception {
-        loadAndReadUrlResource("atguigu.txt");
-    }
+  public static void main(String[] args) throws Exception {
+    loadAndReadUrlResource("atguigu.txt");
+  }
 }
 ```
 
@@ -5288,7 +5318,7 @@ Java 提供的 File 类也可用于访问文件系统资源。
 **实验：使用FileSystemResource 访问文件系统资源**
 
 ```java
-package com.atguigu.spring6.resources;
+package com.DEAiFISH.spring6.resources;
 
 import org.springframework.core.io.FileSystemResource;
 
@@ -5296,26 +5326,26 @@ import java.io.InputStream;
 
 public class FileSystemResourceDemo {
 
-    public static void loadAndReadUrlResource(String path) throws Exception{
-        //相对路径
-        FileSystemResource resource = new FileSystemResource("atguigu.txt");
-        //绝对路径
-        //FileSystemResource resource = new FileSystemResource("C:\\atguigu.txt");
-        // 获取文件名
-        System.out.println("resource.getFileName = " + resource.getFilename());
-        // 获取文件描述
-        System.out.println("resource.getDescription = "+ resource.getDescription());
-        //获取文件内容
-        InputStream in = resource.getInputStream();
-        byte[] b = new byte[1024];
-        while(in.read(b)!=-1) {
-            System.out.println(new String(b));
-        }
+  public static void loadAndReadUrlResource(String path) throws Exception {
+    //相对路径
+    FileSystemResource resource = new FileSystemResource("atguigu.txt");
+    //绝对路径
+    //FileSystemResource resource = new FileSystemResource("C:\\atguigu.txt");
+    // 获取文件名
+    System.out.println("resource.getFileName = " + resource.getFilename());
+    // 获取文件描述
+    System.out.println("resource.getDescription = " + resource.getDescription());
+    //获取文件内容
+    InputStream in = resource.getInputStream();
+    byte[] b = new byte[1024];
+    while (in.read(b) != -1) {
+      System.out.println(new String(b));
     }
+  }
 
-    public static void main(String[] args) throws Exception {
-        loadAndReadUrlResource("atguigu.txt");
-    }
+  public static void main(String[] args) throws Exception {
+    loadAndReadUrlResource("atguigu.txt");
+  }
 }
 ```
 
@@ -5363,7 +5393,7 @@ Spring 提供如下两个标志性接口：
 **实验一：ClassPathXmlApplicationContext获取Resource实例**
 
 ```java
-package com.atguigu.spring6.resouceloader;
+package com.DEAiFISH.spring6.resouceloader;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -5371,21 +5401,21 @@ import org.springframework.core.io.Resource;
 
 public class Demo1 {
 
-    public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext();
+  public static void main(String[] args) {
+    ApplicationContext ctx = new ClassPathXmlApplicationContext();
 //        通过ApplicationContext访问资源
 //        ApplicationContext实例获取Resource实例时，
 //        默认采用与ApplicationContext相同的资源访问策略
-        Resource res = ctx.getResource("atguigu.txt");
-        System.out.println(res.getFilename());
-    }
+    Resource res = ctx.getResource("atguigu.txt");
+    System.out.println(res.getFilename());
+  }
 }
 ```
 
 **实验二：FileSystemApplicationContext获取Resource实例**
 
 ```java
-package com.atguigu.spring6.resouceloader;
+package com.DEAiFISH.spring6.resouceloader;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -5393,11 +5423,11 @@ import org.springframework.core.io.Resource;
 
 public class Demo2 {
 
-    public static void main(String[] args) {
-        ApplicationContext ctx = new FileSystemXmlApplicationContext();
-        Resource res = ctx.getResource("atguigu.txt");
-        System.out.println(res.getFilename());
-    }
+  public static void main(String[] args) {
+    ApplicationContext ctx = new FileSystemXmlApplicationContext();
+    Resource res = ctx.getResource("atguigu.txt");
+    System.out.println(res.getFilename());
+  }
 }
 ```
 
@@ -5429,26 +5459,26 @@ ResourceLoaderAware接口实现类的实例将获得一个ResourceLoader的引�
 **第一步 创建类，实现ResourceLoaderAware接口**
 
 ```java
-package com.atguigu.spring6.resouceloader;
+package com.DEAiFISH.spring6.resouceloader;
 
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.ResourceLoader;
 
 public class TestBean implements ResourceLoaderAware {
 
-    private ResourceLoader resourceLoader;
+  private ResourceLoader resourceLoader;
 
-    //实现ResourceLoaderAware接口必须实现的方法
-	//如果把该Bean部署在Spring容器中，该方法将会有Spring容器负责调用。
-	//SPring容器调用该方法时，Spring会将自身作为参数传给该方法。
-    public void setResourceLoader(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
-    }
+  //实现ResourceLoaderAware接口必须实现的方法
+  //如果把该Bean部署在Spring容器中，该方法将会有Spring容器负责调用。
+  //SPring容器调用该方法时，Spring会将自身作为参数传给该方法。
+  public void setResourceLoader(ResourceLoader resourceLoader) {
+    this.resourceLoader = resourceLoader;
+  }
 
-    //返回ResourceLoader对象的应用
-    public ResourceLoader getResourceLoader(){
-        return this.resourceLoader;
-    }
+  //返回ResourceLoader对象的应用
+  public ResourceLoader getResourceLoader() {
+    return this.resourceLoader;
+  }
 
 }
 ```
@@ -5468,7 +5498,7 @@ public class TestBean implements ResourceLoaderAware {
 **第三步 测试**
 
 ```java
-package com.atguigu.spring6.resouceloader;
+package com.DEAiFISH.spring6.resouceloader;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -5477,18 +5507,18 @@ import org.springframework.core.io.ResourceLoader;
 
 public class Demo3 {
 
-    public static void main(String[] args) {
-        //Spring容器会将一个ResourceLoader对象作为该方法的参数传入
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
-        TestBean testBean = ctx.getBean("testBean",TestBean.class);
-        //获取ResourceLoader对象
-        ResourceLoader resourceLoader = testBean.getResourceLoader();
-        System.out.println("Spring容器将自身注入到ResourceLoaderAware Bean 中 ？ ：" + (resourceLoader == ctx));
-        //加载其他资源
-        Resource resource = resourceLoader.getResource("atguigu.txt");
-        System.out.println(resource.getFilename());
-        System.out.println(resource.getDescription());
-    }
+  public static void main(String[] args) {
+    //Spring容器会将一个ResourceLoader对象作为该方法的参数传入
+    ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
+    TestBean testBean = ctx.getBean("testBean", TestBean.class);
+    //获取ResourceLoader对象
+    ResourceLoader resourceLoader = testBean.getResourceLoader();
+    System.out.println("Spring容器将自身注入到ResourceLoaderAware Bean 中 ？ ：" + (resourceLoader == ctx));
+    //加载其他资源
+    Resource resource = resourceLoader.getResource("atguigu.txt");
+    System.out.println(resource.getFilename());
+    System.out.println(resource.getDescription());
+  }
 }
 ```
 
@@ -5513,25 +5543,26 @@ Spring 为 Bean 实例**依赖注入**资源。
 **第一步 创建依赖注入类，定义属性和方法**
 
 ```java
-package com.atguigu.spring6.resouceloader;
+package com.DEAiFISH.spring6.resouceloader;
 
 import org.springframework.core.io.Resource;
 
 public class ResourceBean {
-    
-    private Resource res;
-    
-    public void setRes(Resource res) {
-        this.res = res;
-    }
-    public Resource getRes() {
-        return res;
-    }
-    
-    public void parse(){
-        System.out.println(res.getFilename());
-        System.out.println(res.getDescription());
-    }
+
+  private Resource res;
+
+  public void setRes(Resource res) {
+    this.res = res;
+  }
+
+  public Resource getRes() {
+    return res;
+  }
+
+  public void parse() {
+    System.out.println(res.getFilename());
+    System.out.println(res.getDescription());
+  }
 }
 ```
 
@@ -5554,19 +5585,19 @@ public class ResourceBean {
 **第三步 测试**
 
 ```java
-package com.atguigu.spring6.resouceloader;
+package com.DEAiFISH.spring6.resouceloader;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Demo4 {
 
-    public static void main(String[] args) {
-        ApplicationContext ctx =
-                new ClassPathXmlApplicationContext("bean.xml");
-        ResourceBean resourceBean = ctx.getBean("resourceBean",ResourceBean.class);
-        resourceBean.parse();
-    }
+  public static void main(String[] args) {
+    ApplicationContext ctx =
+            new ClassPathXmlApplicationContext("bean.xml");
+    ResourceBean resourceBean = ctx.getBean("resourceBean", ResourceBean.class);
+    resourceBean.parse();
+  }
 }
 ```
 
@@ -5601,27 +5632,26 @@ public class Demo4 {
 **实验一：classpath前缀使用**
 
 ```java
-package com.atguigu.spring6.context;
+package com.DEAiFISH.spring6.context;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.Resource;
 
 public class Demo1 {
 
-    public static void main(String[] args) {
-        /*
-         * 通过搜索文件系统路径下的xml文件创建ApplicationContext，
-         * 但通过指定classpath:前缀强制搜索类加载路径
-         * classpath:bean.xml
-         * */
-        ApplicationContext ctx =
-                new ClassPathXmlApplicationContext("classpath:bean.xml");
-        System.out.println(ctx);
-        Resource resource = ctx.getResource("atguigu.txt");
-        System.out.println(resource.getFilename());
-        System.out.println(resource.getDescription());
-    }
+  public static void main(String[] args) {
+    /*
+     * 通过搜索文件系统路径下的xml文件创建ApplicationContext，
+     * 但通过指定classpath:前缀强制搜索类加载路径
+     * classpath:bean.xml
+     * */
+    ApplicationContext ctx =
+            new ClassPathXmlApplicationContext("classpath:bean.xml");
+    System.out.println(ctx);
+    Resource resource = ctx.getResource("atguigu.txt");
+    System.out.println(resource.getFilename());
+    System.out.println(resource.getDescription());
+  }
 }
 ```
 
@@ -5699,21 +5729,20 @@ internationalization的首末字符i和n，18为中间的字符数。由于软�
 **第三步 测试**
 
 ```java
-package com.atguigu.spring6.javai18n;
+package com.DEAiFISH.spring6.javai18n;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Demo1 {
 
-    public static void main(String[] args) {
-        System.out.println(ResourceBundle.getBundle("messages",
-                new Locale("en","GB")).getString("test"));
+  public static void main(String[] args) {
+    System.out.println(ResourceBundle.getBundle("messages",
+            new Locale("en", "GB")).getString("test"));
 
-        System.out.println(ResourceBundle.getBundle("messages",
-                new Locale("zh","CN")).getString("test"));
-    }
+    System.out.println(ResourceBundle.getBundle("messages",
+            new Locale("zh", "CN")).getString("test"));
+  }
 }
 ```
 
@@ -5784,28 +5813,28 @@ www.atguigu.com=欢迎 {0},时间:{1}
 **第三步 创建测试类**
 
 ```java
-package com.atguigu.spring6.javai18n;
+package com.DEAiFISH.spring6.javai18n;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.Date;
 import java.util.Locale;
 
 public class Demo2 {
 
-    public static void main(String[] args) {
-        
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        
-        //传递动态参数，使用数组形式对应{0} {1}顺序
-        Object[] objs = new Object[]{"atguigu",new Date().toString()};
+  public static void main(String[] args) {
 
-        //www.atguigu.com为资源文件的key值,
-        //objs为资源文件value值所需要的参数,Local.CHINA为国际化为语言
-        String str=context.getMessage("www.atguigu.com", objs, Locale.CHINA);
-        System.out.println(str);
-    }
+    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+
+    //传递动态参数，使用数组形式对应{0} {1}顺序
+    Object[] objs = new Object[]{"atguigu", new Date().toString()};
+
+    //www.atguigu.com为资源文件的key值,
+    //objs为资源文件value值所需要的参数,Local.CHINA为国际化为语言
+    String str = context.getMessage("www.atguigu.com", objs, Locale.CHINA);
+    System.out.println(str);
+  }
 }
 ```
 
@@ -5858,31 +5887,34 @@ Validator进一步的封装，方便在Spring中使用。
 **第三步 创建实体类，定义属性和方法**
 
 ```java
-package com.atguigu.spring6.validation.method1;
+package com.DEAiFISH.spring6.validation.method1;
 
 public class Person {
-    private String name;
-    private int age;
+  private String name;
+  private int age;
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
 }
 ```
 
 **第四步 创建类实现Validator接口，实现接口方法指定校验规则**
 
 ```java
-package com.atguigu.spring6.validation.method1;
+package com.DEAiFISH.spring6.validation.method1;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -5890,21 +5922,21 @@ import org.springframework.validation.Validator;
 
 public class PersonValidator implements Validator {
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return Person.class.equals(clazz);
-    }
+  @Override
+  public boolean supports(Class<?> clazz) {
+    return Person.class.equals(clazz);
+  }
 
-    @Override
-    public void validate(Object object, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors, "name", "name.empty");
-        Person p = (Person) object;
-        if (p.getAge() < 0) {
-            errors.rejectValue("age", "error value < 0");
-        } else if (p.getAge() > 110) {
-            errors.rejectValue("age", "error value too old");
-        }
+  @Override
+  public void validate(Object object, Errors errors) {
+    ValidationUtils.rejectIfEmpty(errors, "name", "name.empty");
+    Person p = (Person) object;
+    if (p.getAge() < 0) {
+      errors.rejectValue("age", "error value < 0");
+    } else if (p.getAge() > 110) {
+      errors.rejectValue("age", "error value too old");
     }
+  }
 }
 ```
 
@@ -5917,32 +5949,32 @@ validate是设置校验逻辑的地点，其中ValidationUtils，是Spring封装
 **第五步 使用上述Validator进行测试**
 
 ```java
-package com.atguigu.spring6.validation.method1;
+package com.DEAiFISH.spring6.validation.method1;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 
 public class TestMethod1 {
 
-    public static void main(String[] args) {
-        //创建person对象
-        Person person = new Person();
-        person.setName("lucy");
-        person.setAge(-1);
-        
-        // 创建Person对应的DataBinder
-        DataBinder binder = new DataBinder(person);
+  public static void main(String[] args) {
+    //创建person对象
+    Person person = new Person();
+    person.setName("lucy");
+    person.setAge(-1);
 
-        // 设置校验
-        binder.setValidator(new PersonValidator());
+    // 创建Person对应的DataBinder
+    DataBinder binder = new DataBinder(person);
 
-        // 由于Person对象中的属性为空，所以校验不通过
-        binder.validate();
+    // 设置校验
+    binder.setValidator(new PersonValidator());
 
-        //输出结果
-        BindingResult results = binder.getBindingResult();
-        System.out.println(results.getAllErrors());
-    }
+    // 由于Person对象中的属性为空，所以校验不通过
+    binder.validate();
+
+    //输出结果
+    BindingResult results = binder.getBindingResult();
+    System.out.println(results.getAllErrors());
+  }
 }
 ```
 
@@ -5969,7 +6001,7 @@ public class ValidationConfig {
 **第二步 创建实体类，使用注解定义校验规则**
 
 ```java
-package com.atguigu.spring6.validation.method2;
+package com.DEAiFISH.spring6.validation.method2;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -5977,25 +6009,28 @@ import jakarta.validation.constraints.NotNull;
 
 public class User {
 
-    @NotNull
-    private String name;
+  @NotNull
+  private String name;
 
-    @Min(0)
-    @Max(120)
-    private int age;
+  @Min(0)
+  @Max(120)
+  private int age;
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
 }
 ```
 
@@ -6016,24 +6051,25 @@ public class User {
 **（1）使用jakarta.validation.Validator校验**
 
 ```java
-package com.atguigu.spring6.validation.method2;
+package com.DEAiFISH.spring6.validation.method2;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Set;
 
 @Service
 public class MyService1 {
 
-    @Autowired
-    private Validator validator;
+  @Autowired
+  private Validator validator;
 
-    public  boolean validator(User user){
-        Set<ConstraintViolation<User>> sets =  validator.validate(user);
-        return sets.isEmpty();
-    }
+  public boolean validator(User user) {
+    Set<ConstraintViolation<User>> sets = validator.validate(user);
+    return sets.isEmpty();
+  }
 
 }
 ```
@@ -6041,7 +6077,7 @@ public class MyService1 {
 **（2）使用org.springframework.validation.Validator校验**
 
 ```java
-package com.atguigu.spring6.validation.method2;
+package com.DEAiFISH.spring6.validation.method2;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6051,21 +6087,21 @@ import org.springframework.validation.Validator;
 @Service
 public class MyService2 {
 
-    @Autowired
-    private Validator validator;
+  @Autowired
+  private Validator validator;
 
-    public boolean validaPersonByValidator(User user) {
-        BindException bindException = new BindException(user, user.getName());
-        validator.validate(user, bindException);
-        return bindException.hasErrors();
-    }
+  public boolean validaPersonByValidator(User user) {
+    BindException bindException = new BindException(user, user.getName());
+    validator.validate(user, bindException);
+    return bindException.hasErrors();
+  }
 }
 ```
 
 **第四步 测试**
 
 ```java
-package com.atguigu.spring6.validation.method2;
+package com.DEAiFISH.spring6.validation.method2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -6073,27 +6109,27 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class TestMethod2 {
 
-    @Test
-    public void testMyService1() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
-        MyService1 myService = context.getBean(MyService1.class);
-        User user = new User();
-        user.setAge(-1);
-        boolean validator = myService.validator(user);
-        System.out.println(validator);
-    }
+  @Test
+  public void testMyService1() {
+    ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
+    MyService1 myService = context.getBean(MyService1.class);
+    User user = new User();
+    user.setAge(-1);
+    boolean validator = myService.validator(user);
+    System.out.println(validator);
+  }
 
-    @Test
-    public void testMyService2() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
-        MyService2 myService = context.getBean(MyService2.class);
-        User user = new User();
-        user.setName("lucy");
-        user.setAge(130);
-        user.setAge(-1);
-        boolean validator = myService.validaPersonByValidator(user);
-        System.out.println(validator);
-    }
+  @Test
+  public void testMyService2() {
+    ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
+    MyService2 myService = context.getBean(MyService2.class);
+    User user = new User();
+    user.setName("lucy");
+    user.setAge(130);
+    user.setAge(-1);
+    boolean validator = myService.validaPersonByValidator(user);
+    System.out.println(validator);
+  }
 }
 ```
 
@@ -6102,70 +6138,74 @@ public class TestMethod2 {
 **第一步 创建配置类，配置MethodValidationPostProcessor**
 
 ```java
-package com.atguigu.spring6.validation.method3;
+package com.DEAiFISH.spring6.validation.method3;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 @Configuration
 @ComponentScan("com.atguigu.spring6.validation.method3")
 public class ValidationConfig {
 
-    @Bean
-    public MethodValidationPostProcessor validationPostProcessor() {
-        return new MethodValidationPostProcessor();
-    }
+  @Bean
+  public MethodValidationPostProcessor validationPostProcessor() {
+    return new MethodValidationPostProcessor();
+  }
 }
 ```
 
 **第二步 创建实体类，使用注解设置校验规则**
 
 ```java
-package com.atguigu.spring6.validation.method3;
+package com.DEAiFISH.spring6.validation.method3;
 
 import jakarta.validation.constraints.*;
 
 public class User {
 
-    @NotNull
-    private String name;
+  @NotNull
+  private String name;
 
-    @Min(0)
-    @Max(120)
-    private int age;
+  @Min(0)
+  @Max(120)
+  private int age;
 
-    @Pattern(regexp = "^1(3|4|5|7|8)\\d{9}$",message = "手机号码格式错误")
-    @NotBlank(message = "手机号码不能为空")
-    private String phone;
+  @Pattern(regexp = "^1(3|4|5|7|8)\\d{9}$", message = "手机号码格式错误")
+  @NotBlank(message = "手机号码不能为空")
+  private String phone;
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public String getPhone() {
-        return phone;
-    }
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 }
 ```
 
 **第三步 定义Service类，通过注解操作对象**
 
 ```java
-package com.atguigu.spring6.validation.method3;
+package com.DEAiFISH.spring6.validation.method3;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -6175,10 +6215,10 @@ import org.springframework.validation.annotation.Validated;
 @Service
 @Validated
 public class MyService {
-    
-    public String testParams(@NotNull @Valid User user) {
-        return user.toString();
-    }
+
+  public String testParams(@NotNull @Valid User user) {
+    return user.toString();
+  }
 
 }
 ```
@@ -6186,7 +6226,7 @@ public class MyService {
 **第四步 测试**
 
 ```java
-package com.atguigu.spring6.validation.method3;
+package com.DEAiFISH.spring6.validation.method3;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -6194,14 +6234,14 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class TestMethod3 {
 
-    @Test
-    public void testMyService1() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
-        MyService myService = context.getBean(MyService.class);
-        User user = new User();
-        user.setAge(-1);
-        myService.testParams(user);
-    }
+  @Test
+  public void testMyService1() {
+    ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
+    MyService myService = context.getBean(MyService.class);
+    User user = new User();
+    user.setAge(-1);
+    myService.testParams(user);
+  }
 }
 ```
 
@@ -6210,10 +6250,11 @@ public class TestMethod3 {
 **第一步 自定义校验注解**
 
 ```java
-package com.atguigu.spring6.validation.method4;
+package com.DEAiFISH.spring6.validation.method4;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+
 import java.lang.annotation.*;
 
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER})
@@ -6221,54 +6262,54 @@ import java.lang.annotation.*;
 @Documented
 @Constraint(validatedBy = {CannotBlankValidator.class})
 public @interface CannotBlank {
-    //默认错误消息
-    String message() default "不能包含空格";
+  //默认错误消息
+  String message() default "不能包含空格";
 
-    //分组
-    Class<?>[] groups() default {};
+  //分组
+  Class<?>[] groups() default {};
 
-    //负载
-    Class<? extends Payload>[] payload() default {};
+  //负载
+  Class<? extends Payload>[] payload() default {};
 
-    //指定多个时使用
-    @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE})
-    @Retention(RetentionPolicy.RUNTIME)
-    @Documented
-    @interface List {
-        CannotBlank[] value();
-    }
+  //指定多个时使用
+  @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Documented
+  @interface List {
+    CannotBlank[] value();
+  }
 }
 ```
 
 **第二步 编写真正的校验类**
 
 ```java
-package com.atguigu.spring6.validation.method4;
+package com.DEAiFISH.spring6.validation.method4;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 public class CannotBlankValidator implements ConstraintValidator<CannotBlank, String> {
 
-        @Override
-        public void initialize(CannotBlank constraintAnnotation) {
-        }
+  @Override
+  public void initialize(CannotBlank constraintAnnotation) {
+  }
 
-        @Override
-        public boolean isValid(String value, ConstraintValidatorContext context) {
-                //null时不进行校验
-                if (value != null && value.contains(" ")) {
-                        //获取默认提示信息
-                        String defaultConstraintMessageTemplate = context.getDefaultConstraintMessageTemplate();
-                        System.out.println("default message :" + defaultConstraintMessageTemplate);
-                        //禁用默认提示信息
-                        context.disableDefaultConstraintViolation();
-                        //设置提示语
-                        context.buildConstraintViolationWithTemplate("can not contains blank").addConstraintViolation();
-                        return false;
-                }
-                return true;
-        }
+  @Override
+  public boolean isValid(String value, ConstraintValidatorContext context) {
+    //null时不进行校验
+    if (value != null && value.contains(" ")) {
+      //获取默认提示信息
+      String defaultConstraintMessageTemplate = context.getDefaultConstraintMessageTemplate();
+      System.out.println("default message :" + defaultConstraintMessageTemplate);
+      //禁用默认提示信息
+      context.disableDefaultConstraintViolation();
+      //设置提示语
+      context.buildConstraintViolationWithTemplate("can not contains blank").addConstraintViolation();
+      return false;
+    }
+    return true;
+  }
 }
 ```
 
