@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/spring-ioc-annotation.iml" filepath="$PROJECT_DIR$/spring-ioc-annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring6-ioc-xml.iml" filepath="$PROJECT_DIR$/spring6-ioc-xml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring6-junit.iml" filepath="$PROJECT_DIR$/spring6-junit.iml" />
     </modules>
   </component>
 </project>
