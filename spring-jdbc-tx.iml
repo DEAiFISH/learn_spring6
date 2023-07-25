@@ -6,6 +6,9 @@
         <fileset id="fileset" name="Bean" removed="false">
           <file>file://$MODULE_DIR$/spring-jdbc-tx/src/main/resources/bean.xml</file>
         </fileset>
+        <fileset id="fileset2" name="Bean Xml" removed="false">
+          <file>file://$MODULE_DIR$/spring-jdbc-tx/src/main/resources/bean-xml.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>

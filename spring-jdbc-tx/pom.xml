@@ -36,5 +36,11 @@
             <artifactId>druid</artifactId>
             <version>1.2.15</version>
         </dependency>
+        <!--注意：基于xml实现的声明式事务，必须引入aspectJ的依赖-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>6.0.2</version>
+        </dependency>
     </dependencies>
 </project>
