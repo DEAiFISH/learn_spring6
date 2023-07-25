@@ -14,7 +14,7 @@ public class CalculatorImpl implements Calculator {
         System.out.println("方法内部 result = " + result);
 
         //为了测试，模拟异常出现
-       // int a = 1/0;
+        // int a = 1/0;
         return result;
     }
 

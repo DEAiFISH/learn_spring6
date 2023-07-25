@@ -21,7 +21,7 @@ public class SpringTestJunit5 {
 
     //测试方法
     @Test
-    public void testUSer(){
+    public void testUSer() {
         System.out.println(user);
         user.run();
     }

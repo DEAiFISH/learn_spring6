@@ -22,7 +22,7 @@ public class LogAspect {
     public void beforeMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
-        System.out.println("Logger-->前置通知，方法名称："+methodName+"，参数："+Arrays.toString(args));
+        System.out.println("Logger-->前置通知，方法名称：" + methodName + "，参数：" + Arrays.toString(args));
     }
 
     // 后置 @After()
@@ -30,22 +30,22 @@ public class LogAspect {
     @After(value = "pointCut()")
     public void afterMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
-        System.out.println("Logger-->后置通知，方法名称："+methodName);
+        System.out.println("Logger-->后置通知，方法名称：" + methodName);
     }
 
     // 返回 @AfterReturning
-    @AfterReturning(value = "execution(* com.atguigu.spring6.aop.annoaop.CalculatorImpl.*(..))",returning = "result")
-    public void afterReturningMethod(JoinPoint joinPoint,Object result) {
+    @AfterReturning(value = "execution(* com.atguigu.spring6.aop.annoaop.CalculatorImpl.*(..))", returning = "result")
+    public void afterReturningMethod(JoinPoint joinPoint, Object result) {
         String methodName = joinPoint.getSignature().getName();
-        System.out.println("Logger-->返回通知，方法名称："+methodName+"，返回结果："+result);
+        System.out.println("Logger-->返回通知，方法名称：" + methodName + "，返回结果：" + result);
     }
 
     // 异常 @AfterThrowing 获取到目标方法异常信息
     //目标方法出现异常，这个通知执行
-    @AfterThrowing(value = "execution(* com.atguigu.spring6.aop.annoaop.CalculatorImpl.*(..))",throwing = "ex")
-    public void afterThrowingMethod(JoinPoint joinPoint,Throwable ex) {
+    @AfterThrowing(value = "execution(* com.atguigu.spring6.aop.annoaop.CalculatorImpl.*(..))", throwing = "ex")
+    public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex) {
         String methodName = joinPoint.getSignature().getName();
-        System.out.println("Logger-->异常通知，方法名称："+methodName+"，异常信息："+ex);
+        System.out.println("Logger-->异常通知，方法名称：" + methodName + "，异常信息：" + ex);
     }
 
     // 环绕 @Around()
@@ -62,7 +62,7 @@ public class LogAspect {
             result = joinPoint.proceed();
 
             System.out.println("环绕通知==目标方法返回值之后");
-        }catch (Throwable throwable) {
+        } catch (Throwable throwable) {
             throwable.printStackTrace();
             System.out.println("环绕通知==目标方法出现异常执行");
         } finally {
@@ -73,5 +73,6 @@ public class LogAspect {
 
     //重用切入点表达式
     @Pointcut(value = "execution(* com.atguigu.spring6.aop.annoaop.CalculatorImpl.*(..))")
-    public void pointCut() {}
+    public void pointCut() {
+    }
 }

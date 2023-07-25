@@ -34,6 +34,7 @@ public class UserController {
 
     //第五种方式，只有一个有参数构造函数，无注解
     private UserService userService;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }

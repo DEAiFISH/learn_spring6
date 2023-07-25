@@ -1,4 +1,5 @@
 package com.DEAiFISH.junit4;
+
 import com.DEAiFISH.junit5.User;
 
 import org.junit.Test;
@@ -14,7 +15,7 @@ public class SpringTestJunit4 {
     private User user;
 
     @Test
-    public void testUser4(){
+    public void testUser4() {
         System.out.println(user);
         user.run();
     }

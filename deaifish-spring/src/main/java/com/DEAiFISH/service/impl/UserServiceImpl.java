@@ -6,7 +6,7 @@ import com.DEAiFISH.dao.UserDao;
 import com.DEAiFISH.service.UserService;
 
 @Bean
-public class UserServiceImpl  implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Di
     private UserDao userDao;

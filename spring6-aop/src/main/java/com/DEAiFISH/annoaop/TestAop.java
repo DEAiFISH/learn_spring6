@@ -11,6 +11,6 @@ public class TestAop {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("bean.xml");
         Calculator calculator = context.getBean(Calculator.class);
-        calculator.add(2,3);
+        calculator.add(2, 3);
     }
 }
