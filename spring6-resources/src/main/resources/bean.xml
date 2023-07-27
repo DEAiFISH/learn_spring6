@@ -10,4 +10,6 @@
         <!-- 如果不采用任何前缀，则Spring将采用与该ApplicationContext相同的资源访问策略来访问资源 -->
         <property name="res" value="classpath:deaifish.txt"/>
     </bean>
+
+    <bean id="user" class="com.DEAiFISH.di.User"/>
 </beans>
