@@ -1,6 +1,6 @@
 # Spring6
 
-![image-20221209110043449](images\spring6\image-20221209110043449.png)
+![image-20221209110043449](images/spring6/image-20221209110043449.png)
 
 ## 1、概述
 
@@ -16,7 +16,7 @@ Spring 自诞生以来备受青睐，一直被广大开发人员作为 Java 企�
 自 2004 年 4 月，Spring 1.0 版本正式发布以来，Spring 已经步入到了第 6 个大版本，也就是 Spring 6。本课程采用Spring当前最新发布的正式版本
 **6.0.2**。
 
-![image-20221216223135162](images\spring6\image-20221201102513199.png)
+![image-20221216223135162](images/spring6/image-20221201102513199.png)
 
 ### 1.2、Spring 的狭义和广义
 
@@ -67,7 +67,7 @@ Spring 有两个最核心模块： IoC 和 AOP。
 
 官网地址：https://spring.io/
 
-![image-20221207142746771](images\spring6\image-20221207142746771.png)
+![image-20221207142746771](images/spring6/image-20221207142746771.png)
 
 ![image-2097896352](images/spring6/2097896352.png)
 
@@ -118,7 +118,7 @@ spring core提供了IOC,DI,Bean配置装载创建的核心实现。核心概念�
 
 **（1）Spring6要求JDK最低版本是JDK17**
 
-![image-20221201103138194](images\spring6\image-20221201103138194.png)
+![image-20221201103138194](images/spring6/image-20221201103138194.png)
 
 #### 1.5.2、本课程软件版本
 
@@ -144,21 +144,21 @@ spring core提供了IOC,DI,Bean配置装载创建的核心实现。核心概念�
 
 在idea中，依次单击 File -> New -> Project -> New Project
 
-![image-20221205201741893](images\spring6\image-20221205201741893.png)
+![image-20221205201741893](images/spring6/image-20221205201741893.png)
 
 点击“Create”
 
-![image-20221205202000198](images\spring6\image-20221205202000198.png)
+![image-20221205202000198](images/spring6/image-20221205202000198.png)
 
 删除src目录
 
 **（2）构建子模块spring6-first**
 
-![image-20221205202117383](images\spring6\image-20221205202117383.png)
+![image-20221205202117383](images/spring6/image-20221205202117383.png)
 
 点击 Create 完成
 
-![image-20221205202154225](images\spring6\image-20221205202154225.png)
+![image-20221205202154225](images/spring6/image-20221205202154225.png)
 
 ### 2.3、程序开发
 
@@ -169,6 +169,7 @@ https://spring.io/projects/spring-framework#learn
 **添加依赖：**
 
 ```xml
+
 <dependencies>
     <!--spring context依赖-->
     <!--当你引入Spring Context依赖之后，表示将Spring的基础依赖引入了-->
@@ -189,7 +190,7 @@ https://spring.io/projects/spring-framework#learn
 
 **查看依赖：**
 
-![image-20221201105416558](images\spring6\image-20221201105416558.png)
+![image-20221201105416558](images/spring6/image-20221201105416558.png)
 
 #### 2.3.2、创建java类
 
@@ -198,9 +199,9 @@ package com.DEAiFISH.spring6.bean;
 
 public class HelloWorld {
 
-  public void sayHello() {
-    System.out.println("helloworld");
-  }
+    public void sayHello() {
+        System.out.println("helloworld");
+    }
 }
 ```
 
@@ -224,7 +225,7 @@ public class HelloWorld {
         class：设置bean所对应类型的全类名
 	-->
     <bean id="helloWorld" class="com.atguigu.spring6.bean.HelloWorld"></bean>
-    
+
 </beans>
 ```
 
@@ -239,12 +240,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class HelloWorldTest {
 
-  @Test
-  public void testHelloWorld() {
-    ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-    HelloWorld helloworld = (HelloWorld) ac.getBean("helloWorld");
-    helloworld.sayHello();
-  }
+    @Test
+    public void testHelloWorld() {
+        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        HelloWorld helloworld = (HelloWorld) ac.getBean("helloWorld");
+        helloworld.sayHello();
+    }
 }
 ```
 
@@ -263,13 +264,13 @@ package com.DEAiFISH.spring6.bean;
 
 public class HelloWorld {
 
-  public HelloWorld() {
-    System.out.println("无参数构造方法执行");
-  }
+    public HelloWorld() {
+        System.out.println("无参数构造方法执行");
+    }
 
-  public void sayHello() {
-    System.out.println("helloworld");
-  }
+    public void sayHello() {
+        System.out.println("helloworld");
+    }
 }
 ```
 
@@ -283,10 +284,10 @@ public class HelloWorld {
 
 ```java
 // dom4j解析beans.xml文件，从中获取class属性值，类的全类名
- // 通过反射机制调用无参数构造方法创建对象
- Class clazz = Class.forName("com.atguigu.spring6.bean.HelloWorld");
- //Object obj = clazz.newInstance();
- Object object = clazz.getDeclaredConstructor().newInstance();
+// 通过反射机制调用无参数构造方法创建对象
+ Class clazz=Class.forName("com.atguigu.spring6.bean.HelloWorld");
+         //Object obj = clazz.newInstance();
+         Object object=clazz.getDeclaredConstructor().newInstance();
 ```
 
 **3. 把创建好的对象存储到一个什么样的数据结构当中了呢？**
@@ -294,7 +295,7 @@ public class HelloWorld {
 bean对象最终存储在spring容器中，在spring源码底层就是一个map集合，存储bean的map在**DefaultListableBeanFactory**类中：
 
 ```java
-private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
+private final Map<String, BeanDefinition> beanDefinitionMap=new ConcurrentHashMap<>(256);
 ```
 
 Spring容器加载到Bean类时 , 会把这个类的描述信息, 以包名加类名的方式存到beanDefinitionMap 中,
@@ -335,9 +336,9 @@ FATAL：严重错误
     <version>2.19.0</version>
 </dependency>
 <dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-slf4j2-impl</artifactId>
-    <version>2.19.0</version>
+<groupId>org.apache.logging.log4j</groupId>
+<artifactId>log4j-slf4j2-impl</artifactId>
+<version>2.19.0</version>
 </dependency>
 ```
 
@@ -410,7 +411,7 @@ public class HelloWorldTest {
     private Logger logger = LoggerFactory.getLogger(HelloWorldTest.class);
 
     @Test
-    public void testHelloWorld(){
+    public void testHelloWorld() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         HelloWorld helloworld = (HelloWorld) ac.getBean("helloWorld");
         helloworld.sayHello();
@@ -506,6 +507,7 @@ BeanFactory。
 **③添加依赖**
 
 ```xml
+
 <dependencies>
     <!--spring context依赖-->
     <!--当你引入Spring Context依赖之后，表示将Spring的基础依赖引入了-->
@@ -545,13 +547,13 @@ package com.DEAiFISH.spring6.bean;
 
 public class HelloWorld {
 
-  public HelloWorld() {
-    System.out.println("无参数构造方法执行");
-  }
+    public HelloWorld() {
+        System.out.println("无参数构造方法执行");
+    }
 
-  public void sayHello() {
-    System.out.println("helloworld");
-  }
+    public void sayHello() {
+        System.out.println("helloworld");
+    }
 }
 
 ```
@@ -565,12 +567,12 @@ import org.slf4j.LoggerFactory;
 
 public class HelloWorldTest {
 
-  private Logger logger = LoggerFactory.getLogger(HelloWorldTest.class);
+    private Logger logger = LoggerFactory.getLogger(HelloWorldTest.class);
 
-  @Test
-  public void testHelloWorld() {
+    @Test
+    public void testHelloWorld() {
 
-  }
+    }
 }
 ```
 
@@ -585,10 +587,10 @@ public class HelloWorldTest {
 ```java
 @Test
 public void testHelloWorld1(){
-	ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-    HelloWorld bean = ac.getBean(HelloWorld.class);
-    bean.sayHello();
-}
+        ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
+        HelloWorld bean=ac.getBean(HelloWorld.class);
+        bean.sayHello();
+        }
 ```
 
 ##### ③方式三：根据id和类型
@@ -596,10 +598,10 @@ public void testHelloWorld1(){
 ```java
 @Test
 public void testHelloWorld2(){
-	ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-    HelloWorld bean = ac.getBean("helloworld", HelloWorld.class);
-    bean.sayHello();
-}
+        ApplicationContext ac=new ClassPathXmlApplicationContext("beans.xml");
+        HelloWorld bean=ac.getBean("helloworld",HelloWorld.class);
+        bean.sayHello();
+        }
 ```
 
 ##### ④注意的地方
@@ -645,58 +647,58 @@ package com.DEAiFISH.spring6.bean;
 
 public class Student {
 
-  private Integer id;
+    private Integer id;
 
-  private String name;
+    private String name;
 
-  private Integer age;
+    private Integer age;
 
-  private String sex;
+    private String sex;
 
-  public Student() {
-  }
+    public Student() {
+    }
 
-  public Integer getId() {
-    return id;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Integer getAge() {
-    return age;
-  }
+    public Integer getAge() {
+        return age;
+    }
 
-  public void setAge(Integer age) {
-    this.age = age;
-  }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
-  public String getSex() {
-    return sex;
-  }
+    public String getSex() {
+        return sex;
+    }
 
-  public void setSex(String sex) {
-    this.sex = sex;
-  }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
-  @Override
-  public String toString() {
-    return "Student{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", age=" + age +
-            ", sex='" + sex + '\'' +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '/' ' +
+        ", age=" + age +
+                ", sex='" + sex + '/' ' +
+        '}';
+    }
 
 }
 ```
@@ -708,13 +710,13 @@ spring-di.xml
 ```xml
 
 <bean id="studentOne" class="com.DEAiFISH.spring6.bean.Student">
-  <!-- property标签：通过组件类的setXxx()方法给组件对象设置属性 -->
-  <!-- name属性：指定属性名（这个属性名是getXxx()、setXxx()方法定义的，和成员变量无关） -->
-  <!-- value属性：指定属性值 -->
-  <property name="id" value="1001"></property>
-  <property name="name" value="张三"></property>
-  <property name="age" value="23"></property>
-  <property name="sex" value="男"></property>
+    <!-- property标签：通过组件类的setXxx()方法给组件对象设置属性 -->
+    <!-- name属性：指定属性名（这个属性名是getXxx()、setXxx()方法定义的，和成员变量无关） -->
+    <!-- value属性：指定属性值 -->
+    <property name="id" value="1001"></property>
+    <property name="name" value="张三"></property>
+    <property name="age" value="23"></property>
+    <property name="sex" value="男"></property>
 </bean>
 ```
 
@@ -723,10 +725,10 @@ spring-di.xml
 ```java
 @Test
 public void testDIBySet(){
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-di.xml");
-    Student studentOne = ac.getBean("studentOne", Student.class);
-    System.out.println(studentOne);
-}
+        ApplicationContext ac=new ClassPathXmlApplicationContext("spring-di.xml");
+        Student studentOne=ac.getBean("studentOne",Student.class);
+        System.out.println(studentOne);
+        }
 ```
 
 #### 3.2.4、实验三：依赖注入之构造器注入
@@ -734,12 +736,12 @@ public void testDIBySet(){
 **①在Student类中添加有参构造**
 
 ```java
-public Student(Integer id, String name, Integer age, String sex) {
-    this.id = id;
-    this.name = name;
-    this.age = age;
-    this.sex = sex;
-}
+public Student(Integer id,String name,Integer age,String sex){
+        this.id=id;
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+        }
 ```
 
 **②配置bean**
@@ -749,10 +751,10 @@ spring-di.xml
 ```xml
 
 <bean id="studentTwo" class="com.DEAiFISH.spring6.bean.Student">
-  <constructor-arg value="1002"></constructor-arg>
-  <constructor-arg value="李四"></constructor-arg>
-  <constructor-arg value="33"></constructor-arg>
-  <constructor-arg value="女"></constructor-arg>
+    <constructor-arg value="1002"></constructor-arg>
+    <constructor-arg value="李四"></constructor-arg>
+    <constructor-arg value="33"></constructor-arg>
+    <constructor-arg value="女"></constructor-arg>
 </bean>
 ```
 
@@ -768,10 +770,10 @@ spring-di.xml
 ```java
 @Test
 public void testDIByConstructor(){
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-di.xml");
-    Student studentOne = ac.getBean("studentTwo", Student.class);
-    System.out.println(studentOne);
-}
+        ApplicationContext ac=new ClassPathXmlApplicationContext("spring-di.xml");
+        Student studentOne=ac.getBean("studentTwo",Student.class);
+        System.out.println(studentOne);
+        }
 ```
 
 #### 3.2.5、实验四：特殊值处理
@@ -794,8 +796,9 @@ public void testDIByConstructor(){
 ##### ②null值
 
 ```xml
+
 <property name="name">
-    <null />
+    <null/>
 </property>
 ```
 
@@ -818,6 +821,7 @@ public void testDIByConstructor(){
 ##### ④CDATA节
 
 ```xml
+
 <property name="expression">
     <!-- 解决方案二：使用CDATA节 -->
     <!-- CDATA中的C代表Character，是文本、字符的含义，CDATA就表示纯文本数据 -->
@@ -836,41 +840,41 @@ package com.DEAiFISH.spring6.bean
 
 public class Clazz {
 
-  private Integer clazzId;
+    private Integer clazzId;
 
-  private String clazzName;
+    private String clazzName;
 
-  public Integer getClazzId() {
-    return clazzId;
-  }
+    public Integer getClazzId() {
+        return clazzId;
+    }
 
-  public void setClazzId(Integer clazzId) {
-    this.clazzId = clazzId;
-  }
+    public void setClazzId(Integer clazzId) {
+        this.clazzId = clazzId;
+    }
 
-  public String getClazzName() {
-    return clazzName;
-  }
+    public String getClazzName() {
+        return clazzName;
+    }
 
-  public void setClazzName(String clazzName) {
-    this.clazzName = clazzName;
-  }
+    public void setClazzName(String clazzName) {
+        this.clazzName = clazzName;
+    }
 
-  @Override
-  public String toString() {
-    return "Clazz{" +
-            "clazzId=" + clazzId +
-            ", clazzName='" + clazzName + '\'' +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Clazz{" +
+                "clazzId=" + clazzId +
+                ", clazzName='" + clazzName + '/' ' +
+        '}';
+    }
 
-  public Clazz() {
-  }
+    public Clazz() {
+    }
 
-  public Clazz(Integer clazzId, String clazzName) {
-    this.clazzId = clazzId;
-    this.clazzName = clazzName;
-  }
+    public Clazz(Integer clazzId, String clazzName) {
+        this.clazzId = clazzId;
+        this.clazzName = clazzName;
+    }
 }
 ```
 
@@ -881,13 +885,13 @@ public class Clazz {
 ```java
 private Clazz clazz;
 
-public Clazz getClazz() {
-	return clazz;
-}
+public Clazz getClazz(){
+        return clazz;
+        }
 
-public void setClazz(Clazz clazz) {
-	this.clazz = clazz;
-}
+public void setClazz(Clazz clazz){
+        this.clazz=clazz;
+        }
 ```
 
 ##### 方式一：引用外部bean
@@ -897,8 +901,8 @@ public void setClazz(Clazz clazz) {
 ```xml
 
 <bean id="clazzOne" class="com.DEAiFISH.spring6.bean.Clazz">
-  <property name="clazzId" value="1111"></property>
-  <property name="clazzName" value="财源滚滚班"></property>
+    <property name="clazzId" value="1111"></property>
+    <property name="clazzName" value="财源滚滚班"></property>
 </bean>
 ```
 
@@ -907,12 +911,12 @@ public void setClazz(Clazz clazz) {
 ```xml
 
 <bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
-  <property name="id" value="1004"></property>
-  <property name="name" value="赵六"></property>
-  <property name="age" value="26"></property>
-  <property name="sex" value="女"></property>
-  <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
-  <property name="clazz" ref="clazzOne"></property>
+    <property name="id" value="1004"></property>
+    <property name="name" value="赵六"></property>
+    <property name="age" value="26"></property>
+    <property name="sex" value="女"></property>
+    <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
+    <property name="clazz" ref="clazzOne"></property>
 </bean>
 ```
 
@@ -921,11 +925,11 @@ public void setClazz(Clazz clazz) {
 ```xml
 
 <bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
-  <property name="id" value="1004"></property>
-  <property name="name" value="赵六"></property>
-  <property name="age" value="26"></property>
-  <property name="sex" value="女"></property>
-  <property name="clazz" value="clazzOne"></property>
+    <property name="id" value="1004"></property>
+    <property name="name" value="赵六"></property>
+    <property name="age" value="26"></property>
+    <property name="sex" value="女"></property>
+    <property name="clazz" value="clazzOne"></property>
 </bean>
 ```
 
@@ -940,18 +944,18 @@ public void setClazz(Clazz clazz) {
 ```xml
 
 <bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
-  <property name="id" value="1004"></property>
-  <property name="name" value="赵六"></property>
-  <property name="age" value="26"></property>
-  <property name="sex" value="女"></property>
-  <property name="clazz">
-    <!-- 在一个bean中再声明一个bean就是内部bean -->
-    <!-- 内部bean只能用于给属性赋值，不能在外部通过IOC容器获取，因此可以省略id属性 -->
-    <bean id="clazzInner" class="com.DEAiFISH.spring6.bean.Clazz">
-      <property name="clazzId" value="2222"></property>
-      <property name="clazzName" value="远大前程班"></property>
-    </bean>
-  </property>
+    <property name="id" value="1004"></property>
+    <property name="name" value="赵六"></property>
+    <property name="age" value="26"></property>
+    <property name="sex" value="女"></property>
+    <property name="clazz">
+        <!-- 在一个bean中再声明一个bean就是内部bean -->
+        <!-- 内部bean只能用于给属性赋值，不能在外部通过IOC容器获取，因此可以省略id属性 -->
+        <bean id="clazzInner" class="com.DEAiFISH.spring6.bean.Clazz">
+            <property name="clazzId" value="2222"></property>
+            <property name="clazzName" value="远大前程班"></property>
+        </bean>
+    </property>
 </bean>
 ```
 
@@ -960,13 +964,13 @@ public void setClazz(Clazz clazz) {
 ```xml
 
 <bean id="studentFour" class="com.DEAiFISH.spring6.bean.Student">
-  <property name="id" value="1004"></property>
-  <property name="name" value="赵六"></property>
-  <property name="age" value="26"></property>
-  <property name="sex" value="女"></property>
-  <property name="clazz" ref="clazzOne"></property>
-  <property name="clazz.clazzId" value="3333"></property>
-  <property name="clazz.clazzName" value="最强王者班"></property>
+    <property name="id" value="1004"></property>
+    <property name="name" value="赵六"></property>
+    <property name="age" value="26"></property>
+    <property name="sex" value="女"></property>
+    <property name="clazz" ref="clazzOne"></property>
+    <property name="clazz.clazzId" value="3333"></property>
+    <property name="clazz.clazzName" value="最强王者班"></property>
 </bean>
 ```
 
@@ -977,15 +981,15 @@ public void setClazz(Clazz clazz) {
 在Student类中添加以下代码：
 
 ```java
-private String[] hobbies;
+private String[]hobbies;
 
-public String[] getHobbies() {
-    return hobbies;
-}
+public String[]getHobbies(){
+        return hobbies;
+        }
 
-public void setHobbies(String[] hobbies) {
-    this.hobbies = hobbies;
-}
+public void setHobbies(String[]hobbies){
+        this.hobbies=hobbies;
+        }
 ```
 
 **②配置bean**
@@ -993,19 +997,19 @@ public void setHobbies(String[] hobbies) {
 ```xml
 
 <bean id="studentFour" class="com.DEAiFISH.spring.bean6.Student">
-  <property name="id" value="1004"></property>
-  <property name="name" value="赵六"></property>
-  <property name="age" value="26"></property>
-  <property name="sex" value="女"></property>
-  <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
-  <property name="clazz" ref="clazzOne"></property>
-  <property name="hobbies">
-    <array>
-      <value>抽烟</value>
-      <value>喝酒</value>
-      <value>烫头</value>
-    </array>
-  </property>
+    <property name="id" value="1004"></property>
+    <property name="name" value="赵六"></property>
+    <property name="age" value="26"></property>
+    <property name="sex" value="女"></property>
+    <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
+    <property name="clazz" ref="clazzOne"></property>
+    <property name="hobbies">
+        <array>
+            <value>抽烟</value>
+            <value>喝酒</value>
+            <value>烫头</value>
+        </array>
+    </property>
 </bean>
 ```
 
@@ -1018,13 +1022,13 @@ public void setHobbies(String[] hobbies) {
 ```java
 private List<Student> students;
 
-public List<Student> getStudents() {
-    return students;
-}
+public List<Student> getStudents(){
+        return students;
+        }
 
-public void setStudents(List<Student> students) {
-    this.students = students;
-}
+public void setStudents(List<Student> students){
+        this.students=students;
+        }
 ```
 
 配置bean：
@@ -1032,15 +1036,15 @@ public void setStudents(List<Student> students) {
 ```xml
 
 <bean id="clazzTwo" class="com.DEAiFISH.spring6.bean.Clazz">
-  <property name="clazzId" value="4444"></property>
-  <property name="clazzName" value="Javaee0222"></property>
-  <property name="students">
-    <list>
-      <ref bean="studentOne"></ref>
-      <ref bean="studentTwo"></ref>
-      <ref bean="studentThree"></ref>
-    </list>
-  </property>
+    <property name="clazzId" value="4444"></property>
+    <property name="clazzName" value="Javaee0222"></property>
+    <property name="students">
+        <list>
+            <ref bean="studentOne"></ref>
+            <ref bean="studentTwo"></ref>
+            <ref bean="studentThree"></ref>
+        </list>
+    </property>
 </bean>
 ```
 
@@ -1055,42 +1059,42 @@ package com.DEAiFISH.spring6.bean;
 
 public class Teacher {
 
-  private Integer teacherId;
+    private Integer teacherId;
 
-  private String teacherName;
+    private String teacherName;
 
-  public Integer getTeacherId() {
-    return teacherId;
-  }
+    public Integer getTeacherId() {
+        return teacherId;
+    }
 
-  public void setTeacherId(Integer teacherId) {
-    this.teacherId = teacherId;
-  }
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
+    }
 
-  public String getTeacherName() {
-    return teacherName;
-  }
+    public String getTeacherName() {
+        return teacherName;
+    }
 
-  public void setTeacherName(String teacherName) {
-    this.teacherName = teacherName;
-  }
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
 
-  public Teacher(Integer teacherId, String teacherName) {
-    this.teacherId = teacherId;
-    this.teacherName = teacherName;
-  }
+    public Teacher(Integer teacherId, String teacherName) {
+        this.teacherId = teacherId;
+        this.teacherName = teacherName;
+    }
 
-  public Teacher() {
+    public Teacher() {
 
-  }
+    }
 
-  @Override
-  public String toString() {
-    return "Teacher{" +
-            "teacherId=" + teacherId +
-            ", teacherName='" + teacherName + '\'' +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherId=" + teacherId +
+                ", teacherName='" + teacherName + '/' ' +
+        '}';
+    }
 }
 ```
 
@@ -1099,13 +1103,13 @@ public class Teacher {
 ```java
 private Map<String, Teacher> teacherMap;
 
-public Map<String, Teacher> getTeacherMap() {
-    return teacherMap;
-}
+public Map<String, Teacher> getTeacherMap(){
+        return teacherMap;
+        }
 
-public void setTeacherMap(Map<String, Teacher> teacherMap) {
-    this.teacherMap = teacherMap;
-}
+public void setTeacherMap(Map<String, Teacher> teacherMap){
+        this.teacherMap=teacherMap;
+        }
 ```
 
 配置bean：
@@ -1113,8 +1117,8 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 ```xml
 
 <bean id="teacherOne" class="com.DEAiFISH.spring6.bean.Teacher">
-  <property name="teacherId" value="10010"></property>
-  <property name="teacherName" value="大宝"></property>
+    <property name="teacherId" value="10010"></property>
+    <property name="teacherName" value="大宝"></property>
 </bean>
 
 <bean id="teacherTwo" class="com.DEAiFISH.spring6.bean.Teacher">
@@ -1130,27 +1134,27 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
 <property name="clazz" ref="clazzOne"></property>
 <property name="hobbies">
-  <array>
-    <value>抽烟</value>
-    <value>喝酒</value>
-    <value>烫头</value>
-  </array>
+    <array>
+        <value>抽烟</value>
+        <value>喝酒</value>
+        <value>烫头</value>
+    </array>
 </property>
 <property name="teacherMap">
-  <map>
-    <entry>
-      <key>
-        <value>10010</value>
-      </key>
-      <ref bean="teacherOne"></ref>
-    </entry>
-    <entry>
-      <key>
-        <value>10086</value>
-      </key>
-      <ref bean="teacherTwo"></ref>
-    </entry>
-  </map>
+    <map>
+        <entry>
+            <key>
+                <value>10010</value>
+            </key>
+            <ref bean="teacherOne"></ref>
+        </entry>
+        <entry>
+            <key>
+                <value>10086</value>
+            </key>
+            <ref bean="teacherTwo"></ref>
+        </entry>
+    </map>
 </property>
 </bean>
 ```
@@ -1160,23 +1164,23 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 ```xml
 <!--list集合类型的bean-->
 <util:list id="students">
-  <ref bean="studentOne"></ref>
-  <ref bean="studentTwo"></ref>
-  <ref bean="studentThree"></ref>
+    <ref bean="studentOne"></ref>
+    <ref bean="studentTwo"></ref>
+    <ref bean="studentThree"></ref>
 </util:list>
         <!--map集合类型的bean-->
 <util:map id="teacherMap">
 <entry>
-  <key>
-    <value>10010</value>
-  </key>
-  <ref bean="teacherOne"></ref>
+    <key>
+        <value>10010</value>
+    </key>
+    <ref bean="teacherOne"></ref>
 </entry>
 <entry>
-  <key>
-    <value>10086</value>
-  </key>
-  <ref bean="teacherTwo"></ref>
+    <key>
+        <value>10086</value>
+    </key>
+    <ref bean="teacherTwo"></ref>
 </entry>
 </util:map>
 <bean id="clazzTwo" class="com.DEAiFISH.spring6.bean.Clazz">
@@ -1192,11 +1196,11 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 <!-- ref属性：引用IOC容器中某个bean的id，将所对应的bean为属性赋值 -->
 <property name="clazz" ref="clazzOne"></property>
 <property name="hobbies">
-  <array>
-    <value>抽烟</value>
-    <value>喝酒</value>
-    <value>烫头</value>
-  </array>
+    <array>
+        <value>抽烟</value>
+        <value>喝酒</value>
+        <value>烫头</value>
+    </array>
 </property>
 <property name="teacherMap" ref="teacherMap"></property>
 </bean>
@@ -1251,11 +1255,11 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
     <version>8.0.30</version>
 </dependency>
 
-<!-- 数据源 -->
+        <!-- 数据源 -->
 <dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>druid</artifactId>
-    <version>1.2.15</version>
+<groupId>com.alibaba</groupId>
+<artifactId>druid</artifactId>
+<version>1.2.15</version>
 </dependency>
 ```
 
@@ -1298,6 +1302,7 @@ context 相关的约束。
 **④配置bean**
 
 ```xml
+
 <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
     <property name="url" value="${jdbc.url}"/>
     <property name="driverClassName" value="${jdbc.driver}"/>
@@ -1310,12 +1315,12 @@ context 相关的约束。
 
 ```java
 @Test
-public void testDataSource() throws SQLException {
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-datasource.xml");
-    DataSource dataSource = ac.getBean(DataSource.class);
-    Connection connection = dataSource.getConnection();
-    System.out.println(connection);
-}
+public void testDataSource()throws SQLException{
+        ApplicationContext ac=new ClassPathXmlApplicationContext("spring-datasource.xml");
+        DataSource dataSource=ac.getBean(DataSource.class);
+        Connection connection=dataSource.getConnection();
+        System.out.println(connection);
+        }
 ```
 
 #### 3.2.11、实验十：bean的作用域
@@ -1343,65 +1348,65 @@ package com.DEAiFISH.spring6.bean;
 
 public class User {
 
-  private Integer id;
+    private Integer id;
 
-  private String username;
+    private String username;
 
-  private String password;
+    private String password;
 
-  private Integer age;
+    private Integer age;
 
-  public User() {
-  }
+    public User() {
+    }
 
-  public User(Integer id, String username, String password, Integer age) {
-    this.id = id;
-    this.username = username;
-    this.password = password;
-    this.age = age;
-  }
+    public User(Integer id, String username, String password, Integer age) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.age = age;
+    }
 
-  public Integer getId() {
-    return id;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public String getUsername() {
-    return username;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public Integer getAge() {
-    return age;
-  }
+    public Integer getAge() {
+        return age;
+    }
 
-  public void setAge(Integer age) {
-    this.age = age;
-  }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
-  @Override
-  public String toString() {
-    return "User{" +
-            "id=" + id +
-            ", username='" + username + '\'' +
-            ", password='" + password + '\'' +
-            ", age=" + age +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '/' ' +
+        ", password='" + password + '/' ' +
+        ", age=" + age +
+                '}';
+    }
 }
 ```
 
@@ -1418,11 +1423,11 @@ public class User {
 ```java
 @Test
 public void testBeanScope(){
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-scope.xml");
-    User user1 = ac.getBean(User.class);
-    User user2 = ac.getBean(User.class);
-    System.out.println(user1==user2);
-}
+        ApplicationContext ac=new ClassPathXmlApplicationContext("spring-scope.xml");
+        User user1=ac.getBean(User.class);
+        User user2=ac.getBean(User.class);
+        System.out.println(user1==user2);
+        }
 ```
 
 #### 3.2.12、实验十一：bean生命周期
@@ -1502,11 +1507,11 @@ public class User {
         this.age = age;
     }
 
-    public void initMethod(){
+    public void initMethod() {
         System.out.println("生命周期：3、初始化");
     }
 
-    public void destroyMethod(){
+    public void destroyMethod() {
         System.out.println("生命周期：5、销毁");
     }
 
@@ -1514,9 +1519,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
+                ", username='" + username + '/' ' +
+        ", password='" + password + '/' ' +
+        ", age=" + age +
                 '}';
     }
 }
@@ -1530,10 +1535,10 @@ public class User {
 <!-- 使用init-method属性指定初始化方法 -->
 <!-- 使用destroy-method属性指定销毁方法 -->
 <bean class="com.DEAiFISH.spring6.bean.User" scope="prototype" init-method="initMethod" destroy-method="destroyMethod">
-  <property name="id" value="1001"></property>
-  <property name="username" value="admin"></property>
-  <property name="password" value="123456"></property>
-  <property name="age" value="23"></property>
+    <property name="id" value="1001"></property>
+    <property name="username" value="admin"></property>
+    <property name="password" value="123456"></property>
+    <property name="age" value="23"></property>
 </bean>
 ```
 
@@ -1542,11 +1547,11 @@ public class User {
 ```java
 @Test
 public void testLife(){
-    ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-lifecycle.xml");
-    User bean = ac.getBean(User.class);
-    System.out.println("生命周期：4、通过IOC容器获取bean并使用");
-    ac.close();
-}
+        ClassPathXmlApplicationContext ac=new ClassPathXmlApplicationContext("spring-lifecycle.xml");
+        User bean=ac.getBean(User.class);
+        System.out.println("生命周期：4、通过IOC容器获取bean并使用");
+        ac.close();
+        }
 ```
 
 **⑤bean的后置处理器**
@@ -1563,17 +1568,17 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 public class MyBeanProcessor implements BeanPostProcessor {
 
-  @Override
-  public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-    System.out.println("☆☆☆" + beanName + " = " + bean);
-    return bean;
-  }
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("☆☆☆" + beanName + " = " + bean);
+        return bean;
+    }
 
-  @Override
-  public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-    System.out.println("★★★" + beanName + " = " + bean);
-    return bean;
-  }
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("★★★" + beanName + " = " + bean);
+        return bean;
+    }
 }
 ```
 
@@ -1748,15 +1753,15 @@ public interface FactoryBean<T> {
 package com.DEAiFISH.spring6.bean;
 
 public class UserFactoryBean implements FactoryBean<User> {
-  @Override
-  public User getObject() throws Exception {
-    return new User();
-  }
+    @Override
+    public User getObject() throws Exception {
+        return new User();
+    }
 
-  @Override
-  public Class<?> getObjectType() {
-    return User.class;
-  }
+    @Override
+    public Class<?> getObjectType() {
+        return User.class;
+    }
 }
 ```
 
@@ -1772,11 +1777,11 @@ public class UserFactoryBean implements FactoryBean<User> {
 ```java
 @Test
 public void testUserFactoryBean(){
-    //获取IOC容器
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-factorybean.xml");
-    User user = (User) ac.getBean("user");
-    System.out.println(user);
-}
+        //获取IOC容器
+        ApplicationContext ac=new ClassPathXmlApplicationContext("spring-factorybean.xml");
+        User user=(User)ac.getBean("user");
+        System.out.println(user);
+        }
 ```
 
 #### 3.2.14、实验十三：基于xml自动装配
@@ -1794,15 +1799,15 @@ package com.DEAiFISH.spring6.autowire.controller
 
 public class UserController {
 
-  private UserService userService;
+    private UserService userService;
 
-  public void setUserService(UserService userService) {
-    this.userService = userService;
-  }
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
-  public void saveUser() {
-    userService.saveUser();
-  }
+    public void saveUser() {
+        userService.saveUser();
+    }
 
 }
 ```
@@ -1814,7 +1819,7 @@ package com.DEAiFISH.spring6.autowire.service
 
 public interface UserService {
 
-  void saveUser();
+    void saveUser();
 
 }
 ```
@@ -1826,16 +1831,16 @@ package com.DEAiFISH.spring6.autowire.service.impl
 
 public class UserServiceImpl implements UserService {
 
-  private UserDao userDao;
+    private UserDao userDao;
 
-  public void setUserDao(UserDao userDao) {
-    this.userDao = userDao;
-  }
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
-  @Override
-  public void saveUser() {
-    userDao.saveUser();
-  }
+    @Override
+    public void saveUser() {
+        userDao.saveUser();
+    }
 
 }
 ```
@@ -1847,7 +1852,7 @@ package com.DEAiFISH.spring6.autowire.dao
 
 public interface UserDao {
 
-  void saveUser();
+    void saveUser();
 
 }
 ```
@@ -1859,10 +1864,10 @@ package com.DEAiFISH.spring6.autowire.dao.impl
 
 public class UserDaoImpl implements UserDao {
 
-  @Override
-  public void saveUser() {
-    System.out.println("保存成功");
-  }
+    @Override
+    public void saveUser() {
+        System.out.println("保存成功");
+    }
 
 }
 ```
@@ -1908,10 +1913,10 @@ public class UserDaoImpl implements UserDao {
 ```java
 @Test
 public void testAutoWireByXML(){
-    ApplicationContext ac = new ClassPathXmlApplicationContext("autowire-xml.xml");
-    UserController userController = ac.getBean(UserController.class);
-    userController.saveUser();
-}
+        ApplicationContext ac=new ClassPathXmlApplicationContext("autowire-xml.xml");
+        UserController userController=ac.getBean(UserController.class);
+        userController.saveUser();
+        }
 ```
 
 ### 3.3、基于注解管理Bean（☆）
@@ -1940,6 +1945,7 @@ Spring 通过注解实现自动装配的步骤如下：
 **③添加依赖**
 
 ```xml
+
 <dependencies>
     <!--spring context依赖-->
     <!--当你引入Spring Context依赖之后，表示将Spring的基础依赖引入了-->
@@ -2004,14 +2010,14 @@ Beans的自动扫描功能。开启此功能后，Spring 会自动从扫描指�
 ```xml
 
 <context:component-scan base-package="com.DEAiFISH.spring6">
-  <!-- context:exclude-filter标签：指定排除规则 -->
-  <!-- 
-       type：设置排除或包含的依据
-      type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
-      type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
-  -->
-  <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-  <!--<context:exclude-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
+    <!-- context:exclude-filter标签：指定排除规则 -->
+    <!-- 
+         type：设置排除或包含的依据
+        type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+        type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+    -->
+    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    <!--<context:exclude-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
 </context:component-scan>
 ```
 
@@ -2020,16 +2026,16 @@ Beans的自动扫描功能。开启此功能后，Spring 会自动从扫描指�
 ```xml
 
 <context:component-scan base-package="com.DEAiFISH" use-default-filters="false">
-  <!-- context:include-filter标签：指定在原有扫描规则的基础上追加的规则 -->
-  <!-- use-default-filters属性：取值false表示关闭默认扫描规则 -->
-  <!-- 此时必须设置use-default-filters="false"，因为默认规则即扫描指定包下所有类 -->
-  <!-- 
-       type：设置排除或包含的依据
-      type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
-      type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
-  -->
-  <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-  <!--<context:include-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
+    <!-- context:include-filter标签：指定在原有扫描规则的基础上追加的规则 -->
+    <!-- use-default-filters属性：取值false表示关闭默认扫描规则 -->
+    <!-- 此时必须设置use-default-filters="false"，因为默认规则即扫描指定包下所有类 -->
+    <!-- 
+         type：设置排除或包含的依据
+        type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+        type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+    -->
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    <!--<context:include-filter type="assignable" expression="com.atguigu.spring6.controller.UserController"/>-->
 </context:component-scan>
 ```
 
@@ -2091,7 +2097,7 @@ package com.DEAiFISH.spring6.dao;
 
 public interface UserDao {
 
-  public void print();
+    public void print();
 }
 ```
 
@@ -2106,10 +2112,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-  @Override
-  public void print() {
-    System.out.println("Dao层执行结束");
-  }
+    @Override
+    public void print() {
+        System.out.println("Dao层执行结束");
+    }
 }
 ```
 
@@ -2120,7 +2126,7 @@ package com.DEAiFISH.spring6.service;
 
 public interface UserService {
 
-  public void out();
+    public void out();
 }
 ```
 
@@ -2137,14 +2143,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Autowired
-  private UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
-  @Override
-  public void out() {
-    userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2160,13 +2166,13 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+    @Autowired
+    private UserService userService;
 
-  public void out() {
-    userService.out();
-    System.out.println("Controller层执行结束。");
-  }
+    public void out() {
+        userService.out();
+        System.out.println("Controller层执行结束。");
+    }
 
 }
 ```
@@ -2185,15 +2191,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTest {
 
-  private Logger logger = LoggerFactory.getLogger(UserTest.class);
+    private Logger logger = LoggerFactory.getLogger(UserTest.class);
 
-  @Test
-  public void testAnnotation() {
-    ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-    UserController userController = context.getBean("userController", UserController.class);
-    userController.out();
-    logger.info("执行成功");
-  }
+    @Test
+    public void testAnnotation() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+        UserController userController = context.getBean("userController", UserController.class);
+        userController.out();
+        logger.info("执行成功");
+    }
 
 
 }
@@ -2220,18 +2226,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  private UserDao userDao;
+    private UserDao userDao;
 
-  @Autowired
-  public void setUserDao(UserDao userDao) {
-    this.userDao = userDao;
-  }
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
-  @Override
-  public void out() {
-    userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2247,17 +2253,17 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserController {
 
-  private UserService userService;
+    private UserService userService;
 
-  @Autowired
-  public void setUserService(UserService userService) {
-    this.userService = userService;
-  }
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
-  public void out() {
-    userService.out();
-    System.out.println("Controller层执行结束。");
-  }
+    public void out() {
+        userService.out();
+        System.out.println("Controller层执行结束。");
+    }
 
 }
 ```
@@ -2279,18 +2285,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  private UserDao userDao;
+    private UserDao userDao;
 
-  @Autowired
-  public UserServiceImpl(UserDao userDao) {
-    this.userDao = userDao;
-  }
+    @Autowired
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
-  @Override
-  public void out() {
-    userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2306,17 +2312,17 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserController {
 
-  private UserService userService;
+    private UserService userService;
 
-  @Autowired
-  public UserController(UserService userService) {
-    this.userService = userService;
-  }
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
-  public void out() {
-    userService.out();
-    System.out.println("Controller层执行结束。");
-  }
+    public void out() {
+        userService.out();
+        System.out.println("Controller层执行结束。");
+    }
 
 }
 ```
@@ -2338,17 +2344,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  private UserDao userDao;
+    private UserDao userDao;
 
-  public UserServiceImpl(@Autowired UserDao userDao) {
-    this.userDao = userDao;
-  }
+    public UserServiceImpl(@Autowired UserDao userDao) {
+        this.userDao = userDao;
+    }
 
-  @Override
-  public void out() {
-    userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2364,16 +2370,16 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserController {
 
-  private UserService userService;
+    private UserService userService;
 
-  public UserController(@Autowired UserService userService) {
-    this.userService = userService;
-  }
+    public UserController(@Autowired UserService userService) {
+        this.userService = userService;
+    }
 
-  public void out() {
-    userService.out();
-    System.out.println("Controller层执行结束。");
-  }
+    public void out() {
+        userService.out();
+        System.out.println("Controller层执行结束。");
+    }
 
 }
 ```
@@ -2395,18 +2401,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Autowired
-  private UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
-  public UserServiceImpl(UserDao userDao) {
-    this.userDao = userDao;
-  }
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
-  @Override
-  public void out() {
-    userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2429,10 +2435,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDaoRedisImpl implements UserDao {
 
-  @Override
-  public void print() {
-    System.out.println("Redis Dao层执行结束");
-  }
+    @Override
+    public void print() {
+        System.out.println("Redis Dao层执行结束");
+    }
 }
 ```
 
@@ -2455,15 +2461,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Autowired
-  @Qualifier("userDaoImpl") // 指定bean的名字
-  private UserDao userDao;
+    @Autowired
+    @Qualifier("userDaoImpl") // 指定bean的名字
+    private UserDao userDao;
 
-  @Override
-  public void out() {
-    userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2490,6 +2496,7 @@ public class UserServiceImpl implements UserService {
 **】
 
 ```xml
+
 <dependency>
     <groupId>jakarta.annotation</groupId>
     <artifactId>jakarta.annotation-api</artifactId>
@@ -2549,10 +2556,10 @@ import org.springframework.stereotype.Repository;
 @Repository("myUserDao")
 public class UserDaoImpl implements UserDao {
 
-  @Override
-  public void print() {
-    System.out.println("Dao层执行结束");
-  }
+    @Override
+    public void print() {
+        System.out.println("Dao层执行结束");
+    }
 }
 ```
 
@@ -2569,14 +2576,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Resource(name = "myUserDao")
-  private UserDao myUserDao;
+    @Resource(name = "myUserDao")
+    private UserDao myUserDao;
 
-  @Override
-  public void out() {
-    myUserDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        myUserDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2595,10 +2602,10 @@ import org.springframework.stereotype.Repository;
 @Repository("myUserDao")
 public class UserDaoImpl implements UserDao {
 
-  @Override
-  public void print() {
-    System.out.println("Dao层执行结束");
-  }
+    @Override
+    public void print() {
+        System.out.println("Dao层执行结束");
+    }
 }
 ```
 
@@ -2615,14 +2622,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Resource
-  private UserDao myUserDao;
+    @Resource
+    private UserDao myUserDao;
 
-  @Override
-  public void out() {
-    myUserDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        myUserDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2645,14 +2652,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Resource
-  private UserDao userDao1;
+    @Resource
+    private UserDao userDao1;
 
-  @Override
-  public void out() {
-    userDao1.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao1.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -2688,11 +2695,11 @@ public class Spring6Config {
 ```java
 @Test
 public void testAllAnnotation(){
-    ApplicationContext context = new AnnotationConfigApplicationContext(Spring6Config.class);
-    UserController userController = context.getBean("userController", UserController.class);
-    userController.out();
-    logger.info("执行成功");
-}
+        ApplicationContext context=new AnnotationConfigApplicationContext(Spring6Config.class);
+        UserController userController=context.getBean("userController",UserController.class);
+        userController.out();
+        logger.info("执行成功");
+        }
 ```
 
 ## 4、原理-手写IoC
@@ -2715,60 +2722,60 @@ package com.DEAiFISH.reflect;
 
 public class Car {
 
-  //属性
-  private String name;
-  private int age;
-  private String color;
+    //属性
+    private String name;
+    private int age;
+    private String color;
 
-  //无参数构造
-  public Car() {
-  }
+    //无参数构造
+    public Car() {
+    }
 
-  //有参数构造
-  public Car(String name, int age, String color) {
-    this.name = name;
-    this.age = age;
-    this.color = color;
-  }
+    //有参数构造
+    public Car(String name, int age, String color) {
+        this.name = name;
+        this.age = age;
+        this.color = color;
+    }
 
-  //普通方法
-  private void run() {
-    System.out.println("私有方法-run.....");
-  }
+    //普通方法
+    private void run() {
+        System.out.println("私有方法-run.....");
+    }
 
-  //get和set方法
-  public String getName() {
-    return name;
-  }
+    //get和set方法
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public int getAge() {
-    return age;
-  }
+    public int getAge() {
+        return age;
+    }
 
-  public void setAge(int age) {
-    this.age = age;
-  }
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-  public String getColor() {
-    return color;
-  }
+    public String getColor() {
+        return color;
+    }
 
-  public void setColor(String color) {
-    this.color = color;
-  }
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-  @Override
-  public String toString() {
-    return "Car{" +
-            "name='" + name + '\'' +
-            ", age=" + age +
-            ", color='" + color + '\'' +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '/' ' +
+        ", age=" + age +
+                ", color='" + color + '/' ' +
+        '}';
+    }
 }
 ```
 
@@ -2785,95 +2792,95 @@ import java.lang.reflect.Method;
 
 public class TestCar {
 
-  //1、获取Class对象多种方式
-  @Test
-  public void test01() throws Exception {
-    //1 类名.class
-    Class clazz1 = Car.class;
+    //1、获取Class对象多种方式
+    @Test
+    public void test01() throws Exception {
+        //1 类名.class
+        Class clazz1 = Car.class;
 
-    //2 对象.getClass()
-    Class clazz2 = new Car().getClass();
+        //2 对象.getClass()
+        Class clazz2 = new Car().getClass();
 
-    //3 Class.forName("全路径")
-    Class clazz3 = Class.forName("com.atguigu.reflect.Car");
+        //3 Class.forName("全路径")
+        Class clazz3 = Class.forName("com.atguigu.reflect.Car");
 
-    //实例化
-    Car car = (Car) clazz3.getConstructor().newInstance();
-    System.out.println(car);
-  }
-
-  //2、获取构造方法
-  @Test
-  public void test02() throws Exception {
-    Class clazz = Car.class;
-    //获取所有构造
-    // getConstructors()获取所有public的构造方法
-//        Constructor[] constructors = clazz.getConstructors();
-    // getDeclaredConstructors()获取所有的构造方法public  private
-    Constructor[] constructors = clazz.getDeclaredConstructors();
-    for (Constructor c : constructors) {
-      System.out.println("方法名称：" + c.getName() + " 参数个数：" + c.getParameterCount());
+        //实例化
+        Car car = (Car) clazz3.getConstructor().newInstance();
+        System.out.println(car);
     }
 
-    //指定有参数构造创建对象
-    //1 构造public
+    //2、获取构造方法
+    @Test
+    public void test02() throws Exception {
+        Class clazz = Car.class;
+        //获取所有构造
+        // getConstructors()获取所有public的构造方法
+//        Constructor[] constructors = clazz.getConstructors();
+        // getDeclaredConstructors()获取所有的构造方法public  private
+        Constructor[] constructors = clazz.getDeclaredConstructors();
+        for (Constructor c : constructors) {
+            System.out.println("方法名称：" + c.getName() + " 参数个数：" + c.getParameterCount());
+        }
+
+        //指定有参数构造创建对象
+        //1 构造public
 //        Constructor c1 = clazz.getConstructor(String.class, int.class, String.class);
 //        Car car1 = (Car)c1.newInstance("夏利", 10, "红色");
 //        System.out.println(car1);
 
-    //2 构造private
-    Constructor c2 = clazz.getDeclaredConstructor(String.class, int.class, String.class);
-    c2.setAccessible(true);
-    Car car2 = (Car) c2.newInstance("捷达", 15, "白色");
-    System.out.println(car2);
-  }
-
-  //3、获取属性
-  @Test
-  public void test03() throws Exception {
-    Class clazz = Car.class;
-    Car car = (Car) clazz.getDeclaredConstructor().newInstance();
-    //获取所有public属性
-    //Field[] fields = clazz.getFields();
-    //获取所有属性（包含私有属性）
-    Field[] fields = clazz.getDeclaredFields();
-    for (Field field : fields) {
-      if (field.getName().equals("name")) {
-        //设置允许访问
-        field.setAccessible(true);
-        field.set(car, "五菱宏光");
-        System.out.println(car);
-      }
-      System.out.println(field.getName());
-    }
-  }
-
-  //4、获取方法
-  @Test
-  public void test04() throws Exception {
-    Car car = new Car("奔驰", 10, "黑色");
-    Class clazz = car.getClass();
-    //1 public方法
-    Method[] methods = clazz.getMethods();
-    for (Method m1 : methods) {
-      //System.out.println(m1.getName());
-      //执行方法 toString
-      if (m1.getName().equals("toString")) {
-        String invoke = (String) m1.invoke(car);
-        //System.out.println("toString执行了："+invoke);
-      }
+        //2 构造private
+        Constructor c2 = clazz.getDeclaredConstructor(String.class, int.class, String.class);
+        c2.setAccessible(true);
+        Car car2 = (Car) c2.newInstance("捷达", 15, "白色");
+        System.out.println(car2);
     }
 
-    //2 private方法
-    Method[] methodsAll = clazz.getDeclaredMethods();
-    for (Method m : methodsAll) {
-      //执行方法 run
-      if (m.getName().equals("run")) {
-        m.setAccessible(true);
-        m.invoke(car);
-      }
+    //3、获取属性
+    @Test
+    public void test03() throws Exception {
+        Class clazz = Car.class;
+        Car car = (Car) clazz.getDeclaredConstructor().newInstance();
+        //获取所有public属性
+        //Field[] fields = clazz.getFields();
+        //获取所有属性（包含私有属性）
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getName().equals("name")) {
+                //设置允许访问
+                field.setAccessible(true);
+                field.set(car, "五菱宏光");
+                System.out.println(car);
+            }
+            System.out.println(field.getName());
+        }
     }
-  }
+
+    //4、获取方法
+    @Test
+    public void test04() throws Exception {
+        Car car = new Car("奔驰", 10, "黑色");
+        Class clazz = car.getClass();
+        //1 public方法
+        Method[] methods = clazz.getMethods();
+        for (Method m1 : methods) {
+            //System.out.println(m1.getName());
+            //执行方法 toString
+            if (m1.getName().equals("toString")) {
+                String invoke = (String) m1.invoke(car);
+                //System.out.println("toString执行了："+invoke);
+            }
+        }
+
+        //2 private方法
+        Method[] methodsAll = clazz.getDeclaredMethods();
+        for (Method m : methodsAll) {
+            //执行方法 run
+            if (m.getName().equals("run")) {
+                m.setAccessible(true);
+                m.invoke(car);
+            }
+        }
+    }
 }
 ```
 
@@ -2890,6 +2897,7 @@ public class TestCar {
 添加依赖
 
 ```xml
+
 <dependencies>
     <!--junit5测试-->
     <dependency>
@@ -2907,7 +2915,7 @@ package com.DEAiFISH.spring6.test.dao;
 
 public interface UserDao {
 
-  public void print();
+    public void print();
 }
 ```
 
@@ -2920,10 +2928,10 @@ import com.DEAiFISH.spring.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
 
-  @Override
-  public void print() {
-    System.out.println("Dao层执行结束");
-  }
+    @Override
+    public void print() {
+        System.out.println("Dao层执行结束");
+    }
 }
 
 ```
@@ -2935,7 +2943,7 @@ package com.DEAiFISH.spring6.test.service;
 
 public interface UserService {
 
-  public void out();
+    public void out();
 }
 ```
 
@@ -2952,11 +2960,11 @@ public class UserServiceImpl implements UserService {
 
 //    private UserDao userDao;
 
-  @Override
-  public void out() {
-    //userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        //userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 
 ```
@@ -3006,7 +3014,7 @@ package com.DEAiFISH.spring.core;
 
 public interface ApplicationContext {
 
-  Object getBean(Class clazz);
+    Object getBean(Class clazz);
 }
 ```
 
@@ -3021,21 +3029,21 @@ import java.util.HashMap;
 
 public class AnnotationApplicationContext implements ApplicationContext {
 
-  //存储bean的容器
-  private HashMap<Class, Object> beanFactory = new HashMap<>();
+    //存储bean的容器
+    private HashMap<Class, Object> beanFactory = new HashMap<>();
 
-  @Override
-  public Object getBean(Class clazz) {
-    return beanFactory.get(clazz);
-  }
+    @Override
+    public Object getBean(Class clazz) {
+        return beanFactory.get(clazz);
+    }
 
-  /**
-   * 根据包扫描加载bean
-   * @param basePackage
-   */
-  public AnnotationApplicationContext(String basePackage) {
+    /**
+     * 根据包扫描加载bean
+     * @param basePackage
+     */
+    public AnnotationApplicationContext(String basePackage) {
 
-  }
+    }
 }
 ```
 
@@ -3053,80 +3061,80 @@ import java.util.HashMap;
 
 public class AnnotationApplicationContext implements ApplicationContext {
 
-  //存储bean的容器
-  private HashMap<Class, Object> beanFactory = new HashMap<>();
-  private static String rootPath;
+    //存储bean的容器
+    private HashMap<Class, Object> beanFactory = new HashMap<>();
+    private static String rootPath;
 
-  @Override
-  public Object getBean(Class clazz) {
-    return beanFactory.get(clazz);
-  }
-
-  /**
-   * 根据包扫描加载bean
-   * @param basePackage
-   */
-  public AnnotationApplicationContext(String basePackage) {
-    try {
-      String packageDirName = basePackage.replaceAll("\\.", "\\\\");
-      Enumeration<URL> dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
-      while (dirs.hasMoreElements()) {
-        URL url = dirs.nextElement();
-        String filePath = URLDecoder.decode(url.getFile(), "utf-8");
-        rootPath = filePath.substring(0, filePath.length() - packageDirName.length());
-        loadBean(new File(filePath));
-      }
-
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    @Override
+    public Object getBean(Class clazz) {
+        return beanFactory.get(clazz);
     }
-  }
 
-  private void loadBean(File fileParent) {
-    if (fileParent.isDirectory()) {
-      File[] childrenFiles = fileParent.listFiles();
-      if (childrenFiles == null || childrenFiles.length == 0) {
-        return;
-      }
-      for (File child : childrenFiles) {
-        if (child.isDirectory()) {
-          //如果是个文件夹就继续调用该方法,使用了递归
-          loadBean(child);
-        } else {
-          //通过文件路径转变成全类名,第一步把绝对路径部分去掉
-          String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
-          //选中class文件
-          if (pathWithClass.contains(".class")) {
-            //    com.xinzhi.dao.UserDao
-            //去掉.class后缀，并且把 \ 替换成 .
-            String fullName = pathWithClass.replaceAll("\\\\", ".").replace(".class", "");
-            try {
-              Class<?> aClass = Class.forName(fullName);
-              //把非接口的类实例化放在map中
-              if (!aClass.isInterface()) {
-                Bean annotation = aClass.getAnnotation(Bean.class);
-                if (annotation != null) {
-                  Object instance = aClass.newInstance();
-                  //判断一下有没有接口
-                  if (aClass.getInterfaces().length > 0) {
-                    //如果有接口把接口的class当成key，实例对象当成value
-                    System.out.println("正在加载【" + aClass.getInterfaces()[0] + "】,实例对象是：" + instance.getClass().getName());
-                    beanFactory.put(aClass.getInterfaces()[0], instance);
-                  } else {
-                    //如果有接口把自己的class当成key，实例对象当成value
-                    System.out.println("正在加载【" + aClass.getName() + "】,实例对象是：" + instance.getClass().getName());
-                    beanFactory.put(aClass, instance);
-                  }
-                }
-              }
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-              e.printStackTrace();
+    /**
+     * 根据包扫描加载bean
+     * @param basePackage
+     */
+    public AnnotationApplicationContext(String basePackage) {
+        try {
+            String packageDirName = basePackage.replaceAll("//.", "////");
+            Enumeration<URL> dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
+            while (dirs.hasMoreElements()) {
+                URL url = dirs.nextElement();
+                String filePath = URLDecoder.decode(url.getFile(), "utf-8");
+                rootPath = filePath.substring(0, filePath.length() - packageDirName.length());
+                loadBean(new File(filePath));
             }
-          }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-      }
     }
-  }
+
+    private void loadBean(File fileParent) {
+        if (fileParent.isDirectory()) {
+            File[] childrenFiles = fileParent.listFiles();
+            if (childrenFiles == null || childrenFiles.length == 0) {
+                return;
+            }
+            for (File child : childrenFiles) {
+                if (child.isDirectory()) {
+                    //如果是个文件夹就继续调用该方法,使用了递归
+                    loadBean(child);
+                } else {
+                    //通过文件路径转变成全类名,第一步把绝对路径部分去掉
+                    String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
+                    //选中class文件
+                    if (pathWithClass.contains(".class")) {
+                        //    com.xinzhi.dao.UserDao
+                        //去掉.class后缀，并且把 / 替换成 .
+                        String fullName = pathWithClass.replaceAll("////", ".").replace(".class", "");
+                        try {
+                            Class<?> aClass = Class.forName(fullName);
+                            //把非接口的类实例化放在map中
+                            if (!aClass.isInterface()) {
+                                Bean annotation = aClass.getAnnotation(Bean.class);
+                                if (annotation != null) {
+                                    Object instance = aClass.newInstance();
+                                    //判断一下有没有接口
+                                    if (aClass.getInterfaces().length > 0) {
+                                        //如果有接口把接口的class当成key，实例对象当成value
+                                        System.out.println("正在加载【" + aClass.getInterfaces()[0] + "】,实例对象是：" + instance.getClass().getName());
+                                        beanFactory.put(aClass.getInterfaces()[0], instance);
+                                    } else {
+                                        //如果有接口把自己的class当成key，实例对象当成value
+                                        System.out.println("正在加载【" + aClass.getName() + "】,实例对象是：" + instance.getClass().getName());
+                                        beanFactory.put(aClass, instance);
+                                    }
+                                }
+                            }
+                        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }
 ```
@@ -3134,11 +3142,13 @@ public class AnnotationApplicationContext implements ApplicationContext {
 **⑦java类标识Bean注解**
 
 ```java
+
 @Bean
 public class UserServiceImpl implements UserService
 ```
 
 ```java
+
 @Bean
 public class UserDaoImpl implements UserDao 
 ```
@@ -3155,13 +3165,13 @@ import org.junit.jupiter.api.Test;
 
 public class SpringIocTest {
 
-  @Test
-  public void testIoc() {
-    ApplicationContext applicationContext = new AnnotationApplicationContext("com.atguigu.spring.test");
-    UserService userService = (UserService) applicationContext.getBean(UserService.class);
-    userService.out();
-    System.out.println("run success");
-  }
+    @Test
+    public void testIoc() {
+        ApplicationContext applicationContext = new AnnotationApplicationContext("com.atguigu.spring.test");
+        UserService userService = (UserService) applicationContext.getBean(UserService.class);
+        userService.out();
+        System.out.println("run success");
+    }
 }
 ```
 
@@ -3182,14 +3192,14 @@ import com.DEAiFISH.spring.service.UserService;
 @Bean
 public class UserServiceImpl implements UserService {
 
-  @Di
-  private UserDao userDao;
+    @Di
+    private UserDao userDao;
 
-  @Override
-  public void out() {
-    userDao.print();
-    System.out.println("Service层执行结束");
-  }
+    @Override
+    public void out() {
+        userDao.print();
+        System.out.println("Service层执行结束");
+    }
 }
 ```
 
@@ -3210,104 +3220,104 @@ import java.util.Map;
 
 public class AnnotationApplicationContext implements ApplicationContext {
 
-  //存储bean的容器
-  private HashMap<Class, Object> beanFactory = new HashMap<>();
-  private static String rootPath;
+    //存储bean的容器
+    private HashMap<Class, Object> beanFactory = new HashMap<>();
+    private static String rootPath;
 
-  @Override
-  public Object getBean(Class clazz) {
-    return beanFactory.get(clazz);
-  }
-
-  /**
-   * 根据包扫描加载bean
-   * @param basePackage
-   */
-  public AnnotationApplicationContext(String basePackage) {
-    try {
-      String packageDirName = basePackage.replaceAll("\\.", "\\\\");
-      Enumeration<URL> dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
-      while (dirs.hasMoreElements()) {
-        URL url = dirs.nextElement();
-        String filePath = URLDecoder.decode(url.getFile(), "utf-8");
-        rootPath = filePath.substring(0, filePath.length() - packageDirName.length());
-        loadBean(new File(filePath));
-      }
-
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    @Override
+    public Object getBean(Class clazz) {
+        return beanFactory.get(clazz);
     }
 
-    //依赖注入
-    loadDi();
-  }
-
-  private void loadBean(File fileParent) {
-    if (fileParent.isDirectory()) {
-      File[] childrenFiles = fileParent.listFiles();
-      if (childrenFiles == null || childrenFiles.length == 0) {
-        return;
-      }
-      for (File child : childrenFiles) {
-        if (child.isDirectory()) {
-          //如果是个文件夹就继续调用该方法,使用了递归
-          loadBean(child);
-        } else {
-          //通过文件路径转变成全类名,第一步把绝对路径部分去掉
-          String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
-          //选中class文件
-          if (pathWithClass.contains(".class")) {
-            //    com.xinzhi.dao.UserDao
-            //去掉.class后缀，并且把 \ 替换成 .
-            String fullName = pathWithClass.replaceAll("\\\\", ".").replace(".class", "");
-            try {
-              Class<?> aClass = Class.forName(fullName);
-              //把非接口的类实例化放在map中
-              if (!aClass.isInterface()) {
-                Bean annotation = aClass.getAnnotation(Bean.class);
-                if (annotation != null) {
-                  Object instance = aClass.newInstance();
-                  //判断一下有没有接口
-                  if (aClass.getInterfaces().length > 0) {
-                    //如果有接口把接口的class当成key，实例对象当成value
-                    System.out.println("正在加载【" + aClass.getInterfaces()[0] + "】,实例对象是：" + instance.getClass().getName());
-                    beanFactory.put(aClass.getInterfaces()[0], instance);
-                  } else {
-                    //如果有接口把自己的class当成key，实例对象当成value
-                    System.out.println("正在加载【" + aClass.getName() + "】,实例对象是：" + instance.getClass().getName());
-                    beanFactory.put(aClass, instance);
-                  }
-                }
-              }
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-              e.printStackTrace();
+    /**
+     * 根据包扫描加载bean
+     * @param basePackage
+     */
+    public AnnotationApplicationContext(String basePackage) {
+        try {
+            String packageDirName = basePackage.replaceAll("//.", "////");
+            Enumeration<URL> dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
+            while (dirs.hasMoreElements()) {
+                URL url = dirs.nextElement();
+                String filePath = URLDecoder.decode(url.getFile(), "utf-8");
+                rootPath = filePath.substring(0, filePath.length() - packageDirName.length());
+                loadBean(new File(filePath));
             }
-          }
-        }
-      }
-    }
-  }
 
-  private void loadDi() {
-    for (Map.Entry<Class, Object> entry : beanFactory.entrySet()) {
-      //就是咱们放在容器的对象
-      Object obj = entry.getValue();
-      Class<?> aClass = obj.getClass();
-      Field[] declaredFields = aClass.getDeclaredFields();
-      for (Field field : declaredFields) {
-        Di annotation = field.getAnnotation(Di.class);
-        if (annotation != null) {
-          field.setAccessible(true);
-          try {
-            System.out.println("正在给【" + obj.getClass().getName() + "】属性【" + field.getName() + "】注入值【" + beanFactory.get(field.getType()).getClass().getName() + "】");
-            field.set(obj, beanFactory.get(field.getType()));
-          } catch (IllegalAccessException e) {
-            e.printStackTrace();
-          }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-      }
+
+        //依赖注入
+        loadDi();
     }
-  }
+
+    private void loadBean(File fileParent) {
+        if (fileParent.isDirectory()) {
+            File[] childrenFiles = fileParent.listFiles();
+            if (childrenFiles == null || childrenFiles.length == 0) {
+                return;
+            }
+            for (File child : childrenFiles) {
+                if (child.isDirectory()) {
+                    //如果是个文件夹就继续调用该方法,使用了递归
+                    loadBean(child);
+                } else {
+                    //通过文件路径转变成全类名,第一步把绝对路径部分去掉
+                    String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
+                    //选中class文件
+                    if (pathWithClass.contains(".class")) {
+                        //    com.xinzhi.dao.UserDao
+                        //去掉.class后缀，并且把 / 替换成 .
+                        String fullName = pathWithClass.replaceAll("////", ".").replace(".class", "");
+                        try {
+                            Class<?> aClass = Class.forName(fullName);
+                            //把非接口的类实例化放在map中
+                            if (!aClass.isInterface()) {
+                                Bean annotation = aClass.getAnnotation(Bean.class);
+                                if (annotation != null) {
+                                    Object instance = aClass.newInstance();
+                                    //判断一下有没有接口
+                                    if (aClass.getInterfaces().length > 0) {
+                                        //如果有接口把接口的class当成key，实例对象当成value
+                                        System.out.println("正在加载【" + aClass.getInterfaces()[0] + "】,实例对象是：" + instance.getClass().getName());
+                                        beanFactory.put(aClass.getInterfaces()[0], instance);
+                                    } else {
+                                        //如果有接口把自己的class当成key，实例对象当成value
+                                        System.out.println("正在加载【" + aClass.getName() + "】,实例对象是：" + instance.getClass().getName());
+                                        beanFactory.put(aClass, instance);
+                                    }
+                                }
+                            }
+                        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void loadDi() {
+        for (Map.Entry<Class, Object> entry : beanFactory.entrySet()) {
+            //就是咱们放在容器的对象
+            Object obj = entry.getValue();
+            Class<?> aClass = obj.getClass();
+            Field[] declaredFields = aClass.getDeclaredFields();
+            for (Field field : declaredFields) {
+                Di annotation = field.getAnnotation(Di.class);
+                if (annotation != null) {
+                    field.setAccessible(true);
+                    try {
+                        System.out.println("正在给【" + obj.getClass().getName() + "】属性【" + field.getName() + "】注入值【" + beanFactory.get(field.getType()).getClass().getName() + "】");
+                        field.set(obj, beanFactory.get(field.getType()));
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
 
 }
 ```
@@ -3326,15 +3336,15 @@ public class AnnotationApplicationContext implements ApplicationContext {
 
 ```java
 public interface Calculator {
-    
+
     int add(int i, int j);
-    
+
     int sub(int i, int j);
-    
+
     int mul(int i, int j);
-    
+
     int div(int i, int j);
-    
+
 }
 ```
 
@@ -3344,44 +3354,44 @@ public interface Calculator {
 
 ```java
 public class CalculatorImpl implements Calculator {
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         int result = i + j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int sub(int i, int j) {
-    
+
         int result = i - j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int mul(int i, int j) {
-    
+
         int result = i * j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int div(int i, int j) {
-    
+
         int result = i / j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
 }
@@ -3393,60 +3403,60 @@ public class CalculatorImpl implements Calculator {
 
 ```java
 public class CalculatorLogImpl implements Calculator {
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         System.out.println("[日志] add 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i + j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] add 方法结束了，结果是：" + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int sub(int i, int j) {
-    
+
         System.out.println("[日志] sub 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i - j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] sub 方法结束了，结果是：" + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int mul(int i, int j) {
-    
+
         System.out.println("[日志] mul 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i * j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] mul 方法结束了，结果是：" + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int div(int i, int j) {
-    
+
         System.out.println("[日志] div 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i / j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] div 方法结束了，结果是：" + result);
-    
+
         return result;
     }
 }
@@ -3502,25 +3512,25 @@ public class CalculatorLogImpl implements Calculator {
 
 ```java
 public class CalculatorStaticProxy implements Calculator {
-    
+
     // 将被代理的目标对象声明为成员变量
     private Calculator target;
-    
+
     public CalculatorStaticProxy(Calculator target) {
         this.target = target;
     }
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         // 附加功能由代理类中的代理方法来实现
         System.out.println("[日志] add 方法开始了，参数是：" + i + "," + j);
-    
+
         // 通过目标对象来实现核心业务逻辑
         int addResult = target.add(i, j);
-    
+
         System.out.println("[日志] add 方法结束了，结果是：" + addResult);
-    
+
         return addResult;
     }
 }
@@ -3545,7 +3555,7 @@ public class ProxyFactory {
         this.target = target;
     }
 
-    public Object getProxy(){
+    public Object getProxy() {
 
         /**
          * newProxyInstance()：创建一个代理实例
@@ -3566,14 +3576,14 @@ public class ProxyFactory {
                  */
                 Object result = null;
                 try {
-                    System.out.println("[动态代理][日志] "+method.getName()+"，参数："+ Arrays.toString(args));
+                    System.out.println("[动态代理][日志] " + method.getName() + "，参数：" + Arrays.toString(args));
                     result = method.invoke(target, args);
-                    System.out.println("[动态代理][日志] "+method.getName()+"，结果："+ result);
+                    System.out.println("[动态代理][日志] " + method.getName() + "，结果：" + result);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("[动态代理][日志] "+method.getName()+"，异常："+e.getMessage());
+                    System.out.println("[动态代理][日志] " + method.getName() + "，异常：" + e.getMessage());
                 } finally {
-                    System.out.println("[动态代理][日志] "+method.getName()+"，方法执行完毕");
+                    System.out.println("[动态代理][日志] " + method.getName() + "，方法执行完毕");
                 }
                 return result;
             }
@@ -3589,11 +3599,11 @@ public class ProxyFactory {
 ```java
 @Test
 public void testDynamicProxy(){
-    ProxyFactory factory = new ProxyFactory(new CalculatorLogImpl());
-    Calculator proxy = (Calculator) factory.getProxy();
-    proxy.div(1,0);
-    //proxy.div(1,1);
-}
+        ProxyFactory factory=new ProxyFactory(new CalculatorLogImpl());
+        Calculator proxy=(Calculator)factory.getProxy();
+        proxy.div(1,0);
+        //proxy.div(1,1);
+        }
 ```
 
 ### 5.3、AOP概念及相关术语
@@ -3676,7 +3686,7 @@ Programming）是一种设计思想，是软件设计领域中的面向切面编
 
 ![images](images/spring6/img023.png)
 
-![image-20221216132844066](images\spring6\image-20221216132844066.png)
+![image-20221216132844066](images/spring6/image-20221216132844066.png)
 
 - 动态代理分为JDK动态代理和cglib动态代理
 - 当目标类有接口的情况使用JDK动态代理和cglib动态代理，没有接口时只能使用cglib动态代理
@@ -3695,6 +3705,7 @@ Programming）是一种设计思想，是软件设计领域中的面向切面编
 在IOC所需依赖基础上再加入下面依赖即可：
 
 ```xml
+
 <dependencies>
     <!--spring context依赖-->
     <!--当你引入Spring Context依赖之后，表示将Spring的基础依赖引入了-->
@@ -3744,61 +3755,62 @@ Programming）是一种设计思想，是软件设计领域中的面向切面编
 
 ```java
 public interface Calculator {
-    
+
     int add(int i, int j);
-    
+
     int sub(int i, int j);
-    
+
     int mul(int i, int j);
-    
+
     int div(int i, int j);
-    
+
 }
 ```
 
 实现类：
 
 ```java
+
 @Component
 public class CalculatorImpl implements Calculator {
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         int result = i + j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int sub(int i, int j) {
-    
+
         int result = i - j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int mul(int i, int j) {
-    
+
         int result = i * j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int div(int i, int j) {
-    
+
         int result = i / j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
 }
@@ -3812,34 +3824,34 @@ public class CalculatorImpl implements Calculator {
 // @Component注解保证这个切面类能够放入IOC容器
 @Component
 public class LogAspect {
-    
+
     @Before("execution(public int com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-    public void beforeMethod(JoinPoint joinPoint){
+    public void beforeMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
-        System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
+        System.out.println("Logger-->前置通知，方法名：" + methodName + "，参数：" + args);
     }
 
     @After("execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-    public void afterMethod(JoinPoint joinPoint){
+    public void afterMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
-        System.out.println("Logger-->后置通知，方法名："+methodName);
+        System.out.println("Logger-->后置通知，方法名：" + methodName);
     }
 
     @AfterReturning(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", returning = "result")
-    public void afterReturningMethod(JoinPoint joinPoint, Object result){
+    public void afterReturningMethod(JoinPoint joinPoint, Object result) {
         String methodName = joinPoint.getSignature().getName();
-        System.out.println("Logger-->返回通知，方法名："+methodName+"，结果："+result);
+        System.out.println("Logger-->返回通知，方法名：" + methodName + "，结果：" + result);
     }
 
     @AfterThrowing(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", throwing = "ex")
-    public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex){
+    public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex) {
         String methodName = joinPoint.getSignature().getName();
-        System.out.println("Logger-->异常通知，方法名："+methodName+"，异常："+ex);
+        System.out.println("Logger-->异常通知，方法名：" + methodName + "，异常：" + ex);
     }
-    
+
     @Around("execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-    public Object aroundMethod(ProceedingJoinPoint joinPoint){
+    public Object aroundMethod(ProceedingJoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
         Object result = null;
@@ -3856,7 +3868,7 @@ public class LogAspect {
         }
         return result;
     }
-    
+
 }
 ```
 
@@ -3882,7 +3894,7 @@ public class LogAspect {
     -->
     <context:component-scan base-package="com.atguigu.aop.annotation"></context:component-scan>
 
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy/>
 </beans>
 ```
 
@@ -3894,11 +3906,11 @@ public class CalculatorTest {
     private Logger logger = LoggerFactory.getLogger(CalculatorTest.class);
 
     @Test
-    public void testAdd(){
+    public void testAdd() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-        Calculator calculator = ac.getBean( Calculator.class);
+        Calculator calculator = ac.getBean(Calculator.class);
         int add = calculator.add(1, 1);
-        logger.info("执行成功:"+add);
+        logger.info("执行成功:" + add);
     }
 
 }
@@ -3925,8 +3937,10 @@ public class CalculatorTest {
 
 > - 目标操作
     >
+
 - 后置通知
->   - 返回通知或异常通知
+
+> - 返回通知或异常通知
 > - Spring版本5.3.x以后：
     >
 
@@ -3934,8 +3948,10 @@ public class CalculatorTest {
 
 > - 目标操作
     >
+
 - 返回通知或异常通知
->   - 后置通知
+
+> - 后置通知
 
 #### 5.4.5、切入点表达式语法
 
@@ -3981,10 +3997,10 @@ public void pointCut(){}
 ```java
 @Before("pointCut()")
 public void beforeMethod(JoinPoint joinPoint){
-    String methodName = joinPoint.getSignature().getName();
-    String args = Arrays.toString(joinPoint.getArgs());
-    System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
-}
+        String methodName=joinPoint.getSignature().getName();
+        String args=Arrays.toString(joinPoint.getArgs());
+        System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
+        }
 ```
 
 **③在不同切面中使用**
@@ -3992,10 +4008,10 @@ public void beforeMethod(JoinPoint joinPoint){
 ```java
 @Before("com.atguigu.aop.CommonPointCut.pointCut()")
 public void beforeMethod(JoinPoint joinPoint){
-    String methodName = joinPoint.getSignature().getName();
-    String args = Arrays.toString(joinPoint.getArgs());
-    System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
-}
+        String methodName=joinPoint.getSignature().getName();
+        String args=Arrays.toString(joinPoint.getArgs());
+        System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
+        }
 ```
 
 #### 5.4.7、获取通知的相关信息
@@ -4007,12 +4023,12 @@ public void beforeMethod(JoinPoint joinPoint){
 ```java
 @Before("execution(public int com.atguigu.aop.annotation.CalculatorImpl.*(..))")
 public void beforeMethod(JoinPoint joinPoint){
-    //获取连接点的签名信息
-    String methodName = joinPoint.getSignature().getName();
-    //获取目标方法到的实参信息
-    String args = Arrays.toString(joinPoint.getArgs());
-    System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
-}
+        //获取连接点的签名信息
+        String methodName=joinPoint.getSignature().getName();
+        //获取目标方法到的实参信息
+        String args=Arrays.toString(joinPoint.getArgs());
+        System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
+        }
 ```
 
 **②获取目标方法的返回值**
@@ -4021,10 +4037,10 @@ public void beforeMethod(JoinPoint joinPoint){
 
 ```java
 @AfterReturning(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", returning = "result")
-public void afterReturningMethod(JoinPoint joinPoint, Object result){
-    String methodName = joinPoint.getSignature().getName();
-    System.out.println("Logger-->返回通知，方法名："+methodName+"，结果："+result);
-}
+public void afterReturningMethod(JoinPoint joinPoint,Object result){
+        String methodName=joinPoint.getSignature().getName();
+        System.out.println("Logger-->返回通知，方法名："+methodName+"，结果："+result);
+        }
 ```
 
 **③获取目标方法的异常**
@@ -4033,10 +4049,10 @@ public void afterReturningMethod(JoinPoint joinPoint, Object result){
 
 ```java
 @AfterThrowing(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", throwing = "ex")
-public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex){
-    String methodName = joinPoint.getSignature().getName();
-    System.out.println("Logger-->异常通知，方法名："+methodName+"，异常："+ex);
-}
+public void afterThrowingMethod(JoinPoint joinPoint,Throwable ex){
+        String methodName=joinPoint.getSignature().getName();
+        System.out.println("Logger-->异常通知，方法名："+methodName+"，异常："+ex);
+        }
 ```
 
 #### 5.4.8、环绕通知
@@ -4044,22 +4060,22 @@ public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex){
 ```java
 @Around("execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))")
 public Object aroundMethod(ProceedingJoinPoint joinPoint){
-    String methodName = joinPoint.getSignature().getName();
-    String args = Arrays.toString(joinPoint.getArgs());
-    Object result = null;
-    try {
+        String methodName=joinPoint.getSignature().getName();
+        String args=Arrays.toString(joinPoint.getArgs());
+        Object result=null;
+        try{
         System.out.println("环绕通知-->目标对象方法执行之前");
         //目标方法的执行，目标方法的返回值一定要返回给外界调用者
-        result = joinPoint.proceed();
+        result=joinPoint.proceed();
         System.out.println("环绕通知-->目标对象方法返回值之后");
-    } catch (Throwable throwable) {
+        }catch(Throwable throwable){
         throwable.printStackTrace();
         System.out.println("环绕通知-->目标对象方法出现异常时");
-    } finally {
+        }finally{
         System.out.println("环绕通知-->目标对象方法执行完毕");
-    }
-    return result;
-}
+        }
+        return result;
+        }
 ```
 
 #### 5.4.9、切面的优先级
@@ -4091,13 +4107,13 @@ public Object aroundMethod(ProceedingJoinPoint joinPoint){
 <aop:config>
 <!--配置切面类-->
 <aop:aspect ref="loggerAspect">
-  <aop:pointcut id="pointCut"
-                expression="execution(* com.DEAiFISH.aop.xml.CalculatorImpl.*(..))"/>
-  <aop:before method="beforeMethod" pointcut-ref="pointCut"></aop:before>
-  <aop:after method="afterMethod" pointcut-ref="pointCut"></aop:after>
-  <aop:after-returning method="afterReturningMethod" returning="result" pointcut-ref="pointCut"></aop:after-returning>
-  <aop:after-throwing method="afterThrowingMethod" throwing="ex" pointcut-ref="pointCut"></aop:after-throwing>
-  <aop:around method="aroundMethod" pointcut-ref="pointCut"></aop:around>
+    <aop:pointcut id="pointCut"
+                  expression="execution(* com.DEAiFISH.aop.xml.CalculatorImpl.*(..))"/>
+    <aop:before method="beforeMethod" pointcut-ref="pointCut"></aop:before>
+    <aop:after method="afterMethod" pointcut-ref="pointCut"></aop:after>
+    <aop:after-returning method="afterReturningMethod" returning="result" pointcut-ref="pointCut"></aop:after-returning>
+    <aop:after-throwing method="afterThrowingMethod" throwing="ex" pointcut-ref="pointCut"></aop:after-throwing>
+    <aop:around method="aroundMethod" pointcut-ref="pointCut"></aop:around>
 </aop:aspect>
 </aop:config>
 ```
@@ -4107,8 +4123,8 @@ public Object aroundMethod(ProceedingJoinPoint joinPoint){
 在之前的测试方法中，几乎都能看到以下的两行代码：
 
 ```java
-ApplicationContext context = new ClassPathXmlApplicationContext("xxx.xml");
-Xxxx xxx = context.getBean(Xxxx.class);
+ApplicationContext context=new ClassPathXmlApplicationContext("xxx.xml");
+        Xxxx xxx=context.getBean(Xxxx.class);
 ```
 
 这两行代码的作用是创建Spring容器，最终获取到对象，但是每次测试都需要重复编写。针对上述问题，我们需要的是程序能自动帮我们创建容器。我们都知道JUnit无法知晓我们是否使用了
@@ -4124,6 +4140,7 @@ Spring 框架，更不用说帮我们创建 Spring
 #### 6.1.2、引入依赖
 
 ```xml
+
 <dependencies>
     <!--spring context依赖-->
     <!--当你引入Spring Context依赖之后，表示将Spring的基础依赖引入了-->
@@ -4188,9 +4205,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class User {
 
-  public User() {
-    System.out.println("run user");
-  }
+    public User() {
+        System.out.println("run user");
+    }
 }
 ```
 
@@ -4212,13 +4229,13 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig(locations = "classpath:beans.xml")
 public class SpringJUnit5Test {
 
-  @Autowired
-  private User user;
+    @Autowired
+    private User user;
 
-  @Test
-  public void testUser() {
-    System.out.println(user);
-  }
+    @Test
+    public void testUser() {
+        System.out.println(user);
+    }
 }
 ```
 
@@ -4251,13 +4268,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:beans.xml")
 public class SpringJUnit4Test {
 
-  @Autowired
-  private User user;
+    @Autowired
+    private User user;
 
-  @Test
-  public void testUser() {
-    System.out.println(user);
-  }
+    @Test
+    public void testUser() {
+        System.out.println(user);
+    }
 }
 ```
 
@@ -4267,7 +4284,7 @@ public class SpringJUnit4Test {
 
 #### 7.1.1、简介
 
-![image-20221217115515670](images\spring6\image-20221217115515670.png)
+![image-20221217115515670](images/spring6/image-20221217115515670.png)
 
 Spring 框架对 JDBC 进行封装，使用 JdbcTemplate 方便实现对数据库操作
 
@@ -4280,6 +4297,7 @@ Spring 框架对 JDBC 进行封装，使用 JdbcTemplate 方便实现对数据�
 **②加入依赖**
 
 ```xml
+
 <dependencies>
     <!--spring jdbc  Spring 持久化层支持jar包-->
     <dependency>
@@ -4326,7 +4344,7 @@ beans.xml
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 导入外部属性文件 -->
-    <context:property-placeholder location="classpath:jdbc.properties" />
+    <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <!-- 配置数据源 -->
     <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
@@ -4350,15 +4368,15 @@ beans.xml
 ```java
 CREATE DATABASE `spring`;
 
-use `spring`;
+        use `spring`;
 
-CREATE TABLE `t_emp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL COMMENT '姓名',
-  `age` int(11) DEFAULT NULL COMMENT '年龄',
-  `sex` varchar(2) DEFAULT NULL COMMENT '性别',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        CREATE TABLE `t_emp` (
+        `id` int(11)NOT NULL AUTO_INCREMENT,
+        `name` varchar(20)DEFAULT NULL COMMENT'姓名',
+        `age` int(11)DEFAULT NULL COMMENT'年龄',
+        `sex` varchar(2)DEFAULT NULL COMMENT'性别',
+        PRIMARY KEY(`id`)
+        )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
 #### 7.1.3、实现CURD
@@ -4377,8 +4395,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig(locations = "classpath:beans.xml")
 public class JDBCTemplateTest {
 
-  @Autowired
-  private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
 }
 ```
@@ -4389,18 +4407,18 @@ public class JDBCTemplateTest {
 @Test
 //测试增删改功能
 public void testUpdate(){
-    //添加功能
-	String sql = "insert into t_emp values(null,?,?,?)";
-	int result = jdbcTemplate.update(sql, "张三", 23, "男");
-    
-    //修改功能
-	//String sql = "update t_emp set name=? where id=?";
-    //int result = jdbcTemplate.update(sql, "张三atguigu", 1);
+        //添加功能
+        String sql="insert into t_emp values(null,?,?,?)";
+        int result=jdbcTemplate.update(sql,"张三",23,"男");
 
-    //删除功能
-	//String sql = "delete from t_emp where id=?";
-	//int result = jdbcTemplate.update(sql, 1);
-}
+        //修改功能
+        //String sql = "update t_emp set name=? where id=?";
+        //int result = jdbcTemplate.update(sql, "张三atguigu", 1);
+
+        //删除功能
+        //String sql = "delete from t_emp where id=?";
+        //int result = jdbcTemplate.update(sql, 1);
+        }
 ```
 
 ##### ③查询数据返回对象
@@ -4420,10 +4438,10 @@ public class Emp {
     public String toString() {
         return "Emp{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                '}';
+                ", name='" + name + '/' ' +
+        ", age=" + age +
+                ", sex='" + sex + '/' ' +
+        '}';
     }
 }
 ```
@@ -4431,8 +4449,8 @@ public class Emp {
 ```java
 //查询：返回对象
 @Test
-public void testSelectObject() {
-    //写法一
+public void testSelectObject(){
+        //写法一
 //        String sql = "select * from t_emp where id=?";
 //        Emp empResult = jdbcTemplate.queryForObject(sql,
 //                (rs, rowNum) -> {
@@ -4445,12 +4463,12 @@ public void testSelectObject() {
 //                }, 1);
 //        System.out.println(empResult);
 
-    //写法二
-    String sql = "select * from t_emp where id=?";
-    Emp emp = jdbcTemplate.queryForObject(sql,
-                  new BeanPropertyRowMapper<>(Emp.class),1);
-    System.out.println(emp);
-}
+        //写法二
+        String sql="select * from t_emp where id=?";
+        Emp emp=jdbcTemplate.queryForObject(sql,
+        new BeanPropertyRowMapper<>(Emp.class),1);
+        System.out.println(emp);
+        }
 ```
 
 ##### ④查询数据返回list集合
@@ -4459,10 +4477,10 @@ public void testSelectObject() {
 @Test
 //查询多条数据为一个list集合
 public void testSelectList(){
-    String sql = "select * from t_emp";
-    List<Emp> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Emp.class));
-    System.out.println(list);
-}
+        String sql="select * from t_emp";
+        List<Emp> list=jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Emp.class));
+        System.out.println(list);
+        }
 ```
 
 ##### ⑤查询返回单个的值
@@ -4471,10 +4489,10 @@ public void testSelectList(){
 @Test
 //查询单行单列的值
 public void selectCount(){
-    String sql = "select count(id) from t_emp";
-    Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
-    System.out.println(count);
-}
+        String sql="select count(id) from t_emp";
+        Integer count=jdbcTemplate.queryForObject(sql,Integer.class);
+        System.out.println(count);
+        }
 ```
 
 ### 7.2、声明式事务概念
@@ -4512,29 +4530,29 @@ public void selectCount(){
 事务功能的相关操作全部通过自己编写代码来实现：
 
 ```java
-Connection conn = ...;
-    
-try {
-    
-    // 开启事务：关闭事务的自动提交
-    conn.setAutoCommit(false);
-    
-    // 核心操作
-    
-    // 提交事务
-    conn.commit();
-    
-}catch(Exception e){
-    
-    // 回滚事务
-    conn.rollBack();
-    
-}finally{
-    
-    // 释放数据库连接
-    conn.close();
-    
-}
+Connection conn=...;
+
+        try{
+
+        // 开启事务：关闭事务的自动提交
+        conn.setAutoCommit(false);
+
+        // 核心操作
+
+        // 提交事务
+        conn.commit();
+
+        }catch(Exception e){
+
+        // 回滚事务
+        conn.rollBack();
+
+        }finally{
+
+        // 释放数据库连接
+        conn.close();
+
+        }
 ```
 
 编程式的实现方式存在缺陷：
@@ -4573,21 +4591,30 @@ try {
 **②创建表**
 
 ```sql
-CREATE TABLE `t_book` (
-  `book_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `book_name` varchar(20) DEFAULT NULL COMMENT '图书名称',
-  `price` int(11) DEFAULT NULL COMMENT '价格',
-  `stock` int(10) unsigned DEFAULT NULL COMMENT '库存（无符号）',
-  PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-insert  into `t_book`(`book_id`,`book_name`,`price`,`stock`) values (1,'斗破苍穹',80,100),(2,'斗罗大陆',50,100);
-CREATE TABLE `t_user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `username` varchar(20) DEFAULT NULL COMMENT '用户名',
-  `balance` int(10) unsigned DEFAULT NULL COMMENT '余额（无符号）',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-insert  into `t_user`(`user_id`,`username`,`balance`) values (1,'admin',50);
+CREATE TABLE `t_book`
+(
+    `book_id`   int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `book_name` varchar(20)      DEFAULT NULL COMMENT '图书名称',
+    `price`     int(11)          DEFAULT NULL COMMENT '价格',
+    `stock`     int(10) unsigned DEFAULT NULL COMMENT '库存（无符号）',
+    PRIMARY KEY (`book_id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARSET = utf8;
+insert into `t_book`(`book_id`, `book_name`, `price`, `stock`)
+values (1, '斗破苍穹', 80, 100),
+       (2, '斗罗大陆', 50, 100);
+CREATE TABLE `t_user`
+(
+    `user_id`  int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `username` varchar(20)      DEFAULT NULL COMMENT '用户名',
+    `balance`  int(10) unsigned DEFAULT NULL COMMENT '余额（无符号）',
+    PRIMARY KEY (`user_id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 2
+  DEFAULT CHARSET = utf8;
+insert into `t_user`(`user_id`, `username`, `balance`)
+values (1, 'admin', 50);
 ```
 
 **③创建组件**
@@ -4600,12 +4627,12 @@ package com.DEAiFISH.spring6.controller;
 @Controller
 public class BookController {
 
-  @Autowired
-  private BookService bookService;
+    @Autowired
+    private BookService bookService;
 
-  public void buyBook(Integer bookId, Integer userId) {
-    bookService.buyBook(bookId, userId);
-  }
+    public void buyBook(Integer bookId, Integer userId) {
+        bookService.buyBook(bookId, userId);
+    }
 }
 ```
 
@@ -4615,7 +4642,7 @@ public class BookController {
 package com.DEAiFISH.spring6.service;
 
 public interface BookService {
-  void buyBook(Integer bookId, Integer userId);
+    void buyBook(Integer bookId, Integer userId);
 }
 ```
 
@@ -4627,18 +4654,18 @@ package com.DEAiFISH.spring6.service.impl;
 @Service
 public class BookServiceImpl implements BookService {
 
-  @Autowired
-  private BookDao bookDao;
+    @Autowired
+    private BookDao bookDao;
 
-  @Override
-  public void buyBook(Integer bookId, Integer userId) {
-    //查询图书的价格
-    Integer price = bookDao.getPriceByBookId(bookId);
-    //更新图书的库存
-    bookDao.updateStock(bookId);
-    //更新用户的余额
-    bookDao.updateBalance(userId, price);
-  }
+    @Override
+    public void buyBook(Integer bookId, Integer userId) {
+        //查询图书的价格
+        Integer price = bookDao.getPriceByBookId(bookId);
+        //更新图书的库存
+        bookDao.updateStock(bookId);
+        //更新用户的余额
+        bookDao.updateBalance(userId, price);
+    }
 }
 ```
 
@@ -4648,11 +4675,11 @@ public class BookServiceImpl implements BookService {
 package com.DEAiFISH.spring6.dao;
 
 public interface BookDao {
-  Integer getPriceByBookId(Integer bookId);
+    Integer getPriceByBookId(Integer bookId);
 
-  void updateStock(Integer bookId);
+    void updateStock(Integer bookId);
 
-  void updateBalance(Integer userId, Integer price);
+    void updateBalance(Integer userId, Integer price);
 }
 ```
 
@@ -4664,26 +4691,26 @@ package com.DEAiFISH.spring6.dao.impl;
 @Repository
 public class BookDaoImpl implements BookDao {
 
-  @Autowired
-  private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-  @Override
-  public Integer getPriceByBookId(Integer bookId) {
-    String sql = "select price from t_book where book_id = ?";
-    return jdbcTemplate.queryForObject(sql, Integer.class, bookId);
-  }
+    @Override
+    public Integer getPriceByBookId(Integer bookId) {
+        String sql = "select price from t_book where book_id = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, bookId);
+    }
 
-  @Override
-  public void updateStock(Integer bookId) {
-    String sql = "update t_book set stock = stock - 1 where book_id = ?";
-    jdbcTemplate.update(sql, bookId);
-  }
+    @Override
+    public void updateStock(Integer bookId) {
+        String sql = "update t_book set stock = stock - 1 where book_id = ?";
+        jdbcTemplate.update(sql, bookId);
+    }
 
-  @Override
-  public void updateBalance(Integer userId, Integer price) {
-    String sql = "update t_user set balance = balance - ? where user_id = ?";
-    jdbcTemplate.update(sql, price, userId);
-  }
+    @Override
+    public void updateBalance(Integer userId, Integer price) {
+        String sql = "update t_user set balance = balance - ? where user_id = ?";
+        jdbcTemplate.update(sql, price, userId);
+    }
 }
 ```
 
@@ -4704,7 +4731,7 @@ public class TxByAnnotationTest {
     private BookController bookController;
 
     @Test
-    public void testBuyBook(){
+    public void testBuyBook() {
         bookController.buyBook(1, 1);
     }
 
@@ -4752,16 +4779,17 @@ public class TxByAnnotationTest {
 在Spring的配置文件中添加配置：
 
 ```xml
+
 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="druidDataSource"></property>
 </bean>
 
-<!--
-    开启事务的注解驱动
-    通过注解@Transactional所标识的方法或标识的类中所有的方法，都会被事务管理器管理事务
--->
-<!-- transaction-manager属性的默认值是transactionManager，如果事务管理器bean的id正好就是这个默认值，则可以省略这个属性 -->
-<tx:annotation-driven transaction-manager="transactionManager" />
+        <!--
+            开启事务的注解驱动
+            通过注解@Transactional所标识的方法或标识的类中所有的方法，都会被事务管理器管理事务
+        -->
+        <!-- transaction-manager属性的默认值是transactionManager，如果事务管理器bean的id正好就是这个默认值，则可以省略这个属性 -->
+<tx:annotation-driven transaction-manager="transactionManager"/>
 ```
 
 ##### ②添加事务注解
@@ -4790,15 +4818,15 @@ public class TxByAnnotationTest {
 
 ```java
 @Transactional(readOnly = true)
-public void buyBook(Integer bookId, Integer userId) {
-    //查询图书的价格
-    Integer price = bookDao.getPriceByBookId(bookId);
-    //更新图书的库存
-    bookDao.updateStock(bookId);
-    //更新用户的余额
-    bookDao.updateBalance(userId, price);
-    //System.out.println(1/0);
-}
+public void buyBook(Integer bookId,Integer userId){
+        //查询图书的价格
+        Integer price=bookDao.getPriceByBookId(bookId);
+        //更新图书的库存
+        bookDao.updateStock(bookId);
+        //更新用户的余额
+        bookDao.updateBalance(userId,price);
+        //System.out.println(1/0);
+        }
 ```
 
 **③注意**
@@ -4820,20 +4848,20 @@ Caused by: java.sql.SQLException: Connection is read-only. Queries leading to da
 ```java
 //超时时间单位秒
 @Transactional(timeout = 3)
-public void buyBook(Integer bookId, Integer userId) {
-    try {
+public void buyBook(Integer bookId,Integer userId){
+        try{
         TimeUnit.SECONDS.sleep(5);
-    } catch (InterruptedException e) {
+        }catch(InterruptedException e){
         e.printStackTrace();
-    }
-    //查询图书的价格
-    Integer price = bookDao.getPriceByBookId(bookId);
-    //更新图书的库存
-    bookDao.updateStock(bookId);
-    //更新用户的余额
-    bookDao.updateBalance(userId, price);
-    //System.out.println(1/0);
-}
+        }
+        //查询图书的价格
+        Integer price=bookDao.getPriceByBookId(bookId);
+        //更新图书的库存
+        bookDao.updateStock(bookId);
+        //更新用户的余额
+        bookDao.updateBalance(userId,price);
+        //System.out.println(1/0);
+        }
 ```
 
 **③观察结果**
@@ -4862,15 +4890,15 @@ org.springframework.transaction.**TransactionTimedOutException**: Transaction ti
 ```java
 @Transactional(noRollbackFor = ArithmeticException.class)
 //@Transactional(noRollbackForClassName = "java.lang.ArithmeticException")
-public void buyBook(Integer bookId, Integer userId) {
-    //查询图书的价格
-    Integer price = bookDao.getPriceByBookId(bookId);
-    //更新图书的库存
-    bookDao.updateStock(bookId);
-    //更新用户的余额
-    bookDao.updateBalance(userId, price);
-    System.out.println(1/0);
-}
+public void buyBook(Integer bookId,Integer userId){
+        //查询图书的价格
+        Integer price=bookDao.getPriceByBookId(bookId);
+        //更新图书的库存
+        bookDao.updateStock(bookId);
+        //更新用户的余额
+        bookDao.updateBalance(userId,price);
+        System.out.println(1/0);
+        }
 ```
 
 **③观察结果**
@@ -4958,7 +4986,7 @@ public void buyBook(Integer bookId, Integer userId) {
 package com.DEAiFISH.spring6.service;
 
 public interface CheckoutService {
-  void checkout(Integer[] bookIds, Integer userId);
+    void checkout(Integer[] bookIds, Integer userId);
 }
 ```
 
@@ -4970,17 +4998,17 @@ package com.DEAiFISH.spring6.service.impl;
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
-  @Autowired
-  private BookService bookService;
+    @Autowired
+    private BookService bookService;
 
-  @Override
-  @Transactional
-  //一次购买多本图书
-  public void checkout(Integer[] bookIds, Integer userId) {
-    for (Integer bookId : bookIds) {
-      bookService.buyBook(bookId, userId);
+    @Override
+    @Transactional
+    //一次购买多本图书
+    public void checkout(Integer[] bookIds, Integer userId) {
+        for (Integer bookId : bookIds) {
+            bookService.buyBook(bookId, userId);
+        }
     }
-  }
 }
 ```
 
@@ -4990,9 +5018,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 @Autowired
 private CheckoutService checkoutService;
 
-public void checkout(Integer[] bookIds, Integer userId){
-    checkoutService.checkout(bookIds, userId);
-}
+public void checkout(Integer[]bookIds,Integer userId){
+        checkoutService.checkout(bookIds,userId);
+        }
 ```
 
 在数据库中将用户的余额修改为100元
@@ -5035,29 +5063,29 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class SpringConfig {
 
-  @Bean
-  public DataSource getDataSource() {
-    DruidDataSource dataSource = new DruidDataSource();
-    dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-    dataSource.setUrl("jdbc:mysql://localhost:3306/spring?characterEncoding=utf8&useSSL=false");
-    dataSource.setUsername("root");
-    dataSource.setPassword("root");
-    return dataSource;
-  }
+    @Bean
+    public DataSource getDataSource() {
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring?characterEncoding=utf8&useSSL=false");
+        dataSource.setUsername("root");
+        dataSource.setPassword("root");
+        return dataSource;
+    }
 
-  @Bean(name = "jdbcTemplate")
-  public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
-    JdbcTemplate jdbcTemplate = new JdbcTemplate();
-    jdbcTemplate.setDataSource(dataSource);
-    return jdbcTemplate;
-  }
+    @Bean(name = "jdbcTemplate")
+    public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.setDataSource(dataSource);
+        return jdbcTemplate;
+    }
 
-  @Bean
-  public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
-    DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-    dataSourceTransactionManager.setDataSource(dataSource);
-    return dataSourceTransactionManager;
-  }
+    @Bean
+    public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
+        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+        dataSourceTransactionManager.setDataSource(dataSource);
+        return dataSourceTransactionManager;
+    }
 }
 ```
 
@@ -5073,12 +5101,12 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 public class TxByAllAnnotationTest {
 
-  @Test
-  public void testTxAllAnnotation() {
-    ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
-    BookController accountService = applicationContext.getBean("bookController", BookController.class);
-    accountService.buyBook(1, 1);
-  }
+    @Test
+    public void testTxAllAnnotation() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+        BookController accountService = applicationContext.getBean("bookController", BookController.class);
+        accountService.buyBook(1, 1);
+    }
 }
 ```
 
@@ -5095,30 +5123,30 @@ public class TxByAllAnnotationTest {
 ```xml
 
 <aop:config>
-  <!-- 配置事务通知和切入点表达式 -->
-  <aop:advisor advice-ref="txAdvice"
-               pointcut="execution(* com.DEAiFISH.spring.tx.xml.service.impl.*.*(..))"></aop:advisor>
+    <!-- 配置事务通知和切入点表达式 -->
+    <aop:advisor advice-ref="txAdvice"
+                 pointcut="execution(* com.DEAiFISH.spring.tx.xml.service.impl.*.*(..))"></aop:advisor>
 </aop:config>
         <!-- tx:advice标签：配置事务通知 -->
         <!-- id属性：给事务通知标签设置唯一标识，便于引用 -->
         <!-- transaction-manager属性：关联事务管理器 -->
 <tx:advice id="txAdvice" transaction-manager="transactionManager">
 <tx:attributes>
-  <!-- tx:method标签：配置具体的事务方法 -->
-  <!-- name属性：指定方法名，可以使用星号代表多个字符 -->
-  <tx:method name="get*" read-only="true"/>
-  <tx:method name="query*" read-only="true"/>
-  <tx:method name="find*" read-only="true"/>
+    <!-- tx:method标签：配置具体的事务方法 -->
+    <!-- name属性：指定方法名，可以使用星号代表多个字符 -->
+    <tx:method name="get*" read-only="true"/>
+    <tx:method name="query*" read-only="true"/>
+    <tx:method name="find*" read-only="true"/>
 
-  <!-- read-only属性：设置只读属性 -->
-  <!-- rollback-for属性：设置回滚的异常 -->
-  <!-- no-rollback-for属性：设置不回滚的异常 -->
-  <!-- isolation属性：设置事务的隔离级别 -->
-  <!-- timeout属性：设置事务的超时属性 -->
-  <!-- propagation属性：设置事务的传播行为 -->
-  <tx:method name="save*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
-  <tx:method name="update*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
-  <tx:method name="delete*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
+    <!-- read-only属性：设置只读属性 -->
+    <!-- rollback-for属性：设置回滚的异常 -->
+    <!-- no-rollback-for属性：设置不回滚的异常 -->
+    <!-- isolation属性：设置事务的隔离级别 -->
+    <!-- timeout属性：设置事务的超时属性 -->
+    <!-- propagation属性：设置事务的传播行为 -->
+    <tx:method name="save*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
+    <tx:method name="update*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
+    <tx:method name="delete*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
 </tx:attributes>
 </tx:advice>
 ```
@@ -5137,9 +5165,9 @@ public class TxByAllAnnotationTest {
 
 ### 8.1、Spring Resources概述
 
-![image-20221218154945878](images\spring6\image-20221218154945878.png)
+![image-20221218154945878](images/spring6/image-20221218154945878.png)
 
-![image-20221206231535991](images\spring6\image-20221206231535991.png)
+![image-20221206231535991](images/spring6/image-20221206231535991.png)
 
 Java的标准java.net.URL类和各种URL前缀的标准处理程序无法满足所有对low-level资源的访问，比如：没有标准化的 URL
 实现可用于访问需要从类路径或相对于 ServletContext 获取的资源。并且缺少某些Spring所需要的功能，例如检测某资源是否存在等。*
@@ -5228,7 +5256,7 @@ file: ------该前缀用于从文件系统中读取资源
 
 **创建一个maven子模块spring6-resources，配置Spring依赖（参考前面）**
 
-![image-20221207102315185](images\spring6\image-20221207102315185.png)
+![image-20221207102315185](images/spring6/image-20221207102315185.png)
 
 ```java
 package com.DEAiFISH.spring6.resources;
@@ -5237,27 +5265,27 @@ import org.springframework.core.io.UrlResource;
 
 public class UrlResourceDemo {
 
-  public static void loadAndReadUrlResource(String path) {
-    // 创建一个 Resource 对象
-    UrlResource url = null;
-    try {
-      url = new UrlResource(path);
-      // 获取资源名
-      System.out.println(url.getFilename());
-      System.out.println(url.getURI());
-      // 获取资源描述
-      System.out.println(url.getDescription());
-      //获取资源内容
-      System.out.println(url.getInputStream().read());
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    public static void loadAndReadUrlResource(String path) {
+        // 创建一个 Resource 对象
+        UrlResource url = null;
+        try {
+            url = new UrlResource(path);
+            // 获取资源名
+            System.out.println(url.getFilename());
+            System.out.println(url.getURI());
+            // 获取资源描述
+            System.out.println(url.getDescription());
+            //获取资源内容
+            System.out.println(url.getInputStream().read());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
-  }
 
-  public static void main(String[] args) {
-    //访问网络资源
-    loadAndReadUrlResource("http://www.baidu.com");
-  }
+    public static void main(String[] args) {
+        //访问网络资源
+        loadAndReadUrlResource("http://www.baidu.com");
+    }
 }
 ```
 
@@ -5266,13 +5294,13 @@ public class UrlResourceDemo {
 方法不变，修改调用传递路径
 
 ```java
-public static void main(String[] args) {
-    //1 访问网络资源
-	//loadAndReadUrlResource("http://www.atguigu.com");
-    
-    //2 访问文件系统资源
-    loadAndReadUrlResource("file:atguigu.txt");
-}
+public static void main(String[]args){
+        //1 访问网络资源
+        //loadAndReadUrlResource("http://www.atguigu.com");
+
+        //2 访问文件系统资源
+        loadAndReadUrlResource("file:atguigu.txt");
+        }
 ```
 
 #### 8.3.2、ClassPathResource 访问类路径下资源
@@ -5282,7 +5310,7 @@ Web 应用，ClassPathResource 可自动搜索位于 classes 下的资源文件�
 
 **实验：在类路径下创建文件atguigu.txt，使用ClassPathResource 访问**
 
-![image-20221207103020854](images\spring6\image-20221207103020854.png)
+![image-20221207103020854](images/spring6/image-20221207103020854.png)
 
 ```java
 package com.DEAiFISH.spring6.resources;
@@ -5293,24 +5321,24 @@ import java.io.InputStream;
 
 public class ClassPathResourceDemo {
 
-  public static void loadAndReadUrlResource(String path) throws Exception {
-    // 创建一个 Resource 对象
-    ClassPathResource resource = new ClassPathResource(path);
-    // 获取文件名
-    System.out.println("resource.getFileName = " + resource.getFilename());
-    // 获取文件描述
-    System.out.println("resource.getDescription = " + resource.getDescription());
-    //获取文件内容
-    InputStream in = resource.getInputStream();
-    byte[] b = new byte[1024];
-    while (in.read(b) != -1) {
-      System.out.println(new String(b));
+    public static void loadAndReadUrlResource(String path) throws Exception {
+        // 创建一个 Resource 对象
+        ClassPathResource resource = new ClassPathResource(path);
+        // 获取文件名
+        System.out.println("resource.getFileName = " + resource.getFilename());
+        // 获取文件描述
+        System.out.println("resource.getDescription = " + resource.getDescription());
+        //获取文件内容
+        InputStream in = resource.getInputStream();
+        byte[] b = new byte[1024];
+        while (in.read(b) != -1) {
+            System.out.println(new String(b));
+        }
     }
-  }
 
-  public static void main(String[] args) throws Exception {
-    loadAndReadUrlResource("atguigu.txt");
-  }
+    public static void main(String[] args) throws Exception {
+        loadAndReadUrlResource("atguigu.txt");
+    }
 }
 ```
 
@@ -5333,26 +5361,26 @@ import java.io.InputStream;
 
 public class FileSystemResourceDemo {
 
-  public static void loadAndReadUrlResource(String path) throws Exception {
-    //相对路径
-    FileSystemResource resource = new FileSystemResource("atguigu.txt");
-    //绝对路径
-    //FileSystemResource resource = new FileSystemResource("C:\\atguigu.txt");
-    // 获取文件名
-    System.out.println("resource.getFileName = " + resource.getFilename());
-    // 获取文件描述
-    System.out.println("resource.getDescription = " + resource.getDescription());
-    //获取文件内容
-    InputStream in = resource.getInputStream();
-    byte[] b = new byte[1024];
-    while (in.read(b) != -1) {
-      System.out.println(new String(b));
+    public static void loadAndReadUrlResource(String path) throws Exception {
+        //相对路径
+        FileSystemResource resource = new FileSystemResource("atguigu.txt");
+        //绝对路径
+        //FileSystemResource resource = new FileSystemResource("C://atguigu.txt");
+        // 获取文件名
+        System.out.println("resource.getFileName = " + resource.getFilename());
+        // 获取文件描述
+        System.out.println("resource.getDescription = " + resource.getDescription());
+        //获取文件内容
+        InputStream in = resource.getInputStream();
+        byte[] b = new byte[1024];
+        while (in.read(b) != -1) {
+            System.out.println(new String(b));
+        }
     }
-  }
 
-  public static void main(String[] args) throws Exception {
-    loadAndReadUrlResource("atguigu.txt");
-  }
+    public static void main(String[] args) throws Exception {
+        loadAndReadUrlResource("atguigu.txt");
+    }
 }
 ```
 
@@ -5378,7 +5406,7 @@ InputStreamResource 是给定的输入流(InputStream)的Resource实现。它的
 
 上述Resource实现类与Resource顶级接口之间的关系可以用下面的UML关系模型来表示
 
-![image-20221206232920494](images\spring6\image-20221206232920494.png)
+![image-20221206232920494](images/spring6/image-20221206232920494.png)
 
 ### 8.5、ResourceLoader 接口
 
@@ -5408,14 +5436,14 @@ import org.springframework.core.io.Resource;
 
 public class Demo1 {
 
-  public static void main(String[] args) {
-    ApplicationContext ctx = new ClassPathXmlApplicationContext();
+    public static void main(String[] args) {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext();
 //        通过ApplicationContext访问资源
 //        ApplicationContext实例获取Resource实例时，
 //        默认采用与ApplicationContext相同的资源访问策略
-    Resource res = ctx.getResource("atguigu.txt");
-    System.out.println(res.getFilename());
-  }
+        Resource res = ctx.getResource("atguigu.txt");
+        System.out.println(res.getFilename());
+    }
 }
 ```
 
@@ -5430,11 +5458,11 @@ import org.springframework.core.io.Resource;
 
 public class Demo2 {
 
-  public static void main(String[] args) {
-    ApplicationContext ctx = new FileSystemXmlApplicationContext();
-    Resource res = ctx.getResource("atguigu.txt");
-    System.out.println(res.getFilename());
-  }
+    public static void main(String[] args) {
+        ApplicationContext ctx = new FileSystemXmlApplicationContext();
+        Resource res = ctx.getResource("atguigu.txt");
+        System.out.println(res.getFilename());
+    }
 }
 ```
 
@@ -5448,9 +5476,9 @@ Spring将采用和ApplicationContext相同的策略来访问资源。也就是�
 另外，使用ApplicationContext访问资源时，可通过不同前缀指定强制使用指定的ClassPathResource、FileSystemResource等实现类
 
 ```java
-Resource res = ctx.getResource("calsspath:bean.xml");
-Resrouce res = ctx.getResource("file:bean.xml");
-Resource res = ctx.getResource("http://localhost:8080/beans.xml");
+Resource res=ctx.getResource("calsspath:bean.xml");
+        Resrouce res=ctx.getResource("file:bean.xml");
+        Resource res=ctx.getResource("http://localhost:8080/beans.xml");
 ```
 
 ### 8.6、ResourceLoaderAware 接口
@@ -5473,19 +5501,19 @@ import org.springframework.core.io.ResourceLoader;
 
 public class TestBean implements ResourceLoaderAware {
 
-  private ResourceLoader resourceLoader;
+    private ResourceLoader resourceLoader;
 
-  //实现ResourceLoaderAware接口必须实现的方法
-  //如果把该Bean部署在Spring容器中，该方法将会有Spring容器负责调用。
-  //SPring容器调用该方法时，Spring会将自身作为参数传给该方法。
-  public void setResourceLoader(ResourceLoader resourceLoader) {
-    this.resourceLoader = resourceLoader;
-  }
+    //实现ResourceLoaderAware接口必须实现的方法
+    //如果把该Bean部署在Spring容器中，该方法将会有Spring容器负责调用。
+    //SPring容器调用该方法时，Spring会将自身作为参数传给该方法。
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
-  //返回ResourceLoader对象的应用
-  public ResourceLoader getResourceLoader() {
-    return this.resourceLoader;
-  }
+    //返回ResourceLoader对象的应用
+    public ResourceLoader getResourceLoader() {
+        return this.resourceLoader;
+    }
 
 }
 ```
@@ -5514,18 +5542,18 @@ import org.springframework.core.io.ResourceLoader;
 
 public class Demo3 {
 
-  public static void main(String[] args) {
-    //Spring容器会将一个ResourceLoader对象作为该方法的参数传入
-    ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
-    TestBean testBean = ctx.getBean("testBean", TestBean.class);
-    //获取ResourceLoader对象
-    ResourceLoader resourceLoader = testBean.getResourceLoader();
-    System.out.println("Spring容器将自身注入到ResourceLoaderAware Bean 中 ？ ：" + (resourceLoader == ctx));
-    //加载其他资源
-    Resource resource = resourceLoader.getResource("atguigu.txt");
-    System.out.println(resource.getFilename());
-    System.out.println(resource.getDescription());
-  }
+    public static void main(String[] args) {
+        //Spring容器会将一个ResourceLoader对象作为该方法的参数传入
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
+        TestBean testBean = ctx.getBean("testBean", TestBean.class);
+        //获取ResourceLoader对象
+        ResourceLoader resourceLoader = testBean.getResourceLoader();
+        System.out.println("Spring容器将自身注入到ResourceLoaderAware Bean 中 ？ ：" + (resourceLoader == ctx));
+        //加载其他资源
+        Resource resource = resourceLoader.getResource("atguigu.txt");
+        System.out.println(resource.getFilename());
+        System.out.println(resource.getDescription());
+    }
 }
 ```
 
@@ -5556,20 +5584,20 @@ import org.springframework.core.io.Resource;
 
 public class ResourceBean {
 
-  private Resource res;
+    private Resource res;
 
-  public void setRes(Resource res) {
-    this.res = res;
-  }
+    public void setRes(Resource res) {
+        this.res = res;
+    }
 
-  public Resource getRes() {
-    return res;
-  }
+    public Resource getRes() {
+        return res;
+    }
 
-  public void parse() {
-    System.out.println(res.getFilename());
-    System.out.println(res.getDescription());
-  }
+    public void parse() {
+        System.out.println(res.getFilename());
+        System.out.println(res.getDescription());
+    }
 }
 ```
 
@@ -5581,9 +5609,9 @@ public class ResourceBean {
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="resourceBean" class="com.atguigu.spring6.resouceloader.ResourceBean" >
-      <!-- 可以使用file:、http:、ftp:等前缀强制Spring采用对应的资源访问策略 -->
-      <!-- 如果不采用任何前缀，则Spring将采用与该ApplicationContext相同的资源访问策略来访问资源 -->
+    <bean id="resourceBean" class="com.atguigu.spring6.resouceloader.ResourceBean">
+        <!-- 可以使用file:、http:、ftp:等前缀强制Spring采用对应的资源访问策略 -->
+        <!-- 如果不采用任何前缀，则Spring将采用与该ApplicationContext相同的资源访问策略来访问资源 -->
         <property name="res" value="classpath:atguigu.txt"/>
     </bean>
 </beans>
@@ -5599,12 +5627,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Demo4 {
 
-  public static void main(String[] args) {
-    ApplicationContext ctx =
-            new ClassPathXmlApplicationContext("bean.xml");
-    ResourceBean resourceBean = ctx.getBean("resourceBean", ResourceBean.class);
-    resourceBean.parse();
-  }
+    public static void main(String[] args) {
+        ApplicationContext ctx =
+                new ClassPathXmlApplicationContext("bean.xml");
+        ResourceBean resourceBean = ctx.getBean("resourceBean", ResourceBean.class);
+        resourceBean.parse();
+    }
 }
 ```
 
@@ -5646,19 +5674,19 @@ import org.springframework.core.io.Resource;
 
 public class Demo1 {
 
-  public static void main(String[] args) {
-    /*
-     * 通过搜索文件系统路径下的xml文件创建ApplicationContext，
-     * 但通过指定classpath:前缀强制搜索类加载路径
-     * classpath:bean.xml
-     * */
-    ApplicationContext ctx =
-            new ClassPathXmlApplicationContext("classpath:bean.xml");
-    System.out.println(ctx);
-    Resource resource = ctx.getResource("atguigu.txt");
-    System.out.println(resource.getFilename());
-    System.out.println(resource.getDescription());
-  }
+    public static void main(String[] args) {
+        /*
+         * 通过搜索文件系统路径下的xml文件创建ApplicationContext，
+         * 但通过指定classpath:前缀强制搜索类加载路径
+         * classpath:bean.xml
+         * */
+        ApplicationContext ctx =
+                new ClassPathXmlApplicationContext("classpath:bean.xml");
+        System.out.println(ctx);
+        Resource resource = ctx.getResource("atguigu.txt");
+        System.out.println(resource.getFilename());
+        System.out.println(resource.getDescription());
+    }
 }
 ```
 
@@ -5668,8 +5696,8 @@ classpath * :前缀提供了加载多个XML配置文件的能力，当使用clas
 前缀来指定XML配置文件时，系统将搜索类加载路径，找到所有与文件名匹配的文件，分别加载文件中的配置定义，最后合并成一个ApplicationContext。
 
 ```java
-ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:bean.xml");
-System.out.println(ctx);
+ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath*:bean.xml");
+        System.out.println(ctx);
 ```
 
 当使用classpath * :前缀时，Spring将会搜索类加载路径下所有满足该规则的配置文件。
@@ -5686,18 +5714,18 @@ classpath * : 前缀仅对ApplicationContext有效。实际情况是，创建App
 一次性加载多个配置文件的方式：指定配置文件时使用通配符
 
 ```java
-ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:bean*.xml");
+ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:bean*.xml");
 ```
 
 Spring允许将classpath*:前缀和通配符结合使用：
 
 ```java
-ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:bean*.xml");
+ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath*:bean*.xml");
 ```
 
 ## 9、国际化：i18n
 
-![image-20221218154728062](images\spring6\image-20221218154728062.png)
+![image-20221218154728062](images/spring6/image-20221218154728062.png)
 
 ### 9.1、i18n概述
 
@@ -5710,13 +5738,13 @@ internationalization的首末字符i和n，18为中间的字符数。由于软�
 
 ```java
     /**
-     * This method must be called only for creating the Locale.*
-     * constants due to making shortcuts.
-     */
-    private static Locale createConstant(String lang, String country) {
-        BaseLocale base = BaseLocale.createInstance(lang, country);
-        return getInstance(base, null);
-    }
+ * This method must be called only for creating the Locale.*
+ * constants due to making shortcuts.
+ */
+private static Locale createConstant(String lang,String country){
+        BaseLocale base=BaseLocale.createInstance(lang,country);
+        return getInstance(base,null);
+        }
 ```
 
 （2）配置文件命名规则：
@@ -5727,11 +5755,11 @@ internationalization的首末字符i和n，18为中间的字符数。由于软�
 
 **第一步 创建子模块spring6-i18n，引入spring依赖**
 
-![image-20221207122500801](images\spring6\image-20221207122500801.png)
+![image-20221207122500801](images/spring6/image-20221207122500801.png)
 
 **第二步 在resource目录下创建两个配置文件：messages_zh_CN.propertes和messages_en_GB.propertes**
 
-![image-20221207124839565](images\spring6\image-20221207124839565.png)
+![image-20221207124839565](images/spring6/image-20221207124839565.png)
 
 **第三步 测试**
 
@@ -5743,13 +5771,13 @@ import java.util.ResourceBundle;
 
 public class Demo1 {
 
-  public static void main(String[] args) {
-    System.out.println(ResourceBundle.getBundle("messages",
-            new Locale("en", "GB")).getString("test"));
+    public static void main(String[] args) {
+        System.out.println(ResourceBundle.getBundle("messages",
+                new Locale("en", "GB")).getString("test"));
 
-    System.out.println(ResourceBundle.getBundle("messages",
-            new Locale("zh", "CN")).getString("test"));
-  }
+        System.out.println(ResourceBundle.getBundle("messages",
+                new Locale("zh", "CN")).getString("test"));
+    }
 }
 ```
 
@@ -5781,7 +5809,7 @@ spring中国际化是通过MessageSource这个接口来支持的
 
 **{0},{1}这样内容，就是动态参数**
 
-![image-20221207140024056](images\spring6\image-20221207140024056.png)
+![image-20221207140024056](images/spring6/image-20221207140024056.png)
 
 **（1）创建atguigu_en_US.properties**
 
@@ -5830,28 +5858,28 @@ import java.util.Locale;
 
 public class Demo2 {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-    //传递动态参数，使用数组形式对应{0} {1}顺序
-    Object[] objs = new Object[]{"atguigu", new Date().toString()};
+        //传递动态参数，使用数组形式对应{0} {1}顺序
+        Object[] objs = new Object[]{"atguigu", new Date().toString()};
 
-    //www.atguigu.com为资源文件的key值,
-    //objs为资源文件value值所需要的参数,Local.CHINA为国际化为语言
-    String str = context.getMessage("www.atguigu.com", objs, Locale.CHINA);
-    System.out.println(str);
-  }
+        //www.atguigu.com为资源文件的key值,
+        //objs为资源文件value值所需要的参数,Local.CHINA为国际化为语言
+        String str = context.getMessage("www.atguigu.com", objs, Locale.CHINA);
+        System.out.println(str);
+    }
 }
 ```
 
 ## 10、数据校验：Validation
 
-![image-20221218154808754](images\spring6\image-20221218154808754.png)
+![image-20221218154808754](images/spring6/image-20221218154808754.png)
 
 ### 10.1、Spring Validation概述
 
-![image-20221206220207266](images\spring6\image-20221206220207266.png)
+![image-20221206220207266](images/spring6/image-20221206220207266.png)
 
 在开发中，我们经常遇到参数校验的需求，比如用户注册的时候，要校验用户名不能为空、用户名长度不超过20个字符、手机号是合法的手机号格式等等。如果使用普通方式，我们会把校验的代码和真正的业务处理逻辑耦合在一起，而且如果未来要新增一种校验逻辑也需要在修改多个地方。而spring
 validation允许通过注解的方式来定义对象校验规则，把校验和业务逻辑分离开，让代码编写更加方便。Spring Validation其实就是对Hibernate
@@ -5871,11 +5899,12 @@ Validator进一步的封装，方便在Spring中使用。
 
 **第一步 创建子模块 spring6-validator**
 
-![image-20221206221002615](images\spring6\image-20221206221002615.png)
+![image-20221206221002615](images/spring6/image-20221206221002615.png)
 
 **第二步 引入相关依赖**
 
 ```xml
+
 <dependencies>
     <dependency>
         <groupId>org.hibernate.validator</groupId>
@@ -5897,24 +5926,24 @@ Validator进一步的封装，方便在Spring中使用。
 package com.DEAiFISH.spring6.validation.method1;
 
 public class Person {
-  private String name;
-  private int age;
+    private String name;
+    private int age;
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public int getAge() {
-    return age;
-  }
+    public int getAge() {
+        return age;
+    }
 
-  public void setAge(int age) {
-    this.age = age;
-  }
+    public void setAge(int age) {
+        this.age = age;
+    }
 }
 ```
 
@@ -5929,21 +5958,21 @@ import org.springframework.validation.Validator;
 
 public class PersonValidator implements Validator {
 
-  @Override
-  public boolean supports(Class<?> clazz) {
-    return Person.class.equals(clazz);
-  }
-
-  @Override
-  public void validate(Object object, Errors errors) {
-    ValidationUtils.rejectIfEmpty(errors, "name", "name.empty");
-    Person p = (Person) object;
-    if (p.getAge() < 0) {
-      errors.rejectValue("age", "error value < 0");
-    } else if (p.getAge() > 110) {
-      errors.rejectValue("age", "error value too old");
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return Person.class.equals(clazz);
     }
-  }
+
+    @Override
+    public void validate(Object object, Errors errors) {
+        ValidationUtils.rejectIfEmpty(errors, "name", "name.empty");
+        Person p = (Person) object;
+        if (p.getAge() < 0) {
+            errors.rejectValue("age", "error value < 0");
+        } else if (p.getAge() > 110) {
+            errors.rejectValue("age", "error value too old");
+        }
+    }
 }
 ```
 
@@ -5963,25 +5992,25 @@ import org.springframework.validation.DataBinder;
 
 public class TestMethod1 {
 
-  public static void main(String[] args) {
-    //创建person对象
-    Person person = new Person();
-    person.setName("lucy");
-    person.setAge(-1);
+    public static void main(String[] args) {
+        //创建person对象
+        Person person = new Person();
+        person.setName("lucy");
+        person.setAge(-1);
 
-    // 创建Person对应的DataBinder
-    DataBinder binder = new DataBinder(person);
+        // 创建Person对应的DataBinder
+        DataBinder binder = new DataBinder(person);
 
-    // 设置校验
-    binder.setValidator(new PersonValidator());
+        // 设置校验
+        binder.setValidator(new PersonValidator());
 
-    // 由于Person对象中的属性为空，所以校验不通过
-    binder.validate();
+        // 由于Person对象中的属性为空，所以校验不通过
+        binder.validate();
 
-    //输出结果
-    BindingResult results = binder.getBindingResult();
-    System.out.println(results.getAllErrors());
-  }
+        //输出结果
+        BindingResult results = binder.getBindingResult();
+        System.out.println(results.getAllErrors());
+    }
 }
 ```
 
@@ -5994,6 +6023,7 @@ Validation中的接口，并且也实现了org.springframework.validation.Valida
 **第一步 创建配置类，配置LocalValidatorFactoryBean**
 
 ```java
+
 @Configuration
 @ComponentScan("com.atguigu.spring6.validation.method2")
 public class ValidationConfig {
@@ -6016,28 +6046,28 @@ import jakarta.validation.constraints.NotNull;
 
 public class User {
 
-  @NotNull
-  private String name;
+    @NotNull
+    private String name;
 
-  @Min(0)
-  @Max(120)
-  private int age;
+    @Min(0)
+    @Max(120)
+    private int age;
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public int getAge() {
-    return age;
-  }
+    public int getAge() {
+        return age;
+    }
 
-  public void setAge(int age) {
-    this.age = age;
-  }
+    public void setAge(int age) {
+        this.age = age;
+    }
 }
 ```
 
@@ -6070,13 +6100,13 @@ import java.util.Set;
 @Service
 public class MyService1 {
 
-  @Autowired
-  private Validator validator;
+    @Autowired
+    private Validator validator;
 
-  public boolean validator(User user) {
-    Set<ConstraintViolation<User>> sets = validator.validate(user);
-    return sets.isEmpty();
-  }
+    public boolean validator(User user) {
+        Set<ConstraintViolation<User>> sets = validator.validate(user);
+        return sets.isEmpty();
+    }
 
 }
 ```
@@ -6094,14 +6124,14 @@ import org.springframework.validation.Validator;
 @Service
 public class MyService2 {
 
-  @Autowired
-  private Validator validator;
+    @Autowired
+    private Validator validator;
 
-  public boolean validaPersonByValidator(User user) {
-    BindException bindException = new BindException(user, user.getName());
-    validator.validate(user, bindException);
-    return bindException.hasErrors();
-  }
+    public boolean validaPersonByValidator(User user) {
+        BindException bindException = new BindException(user, user.getName());
+        validator.validate(user, bindException);
+        return bindException.hasErrors();
+    }
 }
 ```
 
@@ -6116,27 +6146,27 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class TestMethod2 {
 
-  @Test
-  public void testMyService1() {
-    ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
-    MyService1 myService = context.getBean(MyService1.class);
-    User user = new User();
-    user.setAge(-1);
-    boolean validator = myService.validator(user);
-    System.out.println(validator);
-  }
+    @Test
+    public void testMyService1() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
+        MyService1 myService = context.getBean(MyService1.class);
+        User user = new User();
+        user.setAge(-1);
+        boolean validator = myService.validator(user);
+        System.out.println(validator);
+    }
 
-  @Test
-  public void testMyService2() {
-    ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
-    MyService2 myService = context.getBean(MyService2.class);
-    User user = new User();
-    user.setName("lucy");
-    user.setAge(130);
-    user.setAge(-1);
-    boolean validator = myService.validaPersonByValidator(user);
-    System.out.println(validator);
-  }
+    @Test
+    public void testMyService2() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
+        MyService2 myService = context.getBean(MyService2.class);
+        User user = new User();
+        user.setName("lucy");
+        user.setAge(130);
+        user.setAge(-1);
+        boolean validator = myService.validaPersonByValidator(user);
+        System.out.println(validator);
+    }
 }
 ```
 
@@ -6156,10 +6186,10 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 @ComponentScan("com.atguigu.spring6.validation.method3")
 public class ValidationConfig {
 
-  @Bean
-  public MethodValidationPostProcessor validationPostProcessor() {
-    return new MethodValidationPostProcessor();
-  }
+    @Bean
+    public MethodValidationPostProcessor validationPostProcessor() {
+        return new MethodValidationPostProcessor();
+    }
 }
 ```
 
@@ -6172,40 +6202,40 @@ import jakarta.validation.constraints.*;
 
 public class User {
 
-  @NotNull
-  private String name;
+    @NotNull
+    private String name;
 
-  @Min(0)
-  @Max(120)
-  private int age;
+    @Min(0)
+    @Max(120)
+    private int age;
 
-  @Pattern(regexp = "^1(3|4|5|7|8)\\d{9}$", message = "手机号码格式错误")
-  @NotBlank(message = "手机号码不能为空")
-  private String phone;
+    @Pattern(regexp = "^1(3|4|5|7|8)//d{9}$", message = "手机号码格式错误")
+    @NotBlank(message = "手机号码不能为空")
+    private String phone;
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public int getAge() {
-    return age;
-  }
+    public int getAge() {
+        return age;
+    }
 
-  public void setAge(int age) {
-    this.age = age;
-  }
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-  public String getPhone() {
-    return phone;
-  }
+    public String getPhone() {
+        return phone;
+    }
 
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }
 ```
 
@@ -6223,9 +6253,9 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class MyService {
 
-  public String testParams(@NotNull @Valid User user) {
-    return user.toString();
-  }
+    public String testParams(@NotNull @Valid User user) {
+        return user.toString();
+    }
 
 }
 ```
@@ -6241,14 +6271,14 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class TestMethod3 {
 
-  @Test
-  public void testMyService1() {
-    ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
-    MyService myService = context.getBean(MyService.class);
-    User user = new User();
-    user.setAge(-1);
-    myService.testParams(user);
-  }
+    @Test
+    public void testMyService1() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
+        MyService myService = context.getBean(MyService.class);
+        User user = new User();
+        user.setAge(-1);
+        myService.testParams(user);
+    }
 }
 ```
 
@@ -6269,22 +6299,22 @@ import java.lang.annotation.*;
 @Documented
 @Constraint(validatedBy = {CannotBlankValidator.class})
 public @interface CannotBlank {
-  //默认错误消息
-  String message() default "不能包含空格";
+    //默认错误消息
+    String message() default "不能包含空格";
 
-  //分组
-  Class<?>[] groups() default {};
+    //分组
+    Class<?>[] groups() default {};
 
-  //负载
-  Class<? extends Payload>[] payload() default {};
+    //负载
+    Class<? extends Payload>[] payload() default {};
 
-  //指定多个时使用
-  @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE})
-  @Retention(RetentionPolicy.RUNTIME)
-  @Documented
-  @interface List {
-    CannotBlank[] value();
-  }
+    //指定多个时使用
+    @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE})
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    @interface List {
+        CannotBlank[] value();
+    }
 }
 ```
 
@@ -6298,31 +6328,31 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class CannotBlankValidator implements ConstraintValidator<CannotBlank, String> {
 
-  @Override
-  public void initialize(CannotBlank constraintAnnotation) {
-  }
-
-  @Override
-  public boolean isValid(String value, ConstraintValidatorContext context) {
-    //null时不进行校验
-    if (value != null && value.contains(" ")) {
-      //获取默认提示信息
-      String defaultConstraintMessageTemplate = context.getDefaultConstraintMessageTemplate();
-      System.out.println("default message :" + defaultConstraintMessageTemplate);
-      //禁用默认提示信息
-      context.disableDefaultConstraintViolation();
-      //设置提示语
-      context.buildConstraintViolationWithTemplate("can not contains blank").addConstraintViolation();
-      return false;
+    @Override
+    public void initialize(CannotBlank constraintAnnotation) {
     }
-    return true;
-  }
+
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        //null时不进行校验
+        if (value != null && value.contains(" ")) {
+            //获取默认提示信息
+            String defaultConstraintMessageTemplate = context.getDefaultConstraintMessageTemplate();
+            System.out.println("default message :" + defaultConstraintMessageTemplate);
+            //禁用默认提示信息
+            context.disableDefaultConstraintViolation();
+            //设置提示语
+            context.buildConstraintViolationWithTemplate("can not contains blank").addConstraintViolation();
+            return false;
+        }
+        return true;
+    }
 }
 ```
 
 ## 11、提前编译：AOT
 
-![image-20221218154841001](images\spring6\image-20221218154841001.png)
+![image-20221218154841001](images/spring6/image-20221218154841001.png)
 
 ### 11.1、AOT概述
 
@@ -6347,7 +6377,7 @@ AOT 编译指的则是，在程序运行之前，便将字节码转换为机器�
 .java -> .class -> (使用jaotc编译工具) -> .so（程序函数库,即编译好的可以供其他程序使用的代码和数据）
 ```
 
-![image-20221207113544080](images\spring6\image-20221207113544080.png)
+![image-20221207113544080](images/spring6/image-20221207113544080.png)
 
 **（3）AOT的优点**
 
@@ -6409,33 +6439,33 @@ Native Image 是一项创新技术，可将 Java 代码编译成独立的本机�
 
 进入官网下载：https://www.graalvm.org/downloads/
 
-![image-20221207153944132](images\spring6\image-20221207153944132.png)
+![image-20221207153944132](images/spring6/image-20221207153944132.png)
 
-![image-20221207152841304](images\spring6\image-20221207152841304.png)
+![image-20221207152841304](images/spring6/image-20221207152841304.png)
 
 ##### （2）配置环境变量
 
 **添加GRAALVM_HOME**
 
-![image-20221207110539954](images\spring6\image-20221207110539954.png)
+![image-20221207110539954](images/spring6/image-20221207110539954.png)
 
 **把JAVA_HOME修改为graalvm的位置**
 
-![image-20221207153724340](images\spring6\image-20221207153724340.png)
+![image-20221207153724340](images/spring6/image-20221207153724340.png)
 
 **把Path修改位graalvm的bin位置**
 
-![image-20221207153755732](images\spring6\image-20221207153755732.png)
+![image-20221207153755732](images/spring6/image-20221207153755732.png)
 
 **使用命令查看是否安装成功**
 
-![image-20221207153642253](images\spring6\image-20221207153642253.png)
+![image-20221207153642253](images/spring6/image-20221207153642253.png)
 
 ##### （3）安装native-image插件
 
 **使用命令 gu install native-image下载安装**
 
-![image-20221207155009832](images\spring6\image-20221207155009832.png)
+![image-20221207155009832](images/spring6/image-20221207155009832.png)
 
 #### 11.2.2、安装C++的编译环境
 
@@ -6443,27 +6473,27 @@ Native Image 是一项创新技术，可将 Java 代码编译成独立的本机�
 
 https://visualstudio.microsoft.com/zh-hans/downloads/
 
-![image-20221219112426052](images\spring6\image-20221219112426052.png)
+![image-20221219112426052](images/spring6/image-20221219112426052.png)
 
 ##### （2）安装Visual Studio
 
-![image-20221207155726572](images\spring6\image-20221207155726572.png)
+![image-20221207155726572](images/spring6/image-20221207155726572.png)
 
-![image-20221207155756512](images\spring6\image-20221207155756512.png)
+![image-20221207155756512](images/spring6/image-20221207155756512.png)
 
 ##### （3）添加Visual Studio环境变量
 
 配置INCLUDE、LIB和Path
 
-![image-20221207110947997](images\spring6\image-20221207110947997.png)
+![image-20221207110947997](images/spring6/image-20221207110947997.png)
 
-![image-20221207111012582](images\spring6\image-20221207111012582.png)
+![image-20221207111012582](images/spring6/image-20221207111012582.png)
 
-![image-20221207111105569](images\spring6\image-20221207111105569.png)
+![image-20221207111105569](images/spring6/image-20221207111105569.png)
 
 ##### （4）打开工具，在工具中操作
 
-![image-20221207111206279](images\spring6\image-20221207111206279.png)
+![image-20221207111206279](images/spring6/image-20221207111206279.png)
 
 #### 11.2.3、编写代码，构建Native Image
 
@@ -6480,28 +6510,28 @@ public class Hello {
 
 ##### （2）复制文件到目录，执行编译
 
-![image-20221207111420056](images\spring6\image-20221207111420056.png)
+![image-20221207111420056](images/spring6/image-20221207111420056.png)
 
 ##### （3）Native Image 进行构建
 
-![image-20221207111509837](images\spring6\image-20221207111509837.png)
+![image-20221207111509837](images/spring6/image-20221207111509837.png)
 
-![image-20221207111609878](images\spring6\image-20221207111609878.png)
+![image-20221207111609878](images/spring6/image-20221207111609878.png)
 
 ##### （4）查看构建的文件
 
-![image-20221207111644950](images\spring6\image-20221207111644950.png)
+![image-20221207111644950](images/spring6/image-20221207111644950.png)
 
 ##### （5）执行构建的文件
 
-![image-20221207111731150](images\spring6\image-20221207111731150.png)
+![image-20221207111731150](images/spring6/image-20221207111731150.png)
 
 可以看到这个Hello最终打包产出的二进制文件大小为11M，这是包含了SVM和JDK各种库后的大小，虽然相比C/C++的二进制文件来说体积偏大，但是对比完整JVM来说，可以说是已经是非常小了。
 
 相比于使用JVM运行，Native Image的速度要快上不少，cpu占用也更低一些，从官方提供的各类实验数据也可以看出Native
 Image对于启动速度和内存占用带来的提升是非常显著的：
 
-![image-20221207111947283](images\spring6\image-20221207111947283.png)
+![image-20221207111947283](images/spring6/image-20221207111947283.png)
 
-![image-20221207112009852](images\spring6\image-20221207112009852.png)
+![image-20221207112009852](images/spring6/image-20221207112009852.png)
 
