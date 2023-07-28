@@ -29,10 +29,10 @@ public class ResourceLoaderDemo {
     }
 
     @Test
-        public void demo2() {
-            ApplicationContext ctx = new FileSystemXmlApplicationContext();
-            Resource res = ctx.getResource("deaifish.txt");
-            System.out.println(res.getFilename());
-        }
+    public void demo2() {
+        ApplicationContext ctx = new FileSystemXmlApplicationContext();
+        Resource res = ctx.getResource("deaifish.txt");
+        System.out.println(res.getFilename());
+    }
 
 }

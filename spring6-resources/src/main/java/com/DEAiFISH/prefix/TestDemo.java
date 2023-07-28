@@ -3,7 +3,6 @@ package com.DEAiFISH.prefix;
 import com.DEAiFISH.di.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.Resource;
 
 public class TestDemo {
     public static void main(String[] args) {

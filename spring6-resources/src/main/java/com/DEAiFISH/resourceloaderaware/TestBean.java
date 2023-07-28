@@ -15,7 +15,7 @@ public class TestBean implements ResourceLoaderAware {
     }
 
     //返回ResourceLoader对象的应用
-    public ResourceLoader getResourceLoader(){
+    public ResourceLoader getResourceLoader() {
         return this.resourceLoader;
     }
 

@@ -33,7 +33,7 @@ public class SpringConfig {
     }
 
     @Bean
-    public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource){
+    public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
         dataSourceTransactionManager.setDataSource(dataSource);
         return dataSourceTransactionManager;

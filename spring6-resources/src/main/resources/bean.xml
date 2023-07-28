@@ -5,7 +5,7 @@
 
     <bean id="testBean" class="com.DEAiFISH.resourceloaderaware.TestBean"/>
 
-    <bean id="resourceBean" class="com.DEAiFISH.di.ResourceBean" >
+    <bean id="resourceBean" class="com.DEAiFISH.di.ResourceBean">
         <!-- 可以使用file:、http:、ftp:等前缀强制Spring采用对应的资源访问策略 -->
         <!-- 如果不采用任何前缀，则Spring将采用与该ApplicationContext相同的资源访问策略来访问资源 -->
         <property name="res" value="classpath:deaifish.txt"/>

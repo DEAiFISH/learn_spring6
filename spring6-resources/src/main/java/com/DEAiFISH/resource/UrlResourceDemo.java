@@ -8,7 +8,7 @@ import org.springframework.core.io.UrlResource;
 public class UrlResourceDemo {
 
     //访问前缀时http、file
-    public static void loadAndReadUrlResource(String path){
+    public static void loadAndReadUrlResource(String path) {
         // 创建一个 Resource 实现类的对象 UrlResource
         UrlResource url = null;
         try {

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class TestAnno {
     @Test
-    public void testTxAllAnnotation(){
+    public void testTxAllAnnotation() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
         BookController accountService = applicationContext.getBean("bookController", BookController.class);
         accountService.buyBook(1, 1);
