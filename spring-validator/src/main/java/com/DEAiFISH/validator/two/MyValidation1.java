@@ -15,7 +15,7 @@ public class MyValidation1 {
     @Autowired
     private Validator validator;
 
-    public boolean validatorByUser(User user){
+    public boolean validatorByUser(User user) {
         Set<ConstraintViolation<User>> validate = validator.validate(user);
         return validate.isEmpty();
     }

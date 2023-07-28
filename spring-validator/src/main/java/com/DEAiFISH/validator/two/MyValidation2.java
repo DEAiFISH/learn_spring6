@@ -13,9 +13,9 @@ public class MyValidation2 {
     @Autowired
     private Validator validator;
 
-    public boolean validatorByUser(User user){
-        BindException bindException = new BindException(user,user.getName());
-        validator.validate(user,bindException);
+    public boolean validatorByUser(User user) {
+        BindException bindException = new BindException(user, user.getName());
+        validator.validate(user, bindException);
         return bindException.hasErrors();
     }
 }

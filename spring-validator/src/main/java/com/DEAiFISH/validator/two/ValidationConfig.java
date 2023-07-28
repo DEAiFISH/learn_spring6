@@ -9,7 +9,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @ComponentScan("com.DEAiFISH.validator.two")
 public class ValidationConfig {
     @Bean
-    public LocalValidatorFactoryBean validator(){
+    public LocalValidatorFactoryBean validator() {
         return new LocalValidatorFactoryBean();
     }
 }

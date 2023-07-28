@@ -14,15 +14,9 @@ import java.util.Set;
 
 public class AnnotationApplicationContext implements ApplicationContext {
 
+    private static String rootPath;
     //创建map集合，放bean对象
     private Map<Class, Object> beanFactory = new HashMap<>();
-    private static String rootPath;
-
-    //返回对象
-    @Override
-    public Object getBean(Class clazz) {
-        return beanFactory.get(clazz);
-    }
 
     //创建有参数构造，传递包路径，设置包扫描规则
     //当前包及其子包，哪个类有@Bean注解，把这个类通过反射实例化
@@ -52,6 +46,12 @@ public class AnnotationApplicationContext implements ApplicationContext {
 
         //属性注入
         loadDi();
+    }
+
+    //返回对象
+    @Override
+    public Object getBean(Class clazz) {
+        return beanFactory.get(clazz);
     }
 
     //包扫描过程，实例化

@@ -10,7 +10,7 @@ public class ResourceI18n {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
 
-        Object[] objs = new Object[]{"deaifish",new Date().toString()};
+        Object[] objs = new Object[]{"deaifish", new Date().toString()};
 
         String message = context.getMessage("www.deaifish.com", objs, Locale.ENGLISH);
 

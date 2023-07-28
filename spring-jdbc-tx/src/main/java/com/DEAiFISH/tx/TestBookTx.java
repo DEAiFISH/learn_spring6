@@ -1,7 +1,6 @@
 package com.DEAiFISH.tx;
 
 import com.DEAiFISH.tx.controller.BookController;
-import com.DEAiFISH.tx.service.BookService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;

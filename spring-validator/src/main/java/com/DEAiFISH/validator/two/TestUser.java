@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class TestUser {
     //原生校验器
     @Test
-    public void testValidation1(){
+    public void testValidation1() {
         ApplicationContext context = new AnnotationConfigApplicationContext(ValidationConfig.class);
         MyValidation1 validation1 = context.getBean(MyValidation1.class);
 

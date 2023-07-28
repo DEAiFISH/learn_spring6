@@ -1,7 +1,6 @@
 package com.DEAiFISH.autowired.controller;
 
 import com.DEAiFISH.autowired.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller

@@ -5,12 +5,12 @@ import org.springframework.core.io.Resource;
 public class ResourceBean {
     private Resource res;
 
-    public void setRes(Resource res) {
-        this.res = res;
-    }
-
     public Resource getRes() {
         return res;
+    }
+
+    public void setRes(Resource res) {
+        this.res = res;
     }
 
     public void parse() {
