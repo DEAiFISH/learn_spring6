@@ -1,0 +1,32 @@
+package com.DEAiFISH.validator.one;
+
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
+
+public class PersonValidator implements Validator {
+
+    /*
+        supports方法用来表示此校验用在哪个类型上，
+        validate是设置校验逻辑的地点，其中ValidationUtils，是Spring封装的校验工具类，帮助快速实现校验。
+    */
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return Person.class.equals(clazz);
+    }
+
+    //校验规则
+    @Override
+    public void validate(Object target, Errors errors) {
+        //name 不能为空
+        ValidationUtils.rejectIfEmpty(errors,"name","name.empty","name is null.");
+        //age 不能小于0，不能大于200
+        Person p = (Person) target;
+        if(p.getAge() < 0 ){
+            errors.rejectValue("age","age.value.error","age < 0");
+        }else if(p.getAge() > 200){
+            errors.rejectValue("age","age.value.error.old","age > 200");
+        }
+    }
+}
